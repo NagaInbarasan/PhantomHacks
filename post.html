@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-color="purple">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Post a Hackathon — Phantom Hacks</title>
+<meta name="description" content="List your hackathon on Phantom Hacks and reach 50,000+ hackers across India. Free, goes live within 24 hours."/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👻</text></svg>"/>
+<style>
+/* ============================================================ THEME */
+:root{--accent:#ff6ef7;--cyan:#00f5ff;--green:#39ff14;--yellow:#ffe600;--red:#ff4455;--trans:0.25s ease;}
+[data-theme="dark"]{--bg:#07070f;--bg2:#0d0d1a;--bg3:#111120;--card:#0f0f1e;--text:#e2e2f0;--muted:#6a6a9a;--faint:#2a2a4a;--border:rgba(255,255,255,0.07);--nav-bg:rgba(7,7,15,0.93);--glass:rgba(255,255,255,0.04);--shadow:rgba(0,0,0,0.6);--input-bg:rgba(255,255,255,0.05);}
+[data-theme="light"]{--bg:#f2f2fa;--bg2:#e8e8f5;--bg3:#edecf8;--card:#ffffff;--text:#1a1a3a;--muted:#7070a0;--faint:#c0c0e0;--border:rgba(0,0,0,0.08);--nav-bg:rgba(255,255,255,0.96);--glass:rgba(0,0,0,0.03);--shadow:rgba(80,40,160,0.12);--input-bg:rgba(0,0,0,0.04);}
+[data-color="purple"]{--p:#9d4edd;--pl:#c77dff;--pg:rgba(157,78,221,0.3);}
+[data-color="blue"]{--p:#2563eb;--pl:#60a5fa;--pg:rgba(37,99,235,0.3);}
+[data-color="cyan"]{--p:#0891b2;--pl:#22d3ee;--pg:rgba(8,145,178,0.3);}
+[data-color="green"]{--p:#16a34a;--pl:#4ade80;--pg:rgba(22,163,74,0.3);}
+[data-color="rose"]{--p:#e11d48;--pl:#fb7185;--pg:rgba(225,29,72,0.3);}
+[data-color="orange"]{--p:#ea580c;--pl:#fb923c;--pg:rgba(234,88,12,0.3);}
+[data-color="amber"]{--p:#d97706;--pl:#fbbf24;--pg:rgba(217,119,6,0.3);}
+[data-color="indigo"]{--p:#4f46e5;--pl:#818cf8;--pg:rgba(79,70,229,0.3);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);font-size:14px;overflow-x:hidden;min-height:100vh;}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;padding:0 20px;height:62px;gap:12px;}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--p),var(--pl));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 16px var(--pg);}
+.logo-text{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;background:linear-gradient(135deg,var(--pl),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.nav-back{padding:7px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;background:var(--glass);transition:all .2s;}
+.nav-back:hover{border-color:var(--p);color:var(--pl);background:var(--pg);}
+.user-pill{display:flex;align-items:center;gap:7px;padding:5px 12px 5px 6px;border-radius:20px;border:1.5px solid var(--border);background:var(--glass);font-size:12px;font-weight:600;color:var(--text);}
+.user-pill-avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--pl));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:var(--card);border:1px solid var(--p);border-radius:12px;padding:13px 18px;box-shadow:0 8px 32px var(--pg);font-size:13px;color:var(--text);transform:translateY(100px);opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;gap:10px;min-width:260px;}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* HERO SECTION */
+.post-hero{background:linear-gradient(180deg,var(--bg2),var(--bg));border-bottom:1px solid var(--border);padding:48px 20px 36px;text-align:center;position:relative;overflow:hidden;}
+.post-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--pg) 1px,transparent 1px),linear-gradient(90deg,var(--pg) 1px,transparent 1px);background-size:52px 52px;opacity:.25;}
+.post-hero-inner{position:relative;max-width:600px;margin:0 auto;}
+.post-hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--pg);border:1px solid var(--p);border-radius:20px;padding:5px 16px;margin-bottom:16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--pl);letter-spacing:1px;text-transform:uppercase;}
+.post-hero h1{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;margin-bottom:10px;letter-spacing:-1px;}
+.post-hero p{font-size:14px;color:var(--muted);line-height:1.7;}
+.perks-row{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:18px;flex-wrap:wrap;}
+.perk{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);}
+.perk span{color:var(--pl);font-weight:700;}
+
+/* FORM */
+.post-container{max-width:720px;margin:0 auto;padding:36px 20px 60px;}
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.form-section{padding:24px 28px;border-bottom:1px solid var(--border);}
+.form-section:last-child{border-bottom:none;}
+.fsec-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.fsec-title::before{content:'';display:inline-block;width:3px;height:16px;background:linear-gradient(180deg,var(--p),var(--accent));border-radius:2px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.form-group:last-child{margin-bottom:0;}
+.flabel{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-family:'JetBrains Mono',monospace;}
+.flabel .req{color:var(--red);margin-left:2px;}
+.finput{width:100%;padding:11px 14px;background:var(--input-bg);border:1.5px solid var(--border);border-radius:9px;color:var(--text);font-size:14px;font-family:'Space Grotesk',sans-serif;outline:none;transition:border-color .2s,box-shadow .2s;}
+.finput:focus{border-color:var(--p);box-shadow:0 0 12px var(--pg);}
+.finput.error{border-color:var(--red);box-shadow:0 0 8px rgba(255,68,85,.2);}
+.finput::placeholder{color:var(--muted);}
+select.finput option{background:var(--card);}
+textarea.finput{resize:vertical;min-height:90px;line-height:1.6;}
+.field-hint{font-size:11px;color:var(--muted);margin-top:3px;}
+.error-msg{font-size:11.5px;color:var(--red);margin-top:3px;display:none;}
+.error-msg.show{display:block;}
+
+/* LOGIN NOTICE */
+.login-notice{background:rgba(157,78,221,.08);border:1px solid rgba(157,78,221,.25);border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.login-notice p{font-size:13px;color:var(--muted);}
+.login-notice a{color:var(--pl);font-weight:600;cursor:pointer;}
+
+/* PREVIEW CARD */
+.preview-section{padding:24px 28px;}
+.preview-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:flex-start;}
+.preview-emoji{width:60px;height:60px;background:linear-gradient(135deg,var(--pg),rgba(255,110,247,.08));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;}
+.preview-body .preview-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px;}
+.preview-body .preview-org{font-size:12px;color:var(--muted);margin-bottom:8px;}
+.preview-chips{display:flex;gap:6px;flex-wrap:wrap;}
+.preview-chip{padding:3px 10px;border-radius:5px;font-size:10.5px;font-weight:700;background:var(--glass);border:1px solid var(--border);color:var(--muted);}
+
+/* SUBMIT */
+.form-footer{padding:20px 28px;background:var(--bg3);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.submit-btn{padding:13px 32px;background:linear-gradient(135deg,var(--p),var(--pl));color:#fff;border:none;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;font-family:'Space Grotesk',sans-serif;box-shadow:0 0 20px var(--pg);transition:all .2s;}
+.submit-btn:hover{box-shadow:0 0 36px var(--pg);transform:translateY(-1px);}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.form-note{font-size:12px;color:var(--muted);}
+
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:60px 28px;}
+.success-icon{font-size:64px;margin-bottom:16px;}
+.success-screen h2{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;margin-bottom:8px;}
+.success-screen p{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:24px;}
+.success-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{padding:11px 24px;background:linear-gradient(135deg,var(--p),var(--pl));color:#fff;border:none;border-radius:10px;font-weight:700;font-size:13px;cursor:pointer;font-family:'Space Grotesk',sans-serif;box-shadow:0 0 16px var(--pg);transition:all .2s;}
+.btn-outline-sm{padding:11px 24px;border:1.5px solid var(--p);color:var(--pl);background:transparent;border-radius:10px;font-weight:600;font-size:13px;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s;}
+.btn-outline-sm:hover{background:var(--pg);}
+
+/* SPINNER */
+.spinner{width:36px;height:36px;border-radius:50%;border:3px solid var(--glass);border-top-color:var(--p);animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}.form-footer{flex-direction:column}.submit-btn{width:100%}.perks-row{gap:12px}}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"><span id="toastIcon">⚡</span><span id="toastMsg"></span></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="window.location.href='index.html'">
+      <div class="logo-icon">👻</div>
+      <div class="logo-text">Phantom Hacks</div>
+    </div>
+    <div class="nav-right">
+      <div id="userPill" style="display:none" class="user-pill">
+        <div class="user-pill-avatar" id="navAvatar">?</div>
+        <span id="navName"></span>
+      </div>
+      <button class="nav-back" onclick="window.location.href='index.html'">← Back</button>
+    </div>
+  </div>
+</nav>
+
+<div class="post-hero">
+  <div class="post-hero-inner">
+    <div class="post-hero-badge">👻 Free · Goes live in 24h</div>
+    <h1>Post Your Hackathon</h1>
+    <p>Reach 50,000+ hackers across India. Fill in the details below and we'll review and publish within 24 hours.</p>
+    <div class="perks-row">
+      <div class="perk">✅ <span>Completely Free</span></div>
+      <div class="perk">⚡ <span>Live in 24 hours</span></div>
+      <div class="perk">👥 <span>50K+ Hackers</span></div>
+      <div class="perk">📧 <span>Email confirmation</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="post-container">
+  <div id="loginNotice" class="login-notice" style="display:none">
+    <span style="font-size:20px">🔐</span>
+    <p>You're posting as a guest. <a onclick="goLogin()">Sign in</a> to track your submissions and get notified when it goes live.</p>
+  </div>
+
+  <div class="form-card" id="formCard">
+    <!-- BASIC INFO -->
+    <div class="form-section">
+      <div class="fsec-title">Basic Information</div>
+      <div class="form-group">
+        <label class="flabel">Hackathon Name <span class="req">*</span></label>
+        <input class="finput" id="hName" type="text" placeholder="e.g. Smart India Hackathon 2026" oninput="updatePreview()"/>
+        <div class="error-msg" id="hNameErr">Please enter the hackathon name</div>
+      </div>
+      <div class="form-group">
+        <label class="flabel">Organiser / Organisation <span class="req">*</span></label>
+        <input class="finput" id="hOrg" type="text" placeholder="e.g. Ministry of Education, IIT Bombay" oninput="updatePreview()"/>
+        <div class="error-msg" id="hOrgErr">Please enter the organiser name</div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="flabel">Event Type</label>
+          <select class="finput" id="hType" onchange="updatePreview()">
+            <option value="hackathon">🏆 Hackathon</option>
+            <option value="datathon">📊 Datathon</option>
+            <option value="sprint">⚡ Sprint</option>
+            <option value="competition">🥇 Competition</option>
+            <option value="workshop">🛠️ Workshop</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="flabel">Mode</label>
+          <select class="finput" id="hMode" onchange="updatePreview()">
+            <option value="online">🌐 Online</option>
+            <option value="offline">🏟️ Offline / In-Person</option>
+            <option value="hybrid">🤝 Hybrid</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAILS -->
+    <div class="form-section">
+      <div class="fsec-title">Event Details</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="flabel">Prize Pool</label>
+          <input class="finput" id="hPrize" type="text" placeholder="e.g. ₹1,00,000 or $5,000" oninput="updatePreview()"/>
+        </div>
+        <div class="form-group">
+          <label class="flabel">Location</label>
+          <input class="finput" id="hLocation" type="text" placeholder="e.g. Bangalore or Online" oninput="updatePreview()"/>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="flabel">Event Dates <span class="req">*</span></label>
+          <input class="finput" id="hDates" type="text" placeholder="e.g. Apr 10–12, 2026"/>
+          <div class="error-msg" id="hDatesErr">Please enter the event dates</div>
+        </div>
+        <div class="form-group">
+          <label class="flabel">Registration Deadline</label>
+          <input class="finput" id="hDeadline" type="text" placeholder="e.g. Apr 1, 2026 or Ongoing"/>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="flabel">Level</label>
+          <select class="finput" id="hLevel">
+            <option value="beginner">🌱 Beginner</option>
+            <option value="intermediate">⚡ Intermediate</option>
+            <option value="advanced">🔥 Advanced</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="flabel">Team Size</label>
+          <select class="finput" id="hTeam">
+            <option value="solo">👤 Solo</option>
+            <option value="small">👥 2–4 Members</option>
+            <option value="large">👥+ 5+ Members</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="flabel">Entry Fee</label>
+          <select class="finput" id="hCost">
+            <option value="free">💸 Free</option>
+            <option value="paid">💳 Paid</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="flabel">Status</label>
+          <select class="finput" id="hStatus">
+            <option value="upcoming">⏳ Upcoming</option>
+            <option value="open">● Open</option>
+            <option value="ongoing">▶ Ongoing</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="form-section">
+      <div class="fsec-title">Links & Contact</div>
+      <div class="form-group">
+        <label class="flabel">Registration / Event URL <span class="req">*</span></label>
+        <input class="finput" id="hUrl" type="url" placeholder="https://..."/>
+        <div class="error-msg" id="hUrlErr">Please enter a valid URL</div>
+        <div class="field-hint">The link users will be redirected to when they click Register Now</div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="flabel">Host Email (for registration list)</label>
+          <input class="finput" id="hHostEmail" type="email" placeholder="host@example.com"/>
+          <div class="field-hint">We'll send you the registration list</div>
+        </div>
+        <div class="form-group">
+          <label class="flabel">Your Email (for confirmation)</label>
+          <input class="finput" id="hEmail" type="email" placeholder="you@example.com"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="form-section">
+      <div class="fsec-title">Description & Tags</div>
+      <div class="form-group">
+        <label class="flabel">Short Description</label>
+        <textarea class="finput" id="hDesc" rows="3" placeholder="Describe the theme, problem statements, eligibility, prizes breakdown..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="flabel">Tags (comma-separated)</label>
+        <input class="finput" id="hTags" type="text" placeholder="AI/ML, Web3, HealthTech, Beginner Friendly"/>
+        <div class="field-hint">Helps hackers discover your event</div>
+      </div>
+    </div>
+
+    <!-- LIVE PREVIEW -->
+    <div class="preview-section">
+      <div class="fsec-title" style="margin-bottom:12px">👁️ Live Preview</div>
+      <div class="preview-card" id="previewCard">
+        <div class="preview-emoji" id="prevEmoji">👻</div>
+        <div class="preview-body">
+          <div class="preview-title" id="prevTitle">Your Hackathon Name</div>
+          <div class="preview-org" id="prevOrg">Organisation</div>
+          <div class="preview-chips" id="prevChips"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="form-footer">
+      <div class="form-note">🔒 We review all submissions before publishing. Usually within 24 hours.</div>
+      <button class="submit-btn" id="submitBtn" onclick="submitPost()">🚀 Post Hackathon</button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">🎉</div>
+      <h2>Hackathon Posted!</h2>
+      <p>Your hackathon has been submitted for review.<br/>
+      We'll publish it within <strong>24 hours</strong>.<br/>
+      A confirmation will be sent to your email.</p>
+      <div class="success-btns">
+        <button class="btn-primary" onclick="window.location.href='index.html'">← Back to Hackathons</button>
+        <button class="btn-outline-sm" onclick="resetForm()">+ Post Another</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+'use strict';
+
+/* ============================================================ SUPABASE */
+const SUPA_URL='https://frffynlzejbtnapooqvu.supabase.co';
+const SUPA_KEY='sb_publishable_QW3l1XzcOGcvKIKeGVUv9w_jfe0IUtS';
+const supa=window.supabase.createClient(SUPA_URL,SUPA_KEY,{
+  auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+});
+
+/* ============================================================ TOAST */
+function toast(icon,msg,dur=4000){
+  document.getElementById('toastIcon').textContent=icon;
+  document.getElementById('toastMsg').textContent=msg;
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer=setTimeout(()=>t.classList.remove('show'),dur);
+}
+
+/* ============================================================ EMOJI MAP */
+const typeEmoji={hackathon:'🏆',datathon:'📊',sprint:'⚡',competition:'🥇',workshop:'🛠️',conference:'🎤'};
+
+/* ============================================================ LIVE PREVIEW */
+function updatePreview(){
+  const name=document.getElementById('hName').value.trim()||'Your Hackathon Name';
+  const org=document.getElementById('hOrg').value.trim()||'Organisation';
+  const type=document.getElementById('hType').value;
+  const mode=document.getElementById('hMode').value;
+  const prize=document.getElementById('hPrize').value.trim();
+  const loc=document.getElementById('hLocation').value.trim();
+  document.getElementById('prevEmoji').textContent=typeEmoji[type]||'👻';
+  document.getElementById('prevTitle').textContent=name;
+  document.getElementById('prevOrg').textContent='🏛️ '+org;
+  const chips=[];
+  if(prize) chips.push(`🏆 ${prize}`);
+  chips.push(mode==='online'?'🌐 Online':mode==='offline'?'🏟️ Offline':'🤝 Hybrid');
+  if(loc) chips.push(`📍 ${loc}`);
+  document.getElementById('prevChips').innerHTML=chips.map(c=>`<span class="preview-chip">${c}</span>`).join('');
+}
+
+/* ============================================================ VALIDATION */
+function validate(){
+  let valid=true;
+  const fields=[
+    {id:'hName',errId:'hNameErr',check:v=>v.length>2},
+    {id:'hOrg',errId:'hOrgErr',check:v=>v.length>2},
+    {id:'hDates',errId:'hDatesErr',check:v=>v.length>2},
+    {id:'hUrl',errId:'hUrlErr',check:v=>v.startsWith('http')},
+  ];
+  fields.forEach(({id,errId,check})=>{
+    const val=document.getElementById(id).value.trim();
+    const ok=check(val);
+    document.getElementById(id).classList.toggle('error',!ok);
+    document.getElementById(errId).classList.toggle('show',!ok);
+    if(!ok) valid=false;
+  });
+  return valid;
+}
+
+/* ============================================================ SUBMIT */
+async function submitPost(){
+  if(!validate()) return;
+  const btn=document.getElementById('submitBtn');
+  btn.innerHTML='<div class="spinner" style="width:20px;height:20px;border-width:2px;display:inline-block;vertical-align:middle;margin-right:8px"></div>Posting...';
+  btn.disabled=true;
+
+  const{data:{user}}=await supa.auth.getUser();
+  const tags=document.getElementById('hTags').value.split(',').map(t=>t.trim()).filter(Boolean);
+
+  try{
+    // Save to submissions table for review
+    const{error}=await supa.from('submissions').insert({
+      name:document.getElementById('hName').value.trim(),
+      org:document.getElementById('hOrg').value.trim(),
+      type:document.getElementById('hType').value,
+      mode:document.getElementById('hMode').value,
+      prize:document.getElementById('hPrize').value.trim(),
+      location:document.getElementById('hLocation').value.trim(),
+      dates:document.getElementById('hDates').value.trim(),
+      deadline:document.getElementById('hDeadline').value.trim(),
+      url:document.getElementById('hUrl').value.trim(),
+      description:document.getElementById('hDesc').value.trim(),
+      tags:tags.join(', '),
+      email:document.getElementById('hEmail').value.trim()||user?.email||null,
+      status:'pending',
+    });
+    if(error) throw error;
+    document.getElementById('formCard').querySelector('.form-section').style.display='';
+    document.getElementById('successScreen').style.display='block';
+    // hide all form sections, show success
+    document.querySelectorAll('.form-section,.preview-section,.form-footer').forEach(el=>el.style.display='none');
+    document.getElementById('successScreen').style.display='block';
+    toast('🎉','Hackathon submitted for review!');
+  }catch(err){
+    toast('❌','Failed to submit: '+err.message);
+    btn.textContent='🚀 Post Hackathon';
+    btn.disabled=false;
+  }
+}
+
+function resetForm(){
+  document.querySelectorAll('.form-section,.preview-section,.form-footer').forEach(el=>el.style.display='');
+  document.getElementById('successScreen').style.display='none';
+  document.querySelectorAll('.finput').forEach(el=>el.value='');
+  document.querySelectorAll('select.finput').forEach(el=>el.selectedIndex=0);
+  document.getElementById('submitBtn').textContent='🚀 Post Hackathon';
+  document.getElementById('submitBtn').disabled=false;
+  updatePreview();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ============================================================ AUTH */
+function goLogin(){
+  sessionStorage.setItem('returnTo','post.html');
+  window.location.href='index.html';
+}
+
+async function initAuth(){
+  const{data:{user}}=await supa.auth.getUser();
+  if(user){
+    const name=user.user_metadata?.full_name||user.email.split('@')[0];
+    const initials=name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+    document.getElementById('navAvatar').textContent=initials;
+    document.getElementById('navName').textContent=name.split(' ')[0];
+    document.getElementById('userPill').style.display='flex';
+    // Pre-fill email
+    document.getElementById('hEmail').value=user.email;
+  } else {
+    document.getElementById('loginNotice').style.display='flex';
+  }
+}
+
+/* ============================================================ INIT */
+updatePreview();
+initAuth();
+</script>
+</body>
+</html>
