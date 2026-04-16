@@ -35,9 +35,9 @@ async function loadHackathons(){
     DB=data;
     renderFeatured();
     renderEvents(true);
-    renderPrizeBoard();
     buildTicker();
     initBrowseBy();
+    buildSmartSuggestions();
     document.getElementById('totalCount').textContent=DB.length.toLocaleString('en-IN')+'+';
     const open=DB.filter(h=>h.status==='open').length;
     const online=DB.filter(h=>h.mode==='online').length;
@@ -92,7 +92,7 @@ const LOAD_MSGS=[
    STATE
    ===================================================================== */
 const flt={level:null,team:null,cost:null,mode:null,date:null,status:null};
-let activeSrc='all', searchQ='', timeLeft=120;
+let activeSrc='all', searchQ='';
 let pMode='low', afId, particles=[];
 const canvas=document.getElementById('particleCanvas');
 const ctx=canvas.getContext('2d');
@@ -113,7 +113,9 @@ function buildTicker(){
 function renderFeatured(){
   document.getElementById('featuredScroll').innerHTML=DB.filter(h=>h.featured).map(h=>`
     <a class="featured-card" href="hackathon.html?id=${h.id}" style="text-decoration:none;color:inherit">
-      <div class="fimg">${h.emoji}</div>
+      <div class="fimg">
+        ${(h.logo_url || h.image_url) ? `<img src="${h.logo_url || h.image_url}" alt="${h.title}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit"/>` : h.emoji}
+      </div>
       <div class="featured-card-body">
         <div class="src-badge src-${h.source}">${h.source.toUpperCase()}</div>
         <div class="featured-card-title">${h.title}</div>
@@ -150,7 +152,11 @@ function renderEvents(animate=false){
   }
   el.innerHTML=data.map((h,i)=>`
     <a class="event-card${animate?' new-card':''}" style="${animate?`animation-delay:${i*.055}s`:''};text-decoration:none;color:inherit" href="hackathon.html?id=${h.id}">
-      <div class="ec-img"><div class="fimg2">${h.emoji}</div></div>
+      <div class="ec-img">
+        <div class="fimg2">
+          ${(h.logo_url || h.image_url) ? `<img src="${h.logo_url || h.image_url}" alt="${h.title}" style="width:100%;height:100%;object-fit:cover;border-radius:inherit"/>` : h.emoji}
+        </div>
+      </div>
       <div class="ec-body">
         <div class="ec-top">
           <div class="ec-badges">
@@ -216,13 +222,65 @@ document.querySelectorAll('#sourcePills .source-pill').forEach(p=>{
   });
 });
 
-/* SEARCH — live debounced */
+/* SEARCH — live debounced + suggestions */
 let sTimer;
-document.getElementById('searchInput').addEventListener('input',e=>{
+const searchInput = document.getElementById('searchInput');
+const searchSug = document.getElementById('searchSuggestions');
+
+searchInput.addEventListener('input', e => {
   clearTimeout(sTimer);
-  sTimer=setTimeout(()=>{searchQ=e.target.value.trim();renderEvents(true);},220);
+  const val = e.target.value.trim();
+  sTimer = setTimeout(() => {
+    searchQ = val;
+    renderEvents(true);
+    showSuggestions(val);
+  }, 220);
 });
-function runSearch(){searchQ=document.getElementById('searchInput').value.trim();renderEvents(true);}
+
+searchInput.addEventListener('focus', e => {
+  if (e.target.value.trim().length > 0) showSuggestions(e.target.value.trim());
+});
+
+document.addEventListener('click', e => {
+  if (searchSug && !searchInput.contains(e.target) && !searchSug.contains(e.target)) {
+    searchSug.style.display = 'none';
+  }
+});
+
+function showSuggestions(q) {
+  if (!searchSug) return;
+  if (!q) { searchSug.style.display = 'none'; return; }
+  const lowerQ = q.toLowerCase();
+  
+  const matches = DB.filter(h => 
+    h.title.toLowerCase().includes(lowerQ) || 
+    h.org.toLowerCase().includes(lowerQ) || 
+    h.location.toLowerCase().includes(lowerQ)
+  ).slice(0, 4);
+  
+  if (matches.length === 0) {
+    searchSug.innerHTML = `<div class="sug-item"><div class="sug-text"><div class="sug-title" style="color:var(--muted)">No matching hackathons found.</div></div></div>`;
+    searchSug.style.display = 'flex';
+    return;
+  }
+  
+  searchSug.innerHTML = matches.map(h => `
+    <div class="sug-item" onclick="window.location.href='hackathon.html?id=${h.id}'">
+      <div class="sug-icon">${h.emoji}</div>
+      <div class="sug-text">
+        <div class="sug-title">${h.title}</div>
+        <div class="sug-org">${h.org} • ${h.location}</div>
+      </div>
+    </div>
+  `).join('');
+  searchSug.style.display = 'flex';
+}
+
+function runSearch() {
+  searchQ = searchInput.value.trim();
+  renderEvents(true);
+  if(searchSug) searchSug.style.display='none';
+}
 
 /* =====================================================================
    LIVE FEED
@@ -270,37 +328,6 @@ function counter(el,from,to,dur=1100){
 function tick(){document.getElementById('topClock').textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+' IST';}
 setInterval(tick,1000);tick();
 
-/* =====================================================================
-   AUTO-REFRESH EVERY 2 MINUTES
-   ===================================================================== */
-function triggerRefresh(){
-  const ov=document.getElementById('loadingOverlay');
-  const lt=document.getElementById('loadText');
-  const pb=document.getElementById('loadPbar');
-  ov.classList.add('visible');
-  pb.style.animation='none';pb.offsetHeight;pb.style.animation='';
-  let i=0;
-  const iv=setInterval(()=>{lt.textContent=LOAD_MSGS[i++%LOAD_MSGS.length];},300);
-  setTimeout(()=>{
-    clearInterval(iv);ov.classList.remove('visible');
-    timeLeft=120;
-    const n=840+Math.floor(Math.random()*18);
-    counter(document.getElementById('statOpen'),parseInt(document.getElementById('statOpen').textContent.replace(/,/g,'')||0),n);
-    counter(document.getElementById('sOpen'),parseInt(document.getElementById('sOpen').textContent.replace(/,/g,'')||0),n);
-    document.getElementById('lastUpd').textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
-    rotateFeed();
-    toast('⚡',`Live data synced — ${n.toLocaleString('en-IN')} open hackathons!`);
-  },2200+Math.random()*500);
-}
-
-setInterval(()=>{
-  timeLeft=Math.max(0,timeLeft-1);
-  if(timeLeft===0){triggerRefresh();return;}
-  const m=Math.floor(timeLeft/60),s=timeLeft%60;
-  document.getElementById('cdown').textContent=`${m}:${s.toString().padStart(2,'0')}`;
-  document.getElementById('pbar').style.width=(timeLeft/120*100)+'%';
-},1000);
-
 setInterval(rotateFeed,11000);
 
 /* =====================================================================
@@ -330,81 +357,7 @@ function navTo(page){
   if(page==='profile') loadProfilePage();
 }
 
-/* =====================================================================
-   HACKATHON DETAIL PANEL
-   ===================================================================== */
-let currentHack=null;
-const HACK_DESCS={
-  19:"Smart India Hackathon is a nationwide initiative that provides students a platform to solve some pressing problems we face in our daily lives, and thus inculcate a culture of product innovation and a mindset of problem solving. Teams will build solutions aligned with government priority areas including agriculture, education, health, and smart cities.",
-  20:"Google DeepMind and Devpost have joined hands for one of the largest global AI hackathons of 2026. Build LLM-powered applications, fine-tune models, or create novel AI tools. Open to all skill levels — beginners to veterans. Top projects get direct visibility to DeepMind engineers.",
-  21:"ETHIndia is India's flagship Ethereum hackathon, organised by Devfolio in collaboration with the Ethereum Foundation. Hackers build decentralised apps, DeFi protocols, NFT platforms, and Web3 tooling. Past winners have gone on to raise millions in seed funding.",
-  22:"An ongoing deep learning challenge on HackerEarth where participants tackle computer vision, NLP, and reinforcement learning problems on curated datasets. Compete on the public leaderboard and earn certifications along with cash prizes.",
-  23:"MLH Local Hack Day is a 12-hour global hackathon with synchronised events across multiple cities. Perfect for beginners and those new to hackathons. Build anything you want with a small team, earn MLH swag, and get hands-on experience.",
-  24:"A focused FinTech hackathon targeting innovations in UPI payments, digital banking, credit scoring, and open finance APIs. Strong corporate mentorship and potential for fast-tracking your idea to a real banking pilot.",
-  25:"IIT Bombay's annual Techfest hackathon is one of Asia's largest technical festivals. Teams compete on cutting-edge problem statements across AI, robotics, sustainability, and smart infrastructure. IIT Bombay alumni mentors are on hand throughout the event.",
-  26:"Organised by NASSCOM Foundation, Climate Hack India challenges participants to build tech solutions for climate change, carbon tracking, sustainable supply chains, and clean energy. Strong NGO and government partnerships for real-world impact.",
-  27:"Quark is BITS Pilani's annual technical festival hackathon. Teams of up to 5 compete over 36 hours on open-ended and sponsored problem statements. One of the most prestigious college hackathons in India with a thriving alumni network.",
-  28:"A month-long open source sprint where developers contribute to FOSSASIA projects and GitHub-hosted repositories. Earn certifications, swag, and recognition in the global open source community. No experience required — all skill levels welcome.",
-  29:"A national-level Capture the Flag (CTF) cybersecurity competition by EC-Council India. Participants solve challenges across web exploitation, reverse engineering, cryptography, forensics, and OSINT. Top performers get EC-Council certifications.",
-  30:"NIT Trichy's annual Pragyan hackathon features intense 24-hour problem-solving across computer science, electronics, and interdisciplinary domains. Note: registrations for this edition are now closed.",
-  31:"A hybrid hackathon co-organised by Practo and Microsoft, focusing on digital health, telemedicine, AI diagnostics, and mental health platforms. Access to Microsoft Azure credits and Practo APIs for all participants.",
-  32:"Buildspace S5 is a 6-week global cohort where founders and builders work on their startup ideas in public. Weekly drops, peer accountability, and a final demo day with investor attention. Remote-first and completely free.",
-  33:"VIT Vellore HackBit 3.0 is VIT's flagship 24-hour hackathon. Open to all college students across India. Solve real-world problems with tech across domains including FinTech, HealthTech, and EdTech. Food and accommodation included for outstation participants.",
-  34:"ICAR's AgriTech Hackathon invites solutions for crop monitoring, precision farming, supply chain transparency, and rural fintech. Work alongside agricultural scientists and domain experts. Government procurement pathways available for winning solutions.",
-  35:"Solana Grizzlython is one of the world's richest Web3 hackathons with $200,000 in prizes. Build dApps, DeFi protocols, NFT marketplaces, and developer tools on the Solana blockchain. Fully online and open to global participants.",
-  36:"Anna University's annual HackThon is a 36-hour intra and inter-college hackathon held at the main Chennai campus. Focus areas include smart city solutions, AI/ML applications, and civic tech. Open to all B.E./B.Tech students.",
-};
-
-function openDetail(id){
-  const h=DB.find(x=>x.id===id);
-  if(!h)return;
-  currentHack=h;
-  const SC2={open:'reg-open',closed:'reg-closed',ongoing:'reg-ongoing',upcoming:'reg-upcoming'};
-  const SL2={open:'● REG OPEN',closed:'✕ CLOSED',ongoing:'▶ ONGOING',upcoming:'⏳ UPCOMING'};
-  document.getElementById('dpEmoji').textContent=h.emoji;
-  document.getElementById('dpTitle').textContent=h.title;
-  document.getElementById('dpOrg').innerHTML=`🏛️ <strong>${h.org}</strong>`;
-  document.getElementById('dpPrize').innerHTML=`🏆 ${h.prize}`;
-  document.getElementById('dpBadges').innerHTML=`
-    <span class="etype ${BC[h.type]||'bt-hackathon'}">${h.type.toUpperCase()}</span>
-    <span class="src-badge src-${h.source}">${h.source.toUpperCase()}</span>
-    <span class="reg ${SC2[h.status]}">${SL2[h.status]}</span>`;
-  // deadline urgency
-  const dlBar=document.getElementById('dpDeadlineBar');
-  const isClosed=h.status==='closed';
-  const isOngoing=h.deadline==='Ongoing';
-  const cls=isClosed?'':'safe';
-  dlBar.innerHTML=`<div class="deadline-bar ${isOngoing?'safe':isClosed?'':'warn'}">
-    <span style="font-size:16px">${isOngoing?'🔄':isClosed?'🔒':'⏰'}</span>
-    <span>${isOngoing?'Rolling deadline — enter anytime':isClosed?`Registration closed · Deadline was ${h.deadline}`:`Registration deadline: <strong>${h.deadline}</strong>`}</span>
-  </div>`;
-  document.getElementById('dpInfoGrid').innerHTML=`
-    <div class="dp-info-item"><div class="dp-info-label">📅 Event Date</div><div class="dp-info-val">${h.date}</div></div>
-    <div class="dp-info-item"><div class="dp-info-label">📍 Location</div><div class="dp-info-val">${h.location}</div></div>
-    <div class="dp-info-item"><div class="dp-info-label">🌐 Mode</div><div class="dp-info-val">${MM[h.mode]}</div></div>
-    <div class="dp-info-item"><div class="dp-info-label">👥 Team Size</div><div class="dp-info-val">${TM[h.team]}</div></div>
-    <div class="dp-info-item"><div class="dp-info-label">🎯 Level</div><div class="dp-info-val">${LM[h.level]}</div></div>
-    <div class="dp-info-item"><div class="dp-info-label">💰 Cost</div><div class="dp-info-val">${h.cost==='free'?'💸 Free Entry':'💳 Paid'}</div></div>`;
-  document.getElementById('dpDesc').textContent=HACK_DESCS[h.id]||h.description||`${h.title} is a ${h.type} organised by ${h.org}. Visit the official page for full details, problem statements, and registration instructions.`;
-  document.getElementById('dpTags').innerHTML=h.tags.map(t=>`<span class="dp-tag">${t}</span>`).join('');
-  const regBtn=document.getElementById('dpRegBtn');
-  regBtn.textContent=isClosed?'🔒 Registration Closed':'🚀 Register Now';
-  regBtn.disabled=isClosed;
-  regBtn.style.opacity=isClosed?'0.5':'1';
-  document.getElementById('detailOverlay').classList.add('open');
-  document.getElementById('detailPanel').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-
-function closeDetail(e){
-  if(e&&e.target!==document.getElementById('detailOverlay'))return;
-  closeDetailPanel();
-}
-function closeDetailPanel(){
-  document.getElementById('detailOverlay').classList.remove('open');
-  document.getElementById('detailPanel').classList.remove('open');
-  document.body.style.overflow='';
-}
+/* Removed Detail Panel Logic, now directly navigating to hackathon.html */
 function openReg(){
   if(!currentHack)return;
   if(currentHack.status==='closed'){toast('🔒','Registration is closed for this hackathon');return;}
@@ -547,38 +500,81 @@ function getFilteredData(){
 }
 
 /* =====================================================================
-   PRIZE BOARD
+   SMART FILTERING — AI-like recommended filters
    ===================================================================== */
-function filterPrizeBoard(f,el){
-  pbFilter=f;
-  document.querySelectorAll('.pb-filter-btn').forEach(b=>b.classList.remove('active'));
-  if(el)el.classList.add('active');
-  renderPrizeBoard();
+let smartSuggestions=[];
+
+function buildSmartSuggestions(){
+  smartSuggestions=[];
+  const now=new Date();
+  // Suggest open+free for beginners
+  const freeOpen=DB.filter(h=>h.cost==='free'&&h.status==='open');
+  if(freeOpen.length>0){
+    smartSuggestions.push({label:'🌟 Free & Open Now',desc:`${freeOpen.length} free hackathons accepting registrations`,filters:{cost:'free',status:'open'},icon:'💸'});
+  }
+  // Suggest online beginner friendly
+  const onlineBeg=DB.filter(h=>h.mode==='online'&&h.level==='beginner'&&h.status!=='closed');
+  if(onlineBeg.length>0){
+    smartSuggestions.push({label:'🌱 Beginner Friendly Online',desc:`${onlineBeg.length} online events for beginners`,filters:{mode:'online',level:'beginner'},icon:'🌐'});
+  }
+  // High prize hackathons
+  const highPrize=DB.filter(h=>parsePrize(h.prize)>=500000&&h.status!=='closed');
+  if(highPrize.length>0){
+    smartSuggestions.push({label:'💰 Big Prize Pools',desc:`${highPrize.length} hackathons with ₹5L+ prizes`,sort:'prize-high',icon:'🏆'});
+  }
+  // Closing soon (open status, deadline approaching)
+  const closing=DB.filter(h=>h.status==='open');
+  if(closing.length>0){
+    smartSuggestions.push({label:'⏰ Closing Soon',desc:`${closing.length} open events — register before it’s too late`,filters:{status:'open'},sort:'deadline',icon:'🔥'});
+  }
+  // Solo hackathons
+  const solo=DB.filter(h=>h.team==='solo'&&h.status!=='closed');
+  if(solo.length>0){
+    smartSuggestions.push({label:'👤 Solo Hackathons',desc:`${solo.length} events you can tackle alone`,filters:{team:'solo'},icon:'💪'});
+  }
+  // Offline/in-person
+  const offline=DB.filter(h=>h.mode==='offline'&&h.status!=='closed');
+  if(offline.length>0){
+    smartSuggestions.push({label:'🏟️ In-Person Events',desc:`${offline.length} offline hackathons near you`,filters:{mode:'offline'},icon:'📍'});
+  }
+  renderSmartBar();
 }
 
-function renderPrizeBoard(){
-  let data=[...DB];
-  if(pbFilter==='inr') data=data.filter(h=>h.prize.includes('₹'));
-  if(pbFilter==='usd') data=data.filter(h=>h.prize.includes('$'));
-  data.sort((a,b)=>parsePrize(b.prize)-parsePrize(a.prize));
-  const SC2={open:'reg-open',closed:'reg-closed',ongoing:'reg-ongoing',upcoming:'reg-upcoming'};
-  const SL2={open:'● OPEN',closed:'✕ CLOSED',ongoing:'▶ ONGOING',upcoming:'⏳ UPCOMING'};
-  const rankClass=(i)=>i===0?'gold':i===1?'silver':i===2?'bronze':'normal';
-  const rankIcon=(i)=>i===0?'🥇':i===1?'🥈':i===2?'🥉':`${i+1}`;
-  document.getElementById('pbBody').innerHTML=data.map((h,i)=>`
-    <tr onclick="window.location.href='hackathon.html?id=${h.id}'" style="cursor:pointer">
-      <td><div class="pb-rank ${rankClass(i)}">${rankIcon(i)}</div></td>
-      <td><div class="pb-name">${h.emoji} ${h.title}</div><div class="pb-org">${h.org}</div></td>
-      <td><div class="pb-prize">${h.prize}</div></td>
-      <td><div class="pb-mode">${MM[h.mode]}</div></td>
-      <td><div class="pb-deadline">${h.deadline}</div></td>
-      <td><span class="pb-status ${SC2[h.status]}">${SL2[h.status]}</span></td>
-    </tr>`).join('');
+function renderSmartBar(){
+  const el=document.getElementById('smartFilterBar');
+  if(!el||!smartSuggestions.length)return;
+  el.innerHTML=smartSuggestions.map((s,i)=>`
+    <button class="smart-chip" onclick="applySmartFilter(${i})">
+      <span class="smart-chip-icon">${s.icon}</span>
+      <span class="smart-chip-text">
+        <span class="smart-chip-label">${s.label}</span>
+        <span class="smart-chip-desc">${s.desc}</span>
+      </span>
+    </button>
+  `).join('');
 }
 
-function scrollToPrizeBoard(){
-  navTo('main');
-  setTimeout(()=>document.getElementById('prizeBoardSection').scrollIntoView({behavior:'smooth',block:'start'}),100);
+function applySmartFilter(index){
+  const s=smartSuggestions[index];
+  if(!s)return;
+  clearAll();
+  if(s.filters){
+    Object.entries(s.filters).forEach(([key,val])=>{
+      flt[key]=val;
+      const match=document.querySelector(`.chip[data-f="${key}"][data-v="${val}"]`);
+      if(match)match.classList.add('active');
+    });
+  }
+  if(s.sort){
+    currentSort=s.sort;
+    document.getElementById('sortLabel').textContent='Sort: '+s.label+' ↓';
+  }
+  currentPage=1;
+  renderEvents(true);
+  scrollToCards();
+  toast(s.icon,s.label+' — '+s.desc);
+  // highlight active smart chip
+  document.querySelectorAll('.smart-chip').forEach((c,i)=>c.classList.toggle('active',i===index));
 }
 
 /* =====================================================================
@@ -651,7 +647,9 @@ function renderCalendar(){
 
 function openDetailFromCal(id){
   closeCalendarDirect();
-  setTimeout(()=>openDetail(id),300);
+  setTimeout(() => {
+    window.location.href = 'hackathon.html?id=' + id;
+  }, 300);
 }
 
 /* =====================================================================
@@ -803,17 +801,53 @@ document.addEventListener('click',e=>{
 
 function setMode(mode){
   document.documentElement.setAttribute('data-theme',mode);
-  document.getElementById('modeDark').classList.toggle('active',mode==='dark');
-  document.getElementById('modeLight').classList.toggle('active',mode==='light');
+  localStorage.setItem('px-theme', mode);
+  const darkBtn = document.getElementById('modeDark');
+  const lightBtn = document.getElementById('modeLight');
+  if(darkBtn) darkBtn.classList.toggle('active',mode==='dark');
+  if(lightBtn) lightBtn.classList.toggle('active',mode==='light');
   initParticles();
   toast(mode==='dark'?'🌑':'☀️',`Switched to ${mode} mode`);
+  syncThemeWithServer();
 }
 
 function setColor(color){
   document.documentElement.setAttribute('data-color',color);
+  localStorage.setItem('px-color', color);
   document.querySelectorAll('.swatch').forEach(s=>s.classList.toggle('active',s.dataset.c===color));
   initParticles();
   toast('🎨',`Theme color → ${color}`);
+  syncThemeWithServer();
+}
+
+async function syncThemeWithServer(){
+  const {data:{user}} = await supa.auth.getUser();
+  if(!user) return;
+  const mode = document.documentElement.getAttribute('data-theme') || 'dark';
+  const color = document.documentElement.getAttribute('data-color') || 'purple';
+  await supa.from('profiles').update({ theme_mode: mode, theme_color: color }).eq('id', user.id);
+}
+
+async function loadUserTheme(){
+  const {data:{user}} = await supa.auth.getUser();
+  if(!user) return;
+  const {data:prof} = await supa.from('profiles').select('theme_mode, theme_color').eq('id', user.id).single();
+  if(prof){
+    if(prof.theme_mode) {
+      document.documentElement.setAttribute('data-theme', prof.theme_mode);
+      localStorage.setItem('px-theme', prof.theme_mode);
+      const db = document.getElementById('modeDark');
+      const lb = document.getElementById('modeLight');
+      if(db) db.classList.toggle('active', prof.theme_mode==='dark');
+      if(lb) lb.classList.toggle('active', prof.theme_mode==='light');
+    }
+    if(prof.theme_color) {
+      document.documentElement.setAttribute('data-color', prof.theme_color);
+      localStorage.setItem('px-color', prof.theme_color);
+      document.querySelectorAll('.swatch').forEach(s=>s.classList.toggle('active', s.dataset.c === prof.theme_color));
+    }
+    initParticles();
+  }
 }
 
 function setFontSize(v){
@@ -933,10 +967,6 @@ function drawerNavTo(page){
 function openCalendarDrawer(){
   closeDrawer();
   setTimeout(()=>openCalendar(),200);
-}
-function drawerScrollPrize(){
-  closeDrawer();
-  setTimeout(()=>scrollToPrizeBoard(),200);
 }
 function updateDrawerMode(mode){
   document.getElementById('drawerDark').classList.toggle('active',mode==='dark');
@@ -1087,16 +1117,23 @@ async function signOut(){
 function updateNavAuth(user){
   const loginBtn=document.getElementById('loginBtn');
   const userWrap=document.getElementById('userNavWrap');
+  if(!loginBtn || !userWrap) return;
+
   if(user){
     loginBtn.style.display='none';
     userWrap.style.display='flex';
-    const name=user.user_metadata?.full_name||user.email.split('@')[0];
-    const initials=name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
-    document.getElementById('userAvatar').textContent=initials;
-    document.getElementById('userNameNav').textContent=name.split(' ')[0];
+    
+    // Support both 'full_name' (Supa) and 'name' (Google/GitHub)
+    const name = user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0] || 'Member';
+    const initials = name.split(' ').filter(n=>n).map(n=>n[0]).join('').toUpperCase().slice(0,2);
+    
+    document.getElementById('userAvatar').textContent = initials || '?';
+    document.getElementById('userNameNav').textContent = name.split(' ')[0];
+    console.log('[Auth] UI updated for user:', name);
   } else {
     loginBtn.style.display='flex';
     userWrap.style.display='none';
+    console.log('[Auth] UI switched to logged-out state');
   }
 }
 
@@ -1108,50 +1145,62 @@ function updateNavAuth(user){
    AUTH STATE LISTENER — runs on load and on auth change
    ===================================================================== */
 supa.auth.onAuthStateChange((event,session)=>{
-  updateNavAuth(session?.user||null);
+  console.log('[Auth] Event:', event);
+  const user = session?.user || null;
+  updateNavAuth(user);
+
   if(event==='SIGNED_IN'){
     closeAuth();
     closeDetailPanel();
-    // clean up hash from OAuth redirect
-    if(window.location.hash&&window.location.hash.includes('access_token')){
-      history.replaceState(null,'',window.location.pathname);
-    }
+    loadUserTheme();
+    
+    // Clean up returnTo logic
     const returnTo=sessionStorage.getItem('returnTo');
     if(returnTo){
       sessionStorage.removeItem('returnTo');
       window.location.href=returnTo;
       return;
     }
-    navTo('main');
-    window.scrollTo({top:0,behavior:'instant'});
-    const name=session.user.user_metadata?.full_name||session.user.email.split('@')[0];
+    
+    // If we're on a page that isn't profile or main, maybe stay there, 
+    // but for now maintain classic logic
+    if(window.location.pathname.includes('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')) {
+       navTo('main');
+    }
+    
+    const name = user.user_metadata?.full_name || user.user_metadata?.name || 'there';
     toast('✅',`Welcome, ${name.split(' ')[0]}! 👋`);
   }
+  
   if(event==='SIGNED_OUT'){
-    navTo('main');
-    toast('👋','Signed out successfully');
-  }
-  if(event==='TOKEN_REFRESHED'){
-    updateNavAuth(session?.user||null);
+    if(window.location.pathname.includes('profile.html')) {
+       window.location.href = 'index.html';
+    } else {
+       navTo('main');
+       toast('👋','Signed out successfully');
+    }
   }
 });
 
-// init: check auth state on page load (handles OAuth redirect coming back)
+// init: check auth state on page load
 (async()=>{
-  // If coming back from OAuth (URL has #access_token), Supabase handles it
-  // via detectSessionInUrl:true — onAuthStateChange fires SIGNED_IN automatically
-  // We just need to clean up the URL
-  if(window.location.hash&&window.location.hash.includes('access_token')){
-    history.replaceState(null,'',window.location.pathname);
-    // Don't call navTo here — onAuthStateChange will handle it
-    return;
+  // 1. Check for existing session (fast, local)
+  const{data:{session}}=await supa.auth.getSession();
+  if(session?.user){
+    console.log('[Auth] Local session found');
+    updateNavAuth(session.user);
+  } else {
+    // 2. Fallback: silent check with server (e.g. if cookie exists but localStorage is clear)
+    const{data:{user}}=await supa.auth.getUser();
+    if(user) {
+      console.log('[Auth] Server user found');
+      updateNavAuth(user);
+    }
   }
-  const{data:{user}}=await supa.auth.getUser();
-  updateNavAuth(user);
-  document.getElementById('loginBtn').style.display=user?'none':'flex';
-  // handle returnTo after login (from post.html etc)
+  
+  // 3. Handle returnTo redirects that might have happened without a full event loop
   const returnTo=sessionStorage.getItem('returnTo');
-  if(returnTo&&user){
+  if(returnTo && session?.user){
     sessionStorage.removeItem('returnTo');
     window.location.href=returnTo;
   }

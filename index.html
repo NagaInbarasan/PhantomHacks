@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script>
+(function() {
+  const t = localStorage.getItem('px-theme') || 'dark';
+  const c = localStorage.getItem('px-color') || 'purple';
+  document.documentElement.setAttribute('data-theme', t);
+  document.documentElement.setAttribute('data-color', c);
+})();
+</script>
+
 
 <!-- Primary Meta -->
 <title>Phantom Hacks | India's Hackathon Discovery Engine</title>
@@ -33,8 +42,8 @@
 <meta name="twitter:creator" content="@phantomhacks"/>
 
 <!-- Favicon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👻</text></svg>"/>
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👻</text></svg>"/>
+<link rel="icon" type="image/png" href="assets/logo.png"/>
+<link rel="apple-touch-icon" href="assets/logo.png"/>
 
 <!-- Theme Color (browser UI tint) -->
 <meta name="theme-color" content="#9d4edd"/>
@@ -103,13 +112,13 @@
 
 <!-- LOADING -->
 <div class="loading-overlay" id="loadingOverlay">
-  <div class="spinner"></div>
+  <div class="loading-spinner"></div>
   <div class="load-text" id="loadText">// Initializing...</div>
   <div class="load-pbar-wrap"><div class="load-pbar" id="loadPbar"></div></div>
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast"><span id="toastIcon">⚡</span><span id="toastMsg">Loading...</span></div>
+<div class="standard-toast" id="toast"><span id="toastIcon">⚡</span><span id="toastMsg">Loading...</span></div>
 
 <!-- THEME PANEL -->
 <div class="theme-panel" id="themePanel">
@@ -167,8 +176,8 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a class="logo" href="#">
-      <div class="logo-icon">👻</div>
+    <a class="logo" href="index.html">
+      <div class="logo-icon"><img src="assets/logo.png" alt="Phantom Hacks Logo"></div>
       <div><div class="logo-text">Phantom Hacks</div><div class="logo-sub">Hackathon Engine</div></div>
     </a>
     <ul class="nav-links">
@@ -210,7 +219,7 @@
       <li><span>Explore</span>
         <div class="dropdown">
           <div class="dropdown-section">Tools</div>
-          <a href="#" onclick="scrollToPrizeBoard();return false">🏆 Prize Board</a>
+          <a href="#" onclick="openCalendar();return false">🏆 Top Prizes</a>
           <a href="#" onclick="openCalendar();return false">📅 Calendar</a>
           <a href="#" onclick="window.location.href='post.html';return false">🤝 Post a Hack</a>
         </div>
@@ -220,7 +229,7 @@
     </ul>
     <div class="nav-actions">
       <div class="icon-btn" id="themePaletteBtn" onclick="toggleThemePanel(event)" title="Appearance">🎨</div>
-      <button class="btn-outline" onclick="triggerRefresh()">⟳ Refresh</button>
+      <button class="btn-outline" onclick="loadHackathons()">⟳ Refresh</button>
       <!-- shown when logged out -->
       <button class="btn-outline" id="loginBtn" onclick="openAuth('signin')">Login</button>
       <!-- shown when logged in -->
@@ -252,7 +261,7 @@
 <div class="mobile-drawer" id="mobileDrawer">
   <div class="drawer-header">
     <div class="drawer-logo">
-      <div class="drawer-logo-icon">👻</div>
+      <div class="drawer-logo-icon"><img src="assets/logo.png" alt="Phantom Hacks Logo"></div>
       <div class="drawer-logo-text">Phantom Hacks</div>
     </div>
     <div class="drawer-close" onclick="closeDrawer()">✕</div>
@@ -270,7 +279,7 @@
     <div class="drawer-divider"></div>
     <div class="drawer-section">Tools</div>
     <button class="drawer-link" onclick="openCalendarDrawer()"><span class="drawer-link-icon">📅</span>Calendar</button>
-    <button class="drawer-link" onclick="drawerScrollPrize()"><span class="drawer-link-icon">🏆</span>Prize Board</button>
+    <button class="drawer-link" onclick="openCalendarDrawer()"><span class="drawer-link-icon">🏆</span>Top Prizes</button>
     <div class="drawer-divider"></div>
     <div class="drawer-section">Pages</div>
     <button class="drawer-link" onclick="window.location.href='profile.html'"><span class="drawer-link-icon">👤</span>My Profile</button>
@@ -365,7 +374,7 @@
   </div>
 </div>
 
-<!-- REFRESH BAR -->
+<!-- SOURCE BAR -->
 <div class="refresh-bar">
   <span>Sources:</span>
   <div class="refresh-sources" id="sourcePills">
@@ -378,10 +387,7 @@
     <div class="source-pill" data-source="hackaly">Hackaly</div>
     <div class="source-pill" data-source="local">Local</div>
   </div>
-  <span style="color:var(--border)">|</span>
-  <span>Next refresh: <span class="cdown" id="cdown">2:00</span></span>
-  <div class="pbar-wrap"><div class="pbar-fill" id="pbar" style="width:100%"></div></div>
-  <span style="font-size:10px">Updated: <span id="lastUpd">just now</span></span>
+  <span style="font-size:10px;color:var(--muted)">Updated: <span id="lastUpd">just now</span></span>
   <div class="live-flash-slot" id="flashSlot"></div>
 </div>
 
@@ -475,10 +481,13 @@
   <div class="hero-inner">
     <div class="hero-eyebrow"><span class="live-dot"></span>Live · <span id="totalCount">2,847</span> hackathons tracked worldwide</div>
     <h1>Find Your Next<br/><span class="grad">Hackathon 👻</span></h1>
-    <p>Aggregated from Unstop, Devpost, Devfolio, HackerEarth, MLH &amp; 20+ sources.<br/>Auto-refreshed every 2 minutes. Never miss a deadline again.</p>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search hackathon, tech stack, location, prize..."/>
-      <button onclick="runSearch()">Search</button>
+    <p>Aggregated from Unstop, Devpost, Devfolio, HackerEarth, MLH &amp; 20+ sources.<br/>Smart filters to find the perfect hackathon. Never miss a deadline again.</p>
+    <div class="search-wrap">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search hackathon, tech stack, location, prize..." autocomplete="off"/>
+        <button onclick="runSearch()">Search</button>
+      </div>
+      <div id="searchSuggestions" class="search-suggestions"></div>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="hero-stat-num" id="statOpen">0</div><div class="hero-stat-label">Open Now</div></div>
@@ -501,6 +510,13 @@
     </div>
     <div class="featured-scroll" id="featuredScroll"></div>
 
+    <!-- SMART FILTER BAR -->
+    <div class="section-header" style="margin-top:8px">
+      <div class="section-title">✨ Smart Filters</div>
+      <a class="view-all" href="#" onclick="clearAll();return false">Clear all →</a>
+    </div>
+    <div class="smart-filter-scroll" id="smartFilterBar"></div>
+
     <div class="section-header">
       <div class="section-title">🔥 All Hackathons</div>
       <div style="display:flex;gap:12px;align-items:center">
@@ -522,34 +538,7 @@
     </div>
     <div class="events-list" id="eventsList"></div>
 
-    <!-- PRIZE BOARD -->
-    <div class="prize-board" id="prizeBoardSection">
-      <div class="section-header">
-        <div class="section-title">🏆 Prize Board</div>
-        <div class="pb-filters">
-          <button class="pb-filter-btn active" data-pb="all" onclick="filterPrizeBoard('all',this)">All</button>
-          <button class="pb-filter-btn" data-pb="inr" onclick="filterPrizeBoard('inr',this)">₹ India</button>
-          <button class="pb-filter-btn" data-pb="usd" onclick="filterPrizeBoard('usd',this)">$ Global</button>
-        </div>
-      </div>
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden">
-        <div style="overflow-x:auto">
-          <table class="pb-table" id="pbTable">
-            <thead>
-              <tr>
-                <th style="width:44px">#</th>
-                <th>Hackathon</th>
-                <th>Prize</th>
-                <th>Mode</th>
-                <th>Deadline</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody id="pbBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+
 
     <div class="pagination">
       <div class="page-btn" id="prevBtn" onclick="changePage(-1)">« Prev</div>
@@ -968,7 +957,7 @@
   <div class="footer-inner">
     <div class="footer-col footer-brand">
       <div class="footer-brand-text">Phantom Hacks</div>
-      <p>India's most comprehensive hackathon discovery engine. Aggregating from 20+ platforms. Auto-updated every 2 minutes.</p>
+      <p>India's most comprehensive hackathon discovery engine. Aggregating from 20+ platforms with smart filters.</p>
       <div class="footer-social">
         <a class="social-btn" href="#">f</a><a class="social-btn" href="#">📷</a>
         <a class="social-btn" href="#">in</a><a class="social-btn" href="#">𝕏</a>

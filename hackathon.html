@@ -3,10 +3,20 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script>
+(function() {
+  const t = localStorage.getItem('px-theme') || 'dark';
+  const c = localStorage.getItem('px-color') || 'purple';
+  document.documentElement.setAttribute('data-theme', t);
+  document.documentElement.setAttribute('data-color', c);
+})();
+</script>
+
 <title>Hackathon Details | Phantom Hacks</title>
 <meta name="description" content="View full details, prizes, timeline and registration for this hackathon on Phantom Hacks — India's hackathon discovery engine."/>
 <meta name="robots" content="index, follow"/>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👻</text></svg>"/>
+<link rel="icon" type="image/png" href="assets/logo.png"/>
+<link rel="apple-touch-icon" href="assets/logo.png"/>
 <meta name="theme-color" content="#9d4edd"/>
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -17,18 +27,9 @@
 
 /* Back bar */
 .hd-backbar {
-  max-width: 1100px; margin: 0 auto; padding: 16px 20px;
+  max-width: 1280px; margin: 0 auto; padding: 16px 20px;
   display: flex; align-items: center; gap: 10px;
 }
-.hd-back-btn {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 8px 16px; border-radius: 9px;
-  border: 1.5px solid var(--border); background: var(--glass);
-  color: var(--pl); font-weight: 600; font-size: 13px;
-  cursor: pointer; transition: all .2s; font-family: 'Space Grotesk', sans-serif;
-  text-decoration: none;
-}
-.hd-back-btn:hover { border-color: var(--p); background: var(--pg); }
 .hd-breadcrumb {
   font-size: 12px; color: var(--muted); font-family: 'JetBrains Mono', monospace;
 }
@@ -37,7 +38,7 @@
 
 /* Hero */
 .hd-hero {
-  max-width: 1100px; margin: 0 auto; padding: 0 20px 28px;
+  max-width: 1280px; margin: 0 auto; padding: 0 20px 28px;
   display: grid; grid-template-columns: 1fr 340px; gap: 32px;
   align-items: start;
 }
@@ -45,10 +46,10 @@
 
 .hd-emoji-row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
 .hd-emoji {
-  width: 80px; height: 80px; border-radius: 18px;
+  width: 120px; height: 120px; border-radius: 20px;
   background: linear-gradient(135deg, var(--pg), rgba(255,110,247,.08));
   display: flex; align-items: center; justify-content: center;
-  font-size: 44px; flex-shrink: 0;
+  font-size: 64px; flex-shrink: 0;
   border: 1px solid var(--border);
   box-shadow: 0 8px 32px var(--pg);
 }
@@ -74,7 +75,7 @@
 /* Sidebar card */
 .hd-sidebar-card {
   background: var(--card); border: 1px solid var(--border);
-  border-radius: 16px; padding: 24px; position: sticky; top: 80px;
+  border-radius: 16px; padding: 24px; position: sticky; top: 110px;
   display: flex; flex-direction: column; gap: 14px;
   box-shadow: 0 8px 40px var(--shadow);
 }
@@ -127,7 +128,7 @@
 
 /* Content body */
 .hd-body {
-  max-width: 1100px; margin: 0 auto; padding: 0 20px 60px;
+  max-width: 1280px; margin: 0 auto; padding: 0 20px 60px;
   display: grid; grid-template-columns: 1fr 340px; gap: 32px;
 }
 .hd-body-main { min-width: 0; }
@@ -140,6 +141,22 @@
   display: flex; align-items: center; gap: 8px;
 }
 .hd-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* Banner */
+.hd-banner-wrap {
+  width: 100%; height: 320px; position: relative; overflow: hidden;
+  background: var(--card); margin-bottom: -60px;
+}
+.hd-banner {
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0.6; filter: blur(2px) brightness(0.7);
+  transition: all .5s;
+}
+.hd-banner-wrap:hover .hd-banner { opacity: 0.8; filter: blur(0px) brightness(0.85); transform: scale(1.02); }
+.hd-banner-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+}
 
 .hd-desc {
   font-size: 14.5px; color: var(--muted); line-height: 1.8;
@@ -195,7 +212,7 @@
 }
 @media(max-width: 600px) {
   .hd-title { font-size: 22px; }
-  .hd-emoji { width: 60px; height: 60px; font-size: 32px; }
+  .hd-emoji { width: 80px; height: 80px; font-size: 44px; border-radius: 16px; }
   .hd-prize-banner { font-size: 18px; padding: 10px 16px; }
   .hd-btn-row { flex-direction: column; }
 }
@@ -213,7 +230,7 @@
 <canvas id="particleCanvas"></canvas>
 
 <!-- TOAST -->
-<div class="toast" id="toast"><span id="toastIcon">⚡</span><span id="toastMsg">Loading...</span></div>
+<div class="standard-toast" id="toast"><span id="toastIcon">⚡</span><span id="toastMsg">Loading...</span></div>
 
 <!-- TICKER -->
 <div class="ticker-wrap">
@@ -235,7 +252,7 @@
 <nav>
   <div class="nav-inner">
     <a class="logo" href="index.html">
-      <div class="logo-icon">👻</div>
+      <div class="logo-icon"><img src="assets/logo.png" alt="Phantom Hacks Logo"></div>
       <div><div class="logo-text">Phantom Hacks</div><div class="logo-sub">Hackathon Engine</div></div>
     </a>
     <div class="nav-actions" style="margin-left:auto">
@@ -263,7 +280,7 @@
 <div class="hd-page" id="hdPage">
   <!-- Loading state -->
   <div class="hd-loading" id="hdLoading">
-    <div class="spinner"></div>
+    <div class="loading-spinner"></div>
     <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--pl)">// Loading hackathon details...</div>
   </div>
 
@@ -277,9 +294,15 @@
 
   <!-- Content (hidden until loaded) -->
   <div id="hdContent" style="display:none">
+    <!-- Banner -->
+    <div class="hd-banner-wrap" id="hdBannerWrap" style="display:none">
+      <img src="" alt="Banner" class="hd-banner" id="hdBanner"/>
+      <div class="hd-banner-overlay"></div>
+    </div>
+
     <!-- Back bar -->
     <div class="hd-backbar">
-      <a class="hd-back-btn" href="index.html">← Back</a>
+      <a class="nav-back-btn" href="index.html">← Back</a>
       <div class="hd-breadcrumb">
         <a href="index.html">Hackathons</a> <span>/</span> <span id="hdBreadcrumb">Loading...</span>
       </div>
@@ -314,6 +337,8 @@
           <div class="hd-section-title">📝 About This Hackathon</div>
           <div class="hd-desc" id="hdDesc"></div>
         </div>
+        <!-- Dynamic Extended Details -->
+        <div id="hdExtendedContainer"></div>
         <div class="hd-section">
           <div class="hd-section-title">🏷️ Tags & Topics</div>
           <div class="hd-tags" id="hdTags"></div>
@@ -525,11 +550,30 @@ function renderHackathon(){
   const isClosed=h.status==='closed';
   const isOngoing=h.deadline==='Ongoing';
 
+  // Banner
+  const bannerWrap = document.getElementById('hdBannerWrap');
+  const bannerImg = document.getElementById('hdBanner');
+  if (h.image_url && h.image_url !== h.logo_url) {
+    bannerImg.src = h.image_url;
+    bannerWrap.style.display = 'block';
+  } else {
+    bannerWrap.style.display = 'none';
+  }
+
   // Breadcrumb
   document.getElementById('hdBreadcrumb').textContent=h.title;
 
-  // Emoji + Badges
-  document.getElementById('hdEmoji').textContent=h.emoji;
+  // Emoji / Image (LOGO) + Badges
+  const emojiEl = document.getElementById('hdEmoji');
+  const logoSrc = h.logo_url || h.image_url;
+  if (logoSrc) {
+    emojiEl.innerHTML = `<img src="${logoSrc}" alt="${h.title}" style="width:100%;height:100%;object-fit:contain;border-radius:inherit;padding:10px;background:white"/>`;
+    emojiEl.style.padding = '0';
+    emojiEl.style.overflow = 'hidden';
+  } else {
+    emojiEl.textContent = h.emoji;
+  }
+  
   document.getElementById('hdBadges').innerHTML=`
     <span class="etype ${BC[h.type]||'bt-hackathon'}">${h.type.toUpperCase()}</span>
     <span class="src-badge src-${h.source}">${h.source.toUpperCase()}</span>
@@ -538,7 +582,7 @@ function renderHackathon(){
 
   // Title, Org, Prize
   document.getElementById('hdTitle').textContent=h.title;
-  document.getElementById('hdOrg').innerHTML=`🏛️ <strong>${h.org}</strong>`;
+  document.getElementById('hdOrg').innerHTML=`🏛️ Organized by <strong>${h.org}</strong>`;
   document.getElementById('hdPrize').innerHTML=`🏆 ${h.prize}`;
 
   // Deadline bar
@@ -593,7 +637,82 @@ function renderHackathon(){
   };
 
   // Description
-  document.getElementById('hdDesc').textContent=HACK_DESCS[h.id]||`${h.title} is a ${h.type} organised by ${h.org}. Visit the official page for full details, problem statements, and registration instructions.`;
+  document.getElementById('hdDesc').textContent=h.description || HACK_DESCS[h.id] || `${h.title} is a ${h.type} organised by ${h.org}. Visit the official page for full details, problem statements, and registration instructions.`;
+
+  // Extended Details (Problem Statements, Rules, etc.)
+  const extContainer = document.getElementById('hdExtendedContainer');
+  extContainer.innerHTML = ''; // clear
+
+  if (h.extended_details) {
+    const ext = h.extended_details;
+    let html = '';
+
+    // Problem Statements
+    if (ext.problem_statements && ext.problem_statements.length) {
+      html += `
+        <div class="hd-section">
+          <div class="hd-section-title">🎯 Problem Statements</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:12px;">
+            ${ext.problem_statements.map(ps => `
+              <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;">
+                <div style="font-size:11px;font-weight:700;color:var(--p);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">${ps.category || 'Challenge'}</div>
+                <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px;">${ps.title}</div>
+                <div style="font-size:13px;color:var(--muted);line-height:1.5;">${ps.desc}</div>
+                ${ps.bounty ? `<div style="margin-top:12px;display:inline-block;padding:4px 10px;background:var(--pg);border:1px solid var(--p);border-radius:20px;font-size:11px;font-weight:600;color:var(--pl);">🏆 Bounty: ${ps.bounty}</div>` : ''}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // Prizes Breakdown
+    if (ext.prizes_breakdown && ext.prizes_breakdown.length) {
+      html += `
+        <div class="hd-section">
+          <div class="hd-section-title">💰 Prizes Breakdown</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;">
+            ${ext.prizes_breakdown.map(pz => `
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;">
+                <strong style="color:var(--text)">${pz.tier}</strong>
+                <span style="color:var(--pl);font-weight:700;">${pz.reward}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    // Judging Criteria
+    if (ext.judging_criteria && ext.judging_criteria.length) {
+      html += `
+        <div class="hd-section">
+          <div class="hd-section-title">⚖️ Judging Criteria</div>
+          <ul style="list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:12px;">
+            ${ext.judging_criteria.map(jc => `
+              <li style="font-size:13px;color:var(--muted);line-height:1.5;background:rgba(255,255,255,0.02);border-left:3px solid var(--p);padding:10px 16px;border-radius:0 8px 8px 0;">
+                <strong style="color:var(--text)">${jc.name} (${jc.weight}):</strong> ${jc.detail}
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      `;
+    }
+
+    // Rules
+    if (ext.rules && ext.rules.length) {
+      html += `
+        <div class="hd-section">
+          <div class="hd-section-title">📋 Rules & Eligibility</div>
+          <ul style="margin-top:12px;padding-left:22px;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--text);line-height:1.6;">
+            ${ext.rules.map(r => `<li>${r}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
+
+    extContainer.innerHTML = html;
+  }
 
   // Tags
   document.getElementById('hdTags').innerHTML=(h.tags||[]).map(t=>`<span class="hd-tag">${t}</span>`).join('');
