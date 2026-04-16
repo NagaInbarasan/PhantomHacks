@@ -6,7 +6,6 @@ let currentSort='latest';
 let currentPage=1;
 const PAGE_SIZE=6;
 let locFilter=null;
-let pbFilter='all';
 
 /* =====================================================================
    SUPABASE
@@ -45,7 +44,6 @@ async function loadHackathons(){
     counter(document.getElementById('statOpen'),0,open);
     counter(document.getElementById('statOnline'),0,online);
     counter(document.getElementById('statFree'),0,free);
-    counter(document.getElementById('sOpen'),0,open);
     toast('👻',`${DB.length} hackathons loaded!`);
   }catch(err){
     console.error('Supabase load error:',err);
@@ -295,6 +293,7 @@ function renderFeed(){
 }
 
 function rotateFeed(){
+  if(!DB.length) return;
   const evts=['new team registered!','registration spike 🔥','prize pool updated 💰','deadline approaching ⏰','slots filling fast!','new sponsor added ✨'];
   FEED_POOL.unshift({
     d:['g','c','y','r'][Math.floor(Math.random()*4)],
@@ -353,46 +352,10 @@ function navTo(page){
     if(el) el.classList.toggle('active', key===page);
   });
   window.scrollTo({top:0,behavior:'smooth'});
-  closeDetailPanel();
   if(page==='profile') loadProfilePage();
 }
 
 /* Removed Detail Panel Logic, now directly navigating to hackathon.html */
-function openReg(){
-  if(!currentHack)return;
-  if(currentHack.status==='closed'){toast('🔒','Registration is closed for this hackathon');return;}
-  // if hackathon has a real registration URL, open it
-  if(currentHack.url){
-    window.open(currentHack.url,'_blank','noopener,noreferrer');
-    toast('🚀',`Opening registration for ${currentHack.title}`);
-  } else {
-    // hackathon was posted on Phantom Hacks — show registration form
-    openRegForm();
-  }
-}
-async function saveHack(){
-  if(!currentHack)return;
-  const{data:{user}}=await supa.auth.getUser();
-  if(!user){openAuth('signin');toast('🔖','Sign in to save hackathons');return;}
-  // check if already saved
-  const{data:existing}=await supa.from('saved_hackathons')
-    .select('id').eq('user_id',user.id).eq('hackathon_id',currentHack.id).single();
-  if(existing){
-    await supa.from('saved_hackathons').delete().eq('id',existing.id);
-    toast('🗑️',`Removed from saves`);
-    document.getElementById('dpRegBtn').nextElementSibling.textContent='🔖 Save';
-  } else {
-    await supa.from('saved_hackathons').insert({user_id:user.id,hackathon_id:currentHack.id});
-    toast('🔖',`${currentHack.title} saved!`);
-    document.getElementById('dpRegBtn').nextElementSibling.textContent='✅ Saved';
-  }
-}
-function shareHack(){
-  if(currentHack){
-    if(navigator.share){navigator.share({title:currentHack.title,text:`Check out ${currentHack.title} — ${currentHack.prize}!`,url:window.location.href});}
-    else{toast('📋','Link copied to clipboard!');}
-  }
-}
 
 /* =====================================================================
    SUBMIT HACKATHON FORM
@@ -493,8 +456,22 @@ document.querySelectorAll('.chip[data-f="loc"]').forEach(c=>{
 function getFilteredData(){
   let data=[...DB];
   if(activeSrc!=='all') data=data.filter(h=>h.source===activeSrc);
-  if(searchQ){const q=searchQ.toLowerCase();data=data.filter(h=>h.title.toLowerCase().includes(q)||h.org.toLowerCase().includes(q)||h.location.toLowerCase().includes(q)||h.tags.some(t=>t.toLowerCase().includes(q)));}
-  Object.entries(flt).forEach(([k,v])=>{if(v)data=data.filter(h=>h[k]===v);});
+  if(searchQ){const q=searchQ.toLowerCase();data=data.filter(h=>h.title.toLowerCase().includes(q)||h.org.toLowerCase().includes(q)||h.location.toLowerCase().includes(q)||(h.tags||[]).some(t=>t.toLowerCase().includes(q)));}
+  // Apply non-date filters directly
+  const directFilters=['level','team','cost','mode','status'];
+  directFilters.forEach(k=>{if(flt[k])data=data.filter(h=>h[k]===flt[k]);});
+  // Apply date range filter properly
+  if(flt.date){
+    const now=new Date();
+    data=data.filter(h=>{
+      const d=parseHackDate(h.date);
+      if(!d) return true; // keep if date unparseable
+      if(flt.date==='week'){const end=new Date(now);end.setDate(now.getDate()+7);return d>=now&&d<=end;}
+      if(flt.date==='month'){return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear();}
+      if(flt.date==='q2'){return d>=new Date(now.getFullYear(),3,1)&&d<=new Date(now.getFullYear(),5,30);}
+      return true;
+    });
+  }
   if(locFilter) data=data.filter(h=>h.location.toLowerCase().includes(locFilter.toLowerCase()));
   return sortData(data);
 }
@@ -919,10 +896,8 @@ function animP(){
    INIT
    ===================================================================== */
 (function init(){
-  buildTicker();
   renderFeed();
   initParticles();
-  initBrowseBy();
   // show skeleton loading state
   document.getElementById('eventsList').innerHTML=`
     <div style="text-align:center;padding:60px 20px;color:var(--muted)">
@@ -930,9 +905,9 @@ function animP(){
       <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--pl)">// Loading hackathons from Supabase...</div>
     </div>`;
   document.getElementById('resultCount').textContent='Loading...';
-  // load real data from Supabase
+  // load real data from Supabase (buildTicker + initBrowseBy called inside after data loads)
   loadHackathons();
-  setTimeout(rotateFeed,8000);
+  setTimeout(rotateFeed,12000); // give data time to load first
   setTimeout(()=>toast('👻','Phantom Hacks loaded — connecting to database...'),600);
   document.querySelector('.logo').addEventListener('click',e=>{e.preventDefault();navTo('main');});
 })();
@@ -1151,7 +1126,6 @@ supa.auth.onAuthStateChange((event,session)=>{
 
   if(event==='SIGNED_IN'){
     closeAuth();
-    closeDetailPanel();
     loadUserTheme();
     
     // Clean up returnTo logic
@@ -1356,70 +1330,6 @@ async function saveProfile(){
   }
 }
 
-/* =====================================================================
-   REGISTRATION MODAL
-   ===================================================================== */
-async function openRegForm(){
-  if(!currentHack)return;
-  // pre-fill if logged in
-  const{data:{user}}=await supa.auth.getUser();
-  if(user){
-    document.getElementById('regEmail').value=user.email;
-    const{data:prof}=await supa.from('profiles').select('full_name,college').eq('id',user.id).single();
-    if(prof){
-      document.getElementById('regName').value=prof.full_name||user.user_metadata?.full_name||'';
-      document.getElementById('regCollege').value=prof.college||'';
-    }
-  }
-  document.getElementById('regModalTitle').textContent=`Register: ${currentHack.title}`;
-  document.getElementById('regModalSub').textContent=`${currentHack.emoji} ${currentHack.org} · ${currentHack.date}`;
-  document.getElementById('regFormWrap').style.display='block';
-  document.getElementById('regSuccess').style.display='none';
-  document.getElementById('regError').classList.remove('show');
-  document.getElementById('regOverlay').classList.add('open');
-  document.getElementById('regModal').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeRegForm(){
-  document.getElementById('regOverlay').classList.remove('open');
-  document.getElementById('regModal').classList.remove('open');
-  document.body.style.overflow='';
-}
-function closeRegOutside(e){if(e.target===document.getElementById('regOverlay'))closeRegForm();}
-
-async function submitRegistration(){
-  const name=document.getElementById('regName').value.trim();
-  const email=document.getElementById('regEmail').value.trim();
-  if(!name||!email){
-    const er=document.getElementById('regError');
-    er.textContent='Name and Email are required';er.classList.add('show');return;
-  }
-  const btn=document.getElementById('regSubmitBtn');
-  btn.textContent='Registering...';btn.disabled=true;
-  const{data:{user}}=await supa.auth.getUser();
-  const{error}=await supa.from('registrations').insert({
-    hackathon_id:currentHack.id,
-    user_id:user?.id||null,
-    full_name:name,
-    email,
-    college:document.getElementById('regCollege').value.trim(),
-    team_name:document.getElementById('regTeam').value.trim(),
-    role:document.getElementById('regRole').value,
-  });
-  btn.textContent='🚀 Register Now';btn.disabled=false;
-  if(error&&error.code==='23505'){
-    const er=document.getElementById('regError');
-    er.textContent='You are already registered for this hackathon!';er.classList.add('show');
-  } else if(error){
-    const er=document.getElementById('regError');
-    er.textContent=error.message;er.classList.add('show');
-  } else {
-    document.getElementById('regFormWrap').style.display='none';
-    document.getElementById('regSuccess').style.display='block';
-    document.getElementById('regSuccessMsg').textContent=`You're registered for ${currentHack.title}. Good luck! 🎉`;
-    toast('🎉','Registration saved!');
-  }
-}
 
 /* =====================================================================
    PROJECT SUBMISSION

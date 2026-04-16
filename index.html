@@ -41,9 +41,12 @@
 <meta name="twitter:site" content="@phantomhacks"/>
 <meta name="twitter:creator" content="@phantomhacks"/>
 
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="assets/logo.png"/>
-<link rel="apple-touch-icon" href="assets/logo.png"/>
+<!-- Favicon & PWA -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 
 <!-- Theme Color (browser UI tint) -->
 <meta name="theme-color" content="#9d4edd"/>
@@ -74,41 +77,7 @@
 
 <canvas id="particleCanvas"></canvas>
 
-<!-- DETAIL OVERLAY -->
-<div class="detail-overlay" id="detailOverlay" onclick="closeDetail(event)"></div>
-<div class="detail-panel" id="detailPanel">
-  <div class="dp-hero" id="dpHero">
-    <div class="dp-close" onclick="closeDetailPanel()">✕</div>
-    <div class="dp-emoji" id="dpEmoji"></div>
-    <div class="dp-badges" id="dpBadges"></div>
-    <div class="dp-title" id="dpTitle"></div>
-    <div class="dp-org" id="dpOrg"></div>
-    <div class="dp-prize-banner" id="dpPrize"></div>
-  </div>
-  <div class="dp-body">
-    <div class="dp-section">
-      <div class="dp-section-title">⏰ Deadline Alert</div>
-      <div id="dpDeadlineBar"></div>
-    </div>
-    <div class="dp-section">
-      <div class="dp-section-title">📋 Event Details</div>
-      <div class="dp-info-grid" id="dpInfoGrid"></div>
-    </div>
-    <div class="dp-section">
-      <div class="dp-section-title">📝 About This Hackathon</div>
-      <div class="dp-desc" id="dpDesc"></div>
-    </div>
-    <div class="dp-section">
-      <div class="dp-section-title">🏷️ Tags & Topics</div>
-      <div class="dp-tags" id="dpTags"></div>
-    </div>
-  </div>
-  <div class="dp-actions">
-    <button class="dp-btn-reg" id="dpRegBtn" onclick="openReg()">🚀 Register Now</button>
-    <button class="dp-btn-save" onclick="saveHack()">🔖 Save</button>
-    <button class="dp-btn-share" onclick="shareHack()">↗ Share</button>
-  </div>
-</div>
+
 
 <!-- LOADING -->
 <div class="loading-overlay" id="loadingOverlay">
@@ -184,9 +153,9 @@
       <li><span>Hackathons</span>
         <div class="dropdown">
           <div class="dropdown-section">Discover</div>
-          <a href="#" onclick="applyNavFilter(null,null);return false">⭐ Featured</a>
-          <a href="#" onclick="applyNavFilter(null,null);return false">🔥 Trending Now</a>
-          <a href="#" onclick="applyNavFilter(null,null);return false">🆕 Newly Added</a>
+          <a href="#" onclick="scrollToFeatured();return false">⭐ Featured</a>
+          <a href="#" onclick="applySort('prize-high','Prize: Highest',null);scrollToCards();return false">🔥 Trending Now</a>
+          <a href="#" onclick="applySort('latest','Latest Added',null);scrollToCards();return false">🆕 Newly Added</a>
           <hr/><div class="dropdown-section">By Mode</div>
           <a href="#" onclick="applyNavFilter('mode','online');return false">🌐 Online</a>
           <a href="#" onclick="applyNavFilter('mode','offline');return false">🏟️ In-Person</a>
@@ -268,9 +237,9 @@
   </div>
   <div class="drawer-nav">
     <div class="drawer-section">Discover</div>
-    <button class="drawer-link" onclick="drawerNav(null,null)"><span class="drawer-link-icon">🔥</span>Trending Now</button>
-    <button class="drawer-link" onclick="drawerNav(null,null)"><span class="drawer-link-icon">⭐</span>Featured</button>
-    <button class="drawer-link" onclick="drawerNav(null,null)"><span class="drawer-link-icon">🆕</span>Newly Added</button>
+    <button class="drawer-link" onclick="closeDrawer();scrollToFeatured()"><span class="drawer-link-icon">🔥</span>Trending Now</button>
+    <button class="drawer-link" onclick="closeDrawer();scrollToFeatured()"><span class="drawer-link-icon">⭐</span>Featured</button>
+    <button class="drawer-link" onclick="closeDrawer();applySort('latest','Latest Added',null);scrollToCards()"><span class="drawer-link-icon">🆕</span>Newly Added</button>
     <div class="drawer-divider"></div>
     <div class="drawer-section">By Mode</div>
     <button class="drawer-link" onclick="drawerNav('mode','online')"><span class="drawer-link-icon">🌐</span>Online</button>
@@ -882,41 +851,8 @@
     </div>
   </div>
 </div>
-<footer><!-- REGISTRATION MODAL -->
-<div class="reg-overlay" id="regOverlay" onclick="closeRegOutside(event)"></div>
-<div class="reg-modal" id="regModal">
-  <div class="reg-close" onclick="closeRegForm()">✕</div>
-  <div id="regFormWrap">
-    <div class="reg-modal-header">
-      <div class="reg-modal-title" id="regModalTitle">Register for Hackathon</div>
-      <div class="reg-modal-sub" id="regModalSub">Fill in your details to register</div>
-    </div>
-    <div class="auth-form">
-      <div class="auth-input-wrap"><label class="auth-label">Full Name *</label><input class="auth-input" id="regName" type="text" placeholder="Your full name"/></div>
-      <div class="auth-input-wrap"><label class="auth-label">Email *</label><input class="auth-input" id="regEmail" type="email" placeholder="you@example.com"/></div>
-      <div class="auth-input-wrap"><label class="auth-label">College / Organisation</label><input class="auth-input" id="regCollege" type="text" placeholder="IIT Bombay, Google..."/></div>
-      <div class="auth-input-wrap"><label class="auth-label">Team Name (optional)</label><input class="auth-input" id="regTeam" type="text" placeholder="Team Phantom"/></div>
-      <div class="auth-input-wrap"><label class="auth-label">Your Role</label>
-        <select class="auth-input" id="regRole">
-          <option value="">Select role</option>
-          <option value="developer">💻 Developer</option>
-          <option value="designer">🎨 Designer</option>
-          <option value="student">🎓 Student</option>
-          <option value="entrepreneur">🚀 Entrepreneur</option>
-          <option value="other">✨ Other</option>
-        </select>
-      </div>
-      <div class="auth-error" id="regError"></div>
-      <button class="auth-btn" id="regSubmitBtn" onclick="submitRegistration()">🚀 Register Now</button>
-    </div>
-  </div>
-  <div class="reg-success" id="regSuccess">
-    <div class="reg-success-icon">🎉</div>
-    <h3>You're Registered!</h3>
-    <p id="regSuccessMsg">Your registration has been saved. Good luck!</p>
-    <button class="edit-save-btn" onclick="closeRegForm()" style="margin:16px auto 0;display:block">Done</button>
-  </div>
-</div>
+
+
 
 <!-- PROJECT SUBMISSION PAGE -->
 <div id="projectPage" class="page">
@@ -954,6 +890,7 @@
 </div>
 
 
+<footer>
   <div class="footer-inner">
     <div class="footer-col footer-brand">
       <div class="footer-brand-text">Phantom Hacks</div>
