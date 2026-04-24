@@ -11,7 +11,7 @@ let locFilter=null;
    SUPABASE
    ===================================================================== */
 const SUPA_URL='https://frffynlzejbtnapooqvu.supabase.co';
-const SUPA_KEY='sb_publishable_QW3l1XzcOGcvKIKeGVUv9w_jfe0IUtS';
+const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZyZmZ5bmx6ZWpidG5hcG9vcXZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0NzQ2NDMsImV4cCI6MjA5MDA1MDY0M30.dwUlfU6lZeUUhLI_u9-iHrwXntq4sfShAdoomPPAD8I';
 const supa=window.supabase.createClient(SUPA_URL,SUPA_KEY,{
   auth:{
     persistSession:true,
@@ -101,7 +101,7 @@ const ctx=canvas.getContext('2d');
 function buildTicker(){
   const all=[...DB,...DB,...DB];
   document.getElementById('tickerTrack').innerHTML=all.map(h=>
-    `<div class="ticker-item"><strong>${h.emoji} ${h.title}</strong><span class="ti-prize">🏆 ${h.prize}</span><span class="ti-src">[${h.source}]</span></div>`
+    `<a class="ticker-item" href="hackathon.html?id=${h.id}" style="text-decoration:none;color:inherit"><strong>${h.emoji} ${h.title}</strong><span class="ti-prize">🏆 ${h.prize}</span><span class="ti-src">[${h.source}]</span></a>`
   ).join('');
 }
 
@@ -798,6 +798,28 @@ function scrollToCards(){
     if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
   },100);
 }
+
+function scrollToFeatured(){
+  navTo('main');
+  setTimeout(()=>{
+    const el=document.getElementById('featuredScroll');
+    if(el)el.scrollIntoView({behavior:'smooth',block:'center'});
+  },100);
+}
+
+function drawerNav(key, val){
+  closeDrawer();
+  applyNavFilter(key, val);
+}
+
+function tagSearch(tag){
+  searchQ = tag;
+  document.getElementById('searchInput').value = tag;
+  currentPage = 1;
+  renderEvents(true);
+  scrollToCards();
+}
+
 
 function scrollToFeatured(){
   navTo('main');
