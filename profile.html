@@ -98,6 +98,11 @@
     <a class="drawer-link" href="index.html"><span class="drawer-link-icon">🏠</span>Home</a>
     <a class="drawer-link" href="post.html"><span class="drawer-link-icon">📝</span>Post a Hackathon</a>
     <div class="drawer-divider"></div>
+    <div class="drawer-section">My Account</div>
+    <button class="drawer-link" onclick="drawerTab('edit')"><span class="drawer-link-icon">✏️</span>Edit Profile</button>
+    <button class="drawer-link" onclick="drawerTab('saves')"><span class="drawer-link-icon">🔖</span>My Saves</button>
+    <button class="drawer-link" onclick="drawerTab('regs')"><span class="drawer-link-icon">📋</span>Registrations</button>
+    <div class="drawer-divider"></div>
     <div class="drawer-section">Appearance</div>
     <div class="drawer-theme-row" style="padding:0 20px">
       <div class="drawer-mode-btn active" id="drawerDark" onclick="setMode('dark');updateDrawerMode('dark')">🌑 Dark</div>
@@ -506,6 +511,13 @@ function closeDrawer(){
   document.getElementById('mobileDrawer').classList.remove('open');
   document.getElementById('drawerOverlay').classList.remove('open');
 }
+function drawerTab(t){
+  closeDrawer();
+  const btnMap = { edit: 'tabBtnEdit', saves: 'tabBtnSaves', regs: 'tabBtnRegs' };
+  const btn = document.getElementById(btnMap[t]);
+  if(btn) switchTab(t, btn);
+}
+
 
 /* ============================================================ BACKGROUND SYSTEM */
 const canvas=document.getElementById('particleCanvas');
