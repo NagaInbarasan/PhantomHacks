@@ -1,37 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark" data-color="purple">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<script>
-(function() {
-  const t = localStorage.getItem('px-theme') || 'dark';
-  const c = localStorage.getItem('px-color') || 'purple';
-  document.documentElement.setAttribute('data-theme', t);
-  document.documentElement.setAttribute('data-color', c);
-})();
-</script>
 
-<title>My Profile — Phantom Hacks</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png"/>
-<link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png"/>
-<link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<link rel="stylesheet" href="css/style.css"/>
-<style>
-/* Page-specific overrides or small tweaks can go here if needed */
-@media(max-width:680px){
-  .profile-hero{flex-direction:column;text-align:center;align-items:center;}
-  .form-grid{grid-template-columns:1fr;}
-  .profile-stats-row{justify-content:center;}
-  .social-links{justify-content:center;}
-  .skills-display{justify-content:center;}
-  .profile-container { padding: 0 18px !important; }
-}
-</style>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      const t = localStorage.getItem('px-theme') || 'dark';
+      const c = localStorage.getItem('px-color') || 'purple';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-color', c);
+    })();
+  </script>
+
+  <title>My Profile — Phantom Hacks</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Page-specific overrides or small tweaks can go here if needed */
+    @media(max-width:680px) {
+      .profile-hero {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-stats-row {
+        justify-content: center;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+
+      .skills-display {
+        justify-content: center;
+      }
+
+      .profile-container {
+        padding: 0 18px !important;
+      }
+    }
+  </style>
 </head>
 <!-- BACKGROUND CANVAS -->
 <canvas id="particleCanvas"></canvas>
@@ -99,13 +121,16 @@
     <a class="drawer-link" href="post.html"><span class="drawer-link-icon">📝</span>Post a Hackathon</a>
     <div class="drawer-divider"></div>
     <div class="drawer-section">My Account</div>
-    <button class="drawer-link" onclick="drawerTab('edit')"><span class="drawer-link-icon">✏️</span>Edit Profile</button>
+    <button class="drawer-link" onclick="drawerTab('edit')"><span class="drawer-link-icon">✏️</span>Edit
+      Profile</button>
     <button class="drawer-link" onclick="drawerTab('saves')"><span class="drawer-link-icon">🔖</span>My Saves</button>
-    <button class="drawer-link" onclick="drawerTab('regs')"><span class="drawer-link-icon">📋</span>Registrations</button>
+    <button class="drawer-link" onclick="drawerTab('regs')"><span
+        class="drawer-link-icon">📋</span>Registrations</button>
     <div class="drawer-divider"></div>
     <div class="drawer-section">Appearance</div>
     <div class="drawer-theme-row" style="padding:0 20px">
-      <div class="drawer-mode-btn active" id="drawerDark" onclick="setMode('dark');updateDrawerMode('dark')">🌑 Dark</div>
+      <div class="drawer-mode-btn active" id="drawerDark" onclick="setMode('dark');updateDrawerMode('dark')">🌑 Dark
+      </div>
       <div class="drawer-mode-btn" id="drawerLight" onclick="setMode('light');updateDrawerMode('light')">☀️ Light</div>
     </div>
   </div>
@@ -165,91 +190,91 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-'use strict';
+  'use strict';
 
-/* ============================================================ SUPABASE */
-const SUPA_URL='https://frffynlzejbtnapooqvu.supabase.co';
-const SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZyZmZ5bmx6ZWpidG5hcG9vcXZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0NzQ2NDMsImV4cCI6MjA5MDA1MDY0M30.dwUlfU6lZeUUhLI_u9-iHrwXntq4sfShAdoomPPAD8I';
-const supa=window.supabase.createClient(SUPA_URL,SUPA_KEY,{
-  auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:'phantom_hacks_auth'}
-});
+  /* ============================================================ SUPABASE */
+  const SUPA_URL = 'https://frffynlzejbtnapooqvu.supabase.co';
+  const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZyZmZ5bmx6ZWpidG5hcG9vcXZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ0NzQ2NDMsImV4cCI6MjA5MDA1MDY0M30.dwUlfU6lZeUUhLI_u9-iHrwXntq4sfShAdoomPPAD8I';
+  const supa = window.supabase.createClient(SUPA_URL, SUPA_KEY, {
+    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storageKey: 'phantom_hacks_auth' }
+  });
 
-/* ============================================================ TOAST */
-function toast(icon,msg){
-  document.getElementById('toastIcon').textContent=icon;
-  document.getElementById('toastMsg').textContent=msg;
-  const t=document.getElementById('toast');
-  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);
-}
-
-/* ============================================================ STATE */
-let currentUser=null;
-let profileSkills=[];
-let currentTab='edit';
-
-/* ============================================================ INIT */
-async function init(){
-  const{data:{user}}=await supa.auth.getUser();
-  if(!user){
-    showLoginPrompt();
-    return;
+  /* ============================================================ TOAST */
+  function toast(icon, msg) {
+    document.getElementById('toastIcon').textContent = icon;
+    document.getElementById('toastMsg').textContent = msg;
+    const t = document.getElementById('toast');
+    t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 4000);
   }
-  currentUser=user;
-  await renderPage();
-}
 
-function showLoginPrompt(){
-  document.getElementById('mainContent').innerHTML=`
+  /* ============================================================ STATE */
+  let currentUser = null;
+  let profileSkills = [];
+  let currentTab = 'edit';
+
+  /* ============================================================ INIT */
+  async function init() {
+    const { data: { user } } = await supa.auth.getUser();
+    if (!user) {
+      showLoginPrompt();
+      return;
+    }
+    currentUser = user;
+    await renderPage();
+  }
+
+  function showLoginPrompt() {
+    document.getElementById('mainContent').innerHTML = `
     <div class="login-prompt">
       <div style="width:80px;height:80px;margin:0 auto 16px"><img src="assets/logo.png" style="width:100%;height:100%;object-fit:contain"></div>
       <h2>Sign in to view your profile</h2>
       <p>You need to be logged in to access your profile page.</p>
       <button class="go-login-btn" onclick="window.location.href='index.html'">← Go to Phantom Hacks</button>
     </div>`;
-}
+  }
 
-/* ============================================================ RENDER PAGE */
-async function renderPage(){
-  // load profile from DB
-  const{data:prof}=await supa.from('profiles').select('*').eq('id',currentUser.id).single();
+  /* ============================================================ RENDER PAGE */
+  async function renderPage() {
+    // load profile from DB
+    const { data: prof } = await supa.from('profiles').select('*').eq('id', currentUser.id).single();
 
-  // load stats
-  const{count:saveCount}=await supa.from('saved_hackathons').select('*',{count:'exact',head:true}).eq('user_id',currentUser.id);
-  const{count:regCount}=await supa.from('registrations').select('*',{count:'exact',head:true}).eq('user_id',currentUser.id);
-  const{count:postCount}=await supa.from('hackathons').select('*',{count:'exact',head:true}).eq('source','phantom');
+    // load stats
+    const { count: saveCount } = await supa.from('saved_hackathons').select('*', { count: 'exact', head: true }).eq('user_id', currentUser.id);
+    const { count: regCount } = await supa.from('registrations').select('*', { count: 'exact', head: true }).eq('user_id', currentUser.id);
+    const { count: postCount } = await supa.from('hackathons').select('*', { count: 'exact', head: true }).eq('source', 'phantom');
 
-  // init skills
-  profileSkills=prof?.skills||[];
+    // init skills
+    profileSkills = prof?.skills || [];
 
-  const name=prof?.full_name||currentUser.user_metadata?.full_name||currentUser.email.split('@')[0];
-  const initials=name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
-  const roleLabels={student:'🎓 Student',working:'💼 Working Professional',teacher:'👨‍🏫 Teacher / Mentor',researcher:'🔬 Researcher',entrepreneur:'🚀 Entrepreneur',other:'✨ Other'};
-  const roleLabel=prof?.role?roleLabels[prof.role]||prof.role:'';
+    const name = prof?.full_name || currentUser.user_metadata?.full_name || currentUser.email.split('@')[0];
+    const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+    const roleLabels = { student: '🎓 Student', working: '💼 Working Professional', teacher: '👨‍🏫 Teacher / Mentor', researcher: '🔬 Researcher', entrepreneur: '🚀 Entrepreneur', other: '✨ Other' };
+    const roleLabel = prof?.role ? roleLabels[prof.role] || prof.role : '';
 
-  document.getElementById('mainContent').innerHTML=`
+    document.getElementById('mainContent').innerHTML = `
     <!-- HERO -->
     <div class="profile-hero">
       <div class="avatar-wrap">
         ${prof?.avatar_url
-          ?`<img class="avatar-img" src="${prof.avatar_url}" alt="Avatar"/>`
-          :`<div class="avatar-big">${initials}</div>`}
+        ? `<img class="avatar-img" src="${prof.avatar_url}" alt="Avatar"/>`
+        : `<div class="avatar-big">${initials}</div>`}
       </div>
       <div class="profile-info-top">
         <div class="profile-name">${name}</div>
-        ${prof?.username?`<div class="profile-username">@${prof.username}</div>`:''}
-        ${roleLabel?`<div class="profile-role-badge">${roleLabel}</div>`:''}
-        ${prof?.college?`<div class="profile-college">🏫 ${prof.college}</div>`:''}
-        ${prof?.dob?`<div class="profile-dob-card">🎂 Birth Date: <b>${new Date(prof.dob).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</b></div>`:''}
-        ${prof?.bio?`<div class="profile-bio-display">${prof.bio}</div>`:''}
-        ${profileSkills.length?`<div class="skills-display">${profileSkills.map(s=>`<span class="skill-tag">${s}</span>`).join('')}</div>`:''}
+        ${prof?.username ? `<div class="profile-username">@${prof.username}</div>` : ''}
+        ${roleLabel ? `<div class="profile-role-badge">${roleLabel}</div>` : ''}
+        ${prof?.college ? `<div class="profile-college">🏫 ${prof.college}</div>` : ''}
+        ${prof?.dob ? `<div class="profile-dob-card">🎂 Birth Date: <b>${new Date(prof.dob).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</b></div>` : ''}
+        ${prof?.bio ? `<div class="profile-bio-display">${prof.bio}</div>` : ''}
+        ${profileSkills.length ? `<div class="skills-display">${profileSkills.map(s => `<span class="skill-tag">${s}</span>`).join('')}</div>` : ''}
         <div class="social-links">
-          ${prof?.github_url?`<a class="social-link" href="${prof.github_url}" target="_blank" rel="noopener">🐙 GitHub</a>`:''}
-          ${prof?.linkedin_url?`<a class="social-link" href="${prof.linkedin_url}" target="_blank" rel="noopener">💼 LinkedIn</a>`:''}
+          ${prof?.github_url ? `<a class="social-link" href="${prof.github_url}" target="_blank" rel="noopener">🐙 GitHub</a>` : ''}
+          ${prof?.linkedin_url ? `<a class="social-link" href="${prof.linkedin_url}" target="_blank" rel="noopener">💼 LinkedIn</a>` : ''}
         </div>
         <div class="profile-stats-row">
-          <div class="pstat"><div class="pstat-num">${saveCount||0}</div><div class="pstat-label">Saved</div></div>
-          <div class="pstat"><div class="pstat-num">${regCount||0}</div><div class="pstat-label">Registered</div></div>
-          <div class="pstat"><div class="pstat-num">${postCount||0}</div><div class="pstat-label">Posted</div></div>
+          <div class="pstat"><div class="pstat-num">${saveCount || 0}</div><div class="pstat-label">Saved</div></div>
+          <div class="pstat"><div class="pstat-num">${regCount || 0}</div><div class="pstat-label">Registered</div></div>
+          <div class="pstat"><div class="pstat-num">${postCount || 0}</div><div class="pstat-label">Posted</div></div>
         </div>
       </div>
     </div>
@@ -268,38 +293,38 @@ async function renderPage(){
         <div class="form-grid">
           <div>
             <label class="standard-label">Full Name</label>
-            <input class="standard-input" id="pName" type="text" value="${prof?.full_name||currentUser.user_metadata?.full_name||''}" placeholder="Your full name"/>
+            <input class="standard-input" id="pName" type="text" value="${prof?.full_name || currentUser.user_metadata?.full_name || ''}" placeholder="Your full name"/>
           </div>
           <div>
             <label class="standard-label">Username</label>
-            <input class="standard-input" id="pUsername" type="text" value="${prof?.username||''}" placeholder="@username"/>
+            <input class="standard-input" id="pUsername" type="text" value="${prof?.username || ''}" placeholder="@username"/>
           </div>
         </div>
         <div class="form-grid">
           <div>
             <label class="standard-label">Date of Birth</label>
-            <input class="standard-input" id="pDob" type="date" value="${prof?.dob||''}"/>
+            <input class="standard-input" id="pDob" type="date" value="${prof?.dob || ''}"/>
           </div>
           <div>
             <label class="standard-label">Role</label>
             <select class="standard-input" id="pRole">
               <option value="">Select your role</option>
-              <option value="student" ${prof?.role==='student'?'selected':''}>🎓 Student</option>
-              <option value="working" ${prof?.role==='working'?'selected':''}>💼 Working Professional</option>
-              <option value="teacher" ${prof?.role==='teacher'?'selected':''}>👨‍🏫 Teacher / Mentor</option>
-              <option value="researcher" ${prof?.role==='researcher'?'selected':''}>🔬 Researcher</option>
-              <option value="entrepreneur" ${prof?.role==='entrepreneur'?'selected':''}>🚀 Entrepreneur</option>
-              <option value="other" ${prof?.role==='other'?'selected':''}>✨ Other</option>
+              <option value="student" ${prof?.role === 'student' ? 'selected' : ''}>🎓 Student</option>
+              <option value="working" ${prof?.role === 'working' ? 'selected' : ''}>💼 Working Professional</option>
+              <option value="teacher" ${prof?.role === 'teacher' ? 'selected' : ''}>👨‍🏫 Teacher / Mentor</option>
+              <option value="researcher" ${prof?.role === 'researcher' ? 'selected' : ''}>🔬 Researcher</option>
+              <option value="entrepreneur" ${prof?.role === 'entrepreneur' ? 'selected' : ''}>🚀 Entrepreneur</option>
+              <option value="other" ${prof?.role === 'other' ? 'selected' : ''}>✨ Other</option>
             </select>
           </div>
         </div>
         <div class="form-full">
           <label class="standard-label">College / School / Organisation</label>
-          <input class="standard-input" id="pCollege" type="text" value="${prof?.college||''}" placeholder="IIT Bombay, VIT Vellore, Google..."/>
+          <input class="standard-input" id="pCollege" type="text" value="${prof?.college || ''}" placeholder="IIT Bombay, VIT Vellore, Google..."/>
         </div>
         <div class="form-full">
           <label class="standard-label">Bio</label>
-          <textarea class="standard-input" id="pBio" placeholder="Tell the community about yourself...">${prof?.bio||''}</textarea>
+          <textarea class="standard-input" id="pBio" placeholder="Tell the community about yourself...">${prof?.bio || ''}</textarea>
         </div>
 
         <div class="form-section-title" style="margin-top:20px">Skills</div>
@@ -313,11 +338,11 @@ async function renderPage(){
         <div class="form-grid">
           <div>
             <label class="standard-label">GitHub URL</label>
-            <input class="standard-input" id="pGithub" type="url" value="${prof?.github_url||''}" placeholder="https://github.com/you"/>
+            <input class="standard-input" id="pGithub" type="url" value="${prof?.github_url || ''}" placeholder="https://github.com/you"/>
           </div>
           <div>
             <label class="standard-label">LinkedIn URL</label>
-            <input class="standard-input" id="pLinkedin" type="url" value="${prof?.linkedin_url||''}" placeholder="https://linkedin.com/in/you"/>
+            <input class="standard-input" id="pLinkedin" type="url" value="${prof?.linkedin_url || ''}" placeholder="https://linkedin.com/in/you"/>
           </div>
         </div>
 
@@ -338,49 +363,49 @@ async function renderPage(){
     </div>
   `;
 
-  // render skills chips
-  renderSkills();
+    // render skills chips
+    renderSkills();
 
-  // Enter key on skill input
-  document.getElementById('skillInput').addEventListener('keydown',e=>{
-    if(e.key==='Enter'){e.preventDefault();addSkill();}
-  });
-}
-
-/* ============================================================ TABS */
-function switchTab(tab,el){
-  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.ptab-section').forEach(s=>s.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('section'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.add('active');
-  currentTab=tab;
-  if(tab==='saves') loadSaves();
-  if(tab==='regs') loadRegistrations();
-}
-
-/* ============================================================ SAVES */
-async function loadSaves(){
-  const{data}=await supa.from('saved_hackathons')
-    .select('hackathons(*)')
-    .eq('user_id',currentUser.id)
-    .order('created_at',{ascending:false});
-  const list=document.getElementById('savesList');
-  const spinner=document.getElementById('savesSpinner');
-  if(spinner)spinner.remove();
-  if(!data||!data.length){
-    list.innerHTML=`<div class="empty-state"><div class="empty-icon">🔖</div><h3>No saves yet</h3><p>Go back and save some hackathons!</p></div>`;
-    return;
+    // Enter key on skill input
+    document.getElementById('skillInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); addSkill(); }
+    });
   }
-  const bClass={open:'b-open',closed:'b-closed',ongoing:'b-ongoing',upcoming:'b-upcoming'};
-  const bLabel={open:'● OPEN',closed:'✕ CLOSED',ongoing:'▶ ONGOING',upcoming:'⏳ UPCOMING'};
-  list.innerHTML=data.map(s=>{
-    const h=s.hackathons;if(!h)return'';
-    return`<div class="hack-card" onclick="window.location.href='hackathon.html?id=${h.id}'">
-      <div class="hack-emoji">${h.logo_url?`<img src="${h.logo_url}" style="width:100%;height:100%;object-fit:contain;border-radius:10px">`:h.emoji||'👻'}</div>
+
+  /* ============================================================ TABS */
+  function switchTab(tab, el) {
+    document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.ptab-section').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('section' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+    currentTab = tab;
+    if (tab === 'saves') loadSaves();
+    if (tab === 'regs') loadRegistrations();
+  }
+
+  /* ============================================================ SAVES */
+  async function loadSaves() {
+    const { data } = await supa.from('saved_hackathons')
+      .select('hackathons(*)')
+      .eq('user_id', currentUser.id)
+      .order('created_at', { ascending: false });
+    const list = document.getElementById('savesList');
+    const spinner = document.getElementById('savesSpinner');
+    if (spinner) spinner.remove();
+    if (!data || !data.length) {
+      list.innerHTML = `<div class="empty-state"><div class="empty-icon">🔖</div><h3>No saves yet</h3><p>Go back and save some hackathons!</p></div>`;
+      return;
+    }
+    const bClass = { open: 'b-open', closed: 'b-closed', ongoing: 'b-ongoing', upcoming: 'b-upcoming' };
+    const bLabel = { open: '● OPEN', closed: '✕ CLOSED', ongoing: '▶ ONGOING', upcoming: '⏳ UPCOMING' };
+    list.innerHTML = data.map(s => {
+      const h = s.hackathons; if (!h) return '';
+      return `<div class="hack-card" onclick="window.location.href='hackathon.html?id=${h.id}'">
+      <div class="hack-emoji">${h.logo_url ? `<img src="${h.logo_url}" style="width:100%;height:100%;object-fit:contain;border-radius:10px">` : h.emoji || '👻'}</div>
       <div class="hack-body">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px">
           <div class="hack-title">${h.title}</div>
-          <span class="badge ${bClass[h.status]||'b-upcoming'}">${bLabel[h.status]||h.status}</span>
+          <span class="badge ${bClass[h.status] || 'b-upcoming'}">${bLabel[h.status] || h.status}</span>
         </div>
         <div class="hack-org">🏛️ ${h.org}</div>
         <div class="hack-meta" style="margin-top:10px">
@@ -390,193 +415,194 @@ async function loadSaves(){
         </div>
       </div>
     </div>`;
-  }).join('');
-}
-
-/* ============================================================ REGISTRATIONS */
-async function loadRegistrations(){
-  const{data}=await supa.from('registrations')
-    .select('*,hackathons(title,emoji,status,deadline,location,org,url)')
-    .eq('user_id',currentUser.id)
-    .order('created_at',{ascending:false});
-  const list=document.getElementById('regsList');
-  const spinner=document.getElementById('regsSpinner');
-  if(spinner)spinner.remove();
-  if(!data||!data.length){
-    list.innerHTML=`<div class="empty-state"><div class="empty-icon">📋</div><h3>No registrations yet</h3><p>Register for a hackathon to see it here</p></div>`;
-    return;
+    }).join('');
   }
-  const bClass={open:'b-open',closed:'b-closed',ongoing:'b-ongoing',upcoming:'b-upcoming'};
-  list.innerHTML=data.map(r=>{
-    const h=r.hackathons;
-    const regDate=new Date(r.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
-    return`<div class="hack-card" style="cursor:default">
-      <div class="hack-emoji">${h?.logo_url?`<img src="${h.logo_url}" style="width:100%;height:100%;object-fit:contain;border-radius:10px">`:h?.emoji||'👻'}</div>
+
+  /* ============================================================ REGISTRATIONS */
+  async function loadRegistrations() {
+    const { data } = await supa.from('registrations')
+      .select('*,hackathons(title,emoji,status,deadline,location,org,url)')
+      .eq('user_id', currentUser.id)
+      .order('created_at', { ascending: false });
+    const list = document.getElementById('regsList');
+    const spinner = document.getElementById('regsSpinner');
+    if (spinner) spinner.remove();
+    if (!data || !data.length) {
+      list.innerHTML = `<div class="empty-state"><div class="empty-icon">📋</div><h3>No registrations yet</h3><p>Register for a hackathon to see it here</p></div>`;
+      return;
+    }
+    const bClass = { open: 'b-open', closed: 'b-closed', ongoing: 'b-ongoing', upcoming: 'b-upcoming' };
+    list.innerHTML = data.map(r => {
+      const h = r.hackathons;
+      const regDate = new Date(r.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+      return `<div class="hack-card" style="cursor:default">
+      <div class="hack-emoji">${h?.logo_url ? `<img src="${h.logo_url}" style="width:100%;height:100%;object-fit:contain;border-radius:10px">` : h?.emoji || '👻'}</div>
       <div class="hack-body">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px">
-          <div class="hack-title">${h?.title||'Hackathon'}</div>
-          <span class="badge ${bClass[h?.status]||'b-upcoming'}">${h?.status?.toUpperCase()||''}</span>
+          <div class="hack-title">${h?.title || 'Hackathon'}</div>
+          <span class="badge ${bClass[h?.status] || 'b-upcoming'}">${h?.status?.toUpperCase() || ''}</span>
         </div>
-        <div class="hack-org">👤 <strong>${r.full_name}</strong> · Registered for <span style="color:var(--pl)">${h?.org||'—'}</span></div>
+        <div class="hack-org">👤 <strong>${r.full_name}</strong> · Registered for <span style="color:var(--pl)">${h?.org || '—'}</span></div>
         <div class="hack-meta" style="margin-top:10px">
           <div class="hmeta">📅 <span class="val">Registered: ${regDate}</span></div>
-          ${r.team_name?`<div class="hmeta">👥 <span class="val">Team: ${r.team_name}</span></div>`:''}
-          ${h?.url?`<div class="hmeta"><a href="${h.url}" target="_blank" rel="noopener" style="color:var(--pl);font-weight:700">↗ Visit Page</a></div>`:''}
+          ${r.team_name ? `<div class="hmeta">👥 <span class="val">Team: ${r.team_name}</span></div>` : ''}
+          ${h?.url ? `<div class="hmeta"><a href="${h.url}" target="_blank" rel="noopener" style="color:var(--pl);font-weight:700">↗ Visit Page</a></div>` : ''}
         </div>
       </div>
     </div>`;
-  }).join('');
-}
-
-/* ============================================================ SKILLS */
-function renderSkills(){
-  const wrap=document.getElementById('skillsWrap');
-  if(!wrap)return;
-  wrap.innerHTML=profileSkills.length
-    ? profileSkills.map((s,i)=>`<div class="skill-chip">${s}<span class="skill-x" onclick="removeSkill(${i})">×</span></div>`).join('')
-    : `<span style="font-size:12px;color:var(--muted)">No skills added yet</span>`;
-}
-function addSkill(){
-  const inp=document.getElementById('skillInput');
-  const val=inp.value.trim();
-  if(!val||profileSkills.includes(val))return;
-  profileSkills.push(val);
-  renderSkills();
-  inp.value='';inp.focus();
-}
-function removeSkill(i){
-  profileSkills.splice(i,1);
-  renderSkills();
-}
-
-/* ============================================================ SAVE PROFILE */
-async function saveProfile(){
-  const btn=document.getElementById('saveBtn');
-  btn.textContent='Saving...';btn.disabled=true;
-  const payload={
-    id:currentUser.id,
-    full_name:document.getElementById('pName').value.trim(),
-    username:document.getElementById('pUsername').value.trim().replace('@','').toLowerCase()||null,
-    dob:document.getElementById('pDob').value||null,
-    role:document.getElementById('pRole').value||null,
-    college:document.getElementById('pCollege').value.trim()||null,
-    bio:document.getElementById('pBio').value.trim()||null,
-    github_url:document.getElementById('pGithub').value.trim()||null,
-    linkedin_url:document.getElementById('pLinkedin').value.trim()||null,
-    skills:profileSkills,
-    updated_at:new Date().toISOString(),
-  };
-  const{error}=await supa.from('profiles').upsert(payload);
-  btn.textContent='💾 Save Profile';btn.disabled=false;
-  if(error){
-    toast('❌','Failed to save: '+error.message);
-  } else {
-    toast('✅','Profile saved successfully!');
-    // update hero display without full reload
-    document.querySelector('.profile-name').textContent=payload.full_name||currentUser.email.split('@')[0];
-    if(payload.username) document.querySelector('.profile-username')&&(document.querySelector('.profile-username').textContent='@'+payload.username);
-    await renderPage(); // re-render to reflect changes
+    }).join('');
   }
-}
 
-/* ============================================================ UI LOGIC */
-function toggleThemePanel(e){
-  e.stopPropagation();
-  document.getElementById('themePanel').classList.toggle('open');
-}
-document.addEventListener('click',()=>document.getElementById('themePanel').classList.remove('open'));
-document.getElementById('themePanel').onclick=e=>e.stopPropagation();
+  /* ============================================================ SKILLS */
+  function renderSkills() {
+    const wrap = document.getElementById('skillsWrap');
+    if (!wrap) return;
+    wrap.innerHTML = profileSkills.length
+      ? profileSkills.map((s, i) => `<div class="skill-chip">${s}<span class="skill-x" onclick="removeSkill(${i})">×</span></div>`).join('')
+      : `<span style="font-size:12px;color:var(--muted)">No skills added yet</span>`;
+  }
+  function addSkill() {
+    const inp = document.getElementById('skillInput');
+    const val = inp.value.trim();
+    if (!val || profileSkills.includes(val)) return;
+    profileSkills.push(val);
+    renderSkills();
+    inp.value = ''; inp.focus();
+  }
+  function removeSkill(i) {
+    profileSkills.splice(i, 1);
+    renderSkills();
+  }
 
-function setMode(m){
-  document.documentElement.setAttribute('data-theme',m);
-  localStorage.setItem('px-theme',m);
-  document.getElementById('modeDark').classList.toggle('active',m==='dark');
-  document.getElementById('modeLight').classList.toggle('active',m==='light');
-  updateDrawerMode(m);
-}
-function setColor(c){
-  document.documentElement.setAttribute('data-color',c);
-  localStorage.setItem('px-color',c);
-}
-function updateDrawerMode(m){
-  document.getElementById('drawerDark')?.classList.toggle('active',m==='dark');
-  document.getElementById('drawerLight')?.classList.toggle('active',m==='light');
-}
-
-function toggleDrawer(){
-  document.getElementById('mobileDrawer').classList.add('open');
-  document.getElementById('drawerOverlay').classList.add('open');
-}
-function closeDrawer(){
-  document.getElementById('mobileDrawer').classList.remove('open');
-  document.getElementById('drawerOverlay').classList.remove('open');
-}
-function drawerTab(t){
-  closeDrawer();
-  const btnMap = { edit: 'tabBtnEdit', saves: 'tabBtnSaves', regs: 'tabBtnRegs' };
-  const btn = document.getElementById(btnMap[t]);
-  if(btn) switchTab(t, btn);
-}
-
-
-/* ============================================================ BACKGROUND SYSTEM */
-const canvas=document.getElementById('particleCanvas');
-const ctx=canvas.getContext('2d');
-let particles=[], afId;
-function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
-window.addEventListener('resize',()=>{ resizeCanvas(); initParticles(); }); resizeCanvas();
-function getRGB(){
-  const m={purple:'157,78,221',blue:'37,99,235',cyan:'8,145,178',green:'22,163,74',rose:'225,29,72',orange:'234,88,12',amber:'217,119,6',indigo:'79,70,229'};
-  return m[document.documentElement.getAttribute('data-color')]||'157,78,221';
-}
-function initParticles(){
-  cancelAnimationFrame(afId);
-  const n=15, rgb=getRGB();
-  particles=Array.from({length:n},()=>({
-    x:Math.random()*canvas.width, y:Math.random()*canvas.height,
-    r:Math.random()*1.8+.3, vx:(Math.random()-.5)*.2, vy:(Math.random()-.5)*.2,
-    a:Math.random()*.4+.1, rgb, pulse:Math.random()*Math.PI*2
-  }));
-  animP();
-}
-function animP(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  const rgb=getRGB(), maxD=100;
-  particles.forEach(p=>{
-    p.rgb=rgb; p.pulse+=.015; p.x+=p.vx; p.y+=p.vy;
-    if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
-    if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
-    const a=p.a*(.7+.3*Math.sin(p.pulse));
-    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(${rgb},${a})`; ctx.fill();
-  });
-  for(let i=0;i<particles.length;i++){
-    for(let j=i+1;j<particles.length;j++){
-      const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      if(d<maxD){
-        ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y);
-        ctx.strokeStyle=`rgba(${rgb},${.1*(1-d/maxD)})`; ctx.lineWidth=.5; ctx.stroke();
-      }
+  /* ============================================================ SAVE PROFILE */
+  async function saveProfile() {
+    const btn = document.getElementById('saveBtn');
+    btn.textContent = 'Saving...'; btn.disabled = true;
+    const payload = {
+      id: currentUser.id,
+      full_name: document.getElementById('pName').value.trim(),
+      username: document.getElementById('pUsername').value.trim().replace('@', '').toLowerCase() || null,
+      dob: document.getElementById('pDob').value || null,
+      role: document.getElementById('pRole').value || null,
+      college: document.getElementById('pCollege').value.trim() || null,
+      bio: document.getElementById('pBio').value.trim() || null,
+      github_url: document.getElementById('pGithub').value.trim() || null,
+      linkedin_url: document.getElementById('pLinkedin').value.trim() || null,
+      skills: profileSkills,
+      updated_at: new Date().toISOString(),
+    };
+    const { error } = await supa.from('profiles').upsert(payload);
+    btn.textContent = '💾 Save Profile'; btn.disabled = false;
+    if (error) {
+      toast('❌', 'Failed to save: ' + error.message);
+    } else {
+      toast('✅', 'Profile saved successfully!');
+      // update hero display without full reload
+      document.querySelector('.profile-name').textContent = payload.full_name || currentUser.email.split('@')[0];
+      if (payload.username) document.querySelector('.profile-username') && (document.querySelector('.profile-username').textContent = '@' + payload.username);
+      await renderPage(); // re-render to reflect changes
     }
   }
-  afId=requestAnimationFrame(animP);
-}
 
-function tick(){
-  const el=document.getElementById('topClock');
-  if(el) el.textContent=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+' IST';
-}
-setInterval(tick,1000); tick();
-initParticles();
+  /* ============================================================ UI LOGIC */
+  function toggleThemePanel(e) {
+    e.stopPropagation();
+    document.getElementById('themePanel').classList.toggle('open');
+  }
+  document.addEventListener('click', () => document.getElementById('themePanel').classList.remove('open'));
+  document.getElementById('themePanel').onclick = e => e.stopPropagation();
 
-async function signOut(){
-  await supa.auth.signOut();
-  window.location.href='index.html';
-}
+  function setMode(m) {
+    document.documentElement.setAttribute('data-theme', m);
+    localStorage.setItem('px-theme', m);
+    document.getElementById('modeDark').classList.toggle('active', m === 'dark');
+    document.getElementById('modeLight').classList.toggle('active', m === 'light');
+    updateDrawerMode(m);
+  }
+  function setColor(c) {
+    document.documentElement.setAttribute('data-color', c);
+    localStorage.setItem('px-color', c);
+  }
+  function updateDrawerMode(m) {
+    document.getElementById('drawerDark')?.classList.toggle('active', m === 'dark');
+    document.getElementById('drawerLight')?.classList.toggle('active', m === 'light');
+  }
 
-/* ============================================================ START */
-init();
+  function toggleDrawer() {
+    document.getElementById('mobileDrawer').classList.add('open');
+    document.getElementById('drawerOverlay').classList.add('open');
+  }
+  function closeDrawer() {
+    document.getElementById('mobileDrawer').classList.remove('open');
+    document.getElementById('drawerOverlay').classList.remove('open');
+  }
+  function drawerTab(t) {
+    closeDrawer();
+    const btnMap = { edit: 'tabBtnEdit', saves: 'tabBtnSaves', regs: 'tabBtnRegs' };
+    const btn = document.getElementById(btnMap[t]);
+    if (btn) switchTab(t, btn);
+  }
+
+
+  /* ============================================================ BACKGROUND SYSTEM */
+  const canvas = document.getElementById('particleCanvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [], afId;
+  function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  window.addEventListener('resize', () => { resizeCanvas(); initParticles(); }); resizeCanvas();
+  function getRGB() {
+    const m = { purple: '157,78,221', blue: '37,99,235', cyan: '8,145,178', green: '22,163,74', rose: '225,29,72', orange: '234,88,12', amber: '217,119,6', indigo: '79,70,229' };
+    return m[document.documentElement.getAttribute('data-color')] || '157,78,221';
+  }
+  function initParticles() {
+    cancelAnimationFrame(afId);
+    const n = 15, rgb = getRGB();
+    particles = Array.from({ length: n }, () => ({
+      x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+      r: Math.random() * 1.8 + .3, vx: (Math.random() - .5) * .2, vy: (Math.random() - .5) * .2,
+      a: Math.random() * .4 + .1, rgb, pulse: Math.random() * Math.PI * 2
+    }));
+    animP();
+  }
+  function animP() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const rgb = getRGB(), maxD = 100;
+    particles.forEach(p => {
+      p.rgb = rgb; p.pulse += .015; p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+      const a = p.a * (.7 + .3 * Math.sin(p.pulse));
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${rgb},${a})`; ctx.fill();
+    });
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+        const d = Math.sqrt(dx * dx + dy * dy);
+        if (d < maxD) {
+          ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(${rgb},${.1 * (1 - d / maxD)})`; ctx.lineWidth = .5; ctx.stroke();
+        }
+      }
+    }
+    afId = requestAnimationFrame(animP);
+  }
+
+  function tick() {
+    const el = document.getElementById('topClock');
+    if (el) el.textContent = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' IST';
+  }
+  setInterval(tick, 1000); tick();
+  initParticles();
+
+  async function signOut() {
+    await supa.auth.signOut();
+    window.location.href = 'index.html';
+  }
+
+  /* ============================================================ START */
+  init();
 </script>
 </body>
+
 </html>

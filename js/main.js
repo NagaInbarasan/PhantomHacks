@@ -1154,6 +1154,7 @@ async function signUp(){
 async function signInOAuth(provider){
   // Always redirect back to root — works for both localhost and Vercel
   const redirectTo=window.location.origin+'/';
+  console.log('[Auth] Redirecting to:', redirectTo);
   const{error}=await supa.auth.signInWithOAuth({
     provider,
     options:{redirectTo}
