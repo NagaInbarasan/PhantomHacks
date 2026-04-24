@@ -19,6 +19,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="theme-color" content="#9d4edd"/>
 
@@ -49,12 +50,12 @@
 
 .hd-emoji-row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
 .hd-emoji {
-  width: 120px; height: 120px; border-radius: 20px;
+  width: 120px; height: 120px; border-radius: 32px;
   background: linear-gradient(135deg, var(--pg), rgba(255,110,247,.08));
   display: flex; align-items: center; justify-content: center;
   font-size: 64px; flex-shrink: 0;
   border: 1px solid var(--border);
-  box-shadow: 0 8px 32px var(--pg);
+  box-shadow: 0 12px 40px var(--pg);
 }
 .hd-badges { display: flex; flex-wrap: wrap; gap: 6px; }
 
@@ -69,7 +70,7 @@
 .hd-prize-banner {
   display: inline-flex; align-items: center; gap: 10px;
   background: rgba(255,230,0,.08); border: 1px solid rgba(255,230,0,.25);
-  border-radius: 12px; padding: 14px 22px;
+  border-radius: 20px; padding: 14px 22px;
   font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800;
   color: var(--yellow); margin-bottom: 20px;
   box-shadow: 0 0 28px rgba(255,230,0,.06);
@@ -78,9 +79,9 @@
 /* Sidebar card */
 .hd-sidebar-card {
   background: var(--card); border: 1px solid var(--border);
-  border-radius: 16px; padding: 24px; position: sticky; top: 110px;
+  border-radius: 32px; padding: 24px; position: sticky; top: 110px;
   display: flex; flex-direction: column; gap: 14px;
-  box-shadow: 0 8px 40px var(--shadow);
+  box-shadow: 0 20px 60px var(--shadow);
 }
 .hd-deadline-bar {
   display: flex; align-items: center; gap: 10px;
@@ -213,12 +214,91 @@
   .hd-sidebar-card { position: static; }
   .hd-title { font-size: 26px; }
 }
-@media(max-width: 600px) {
+@media(max-width: 680px) {
   .hd-title { font-size: 22px; }
   .hd-emoji { width: 80px; height: 80px; font-size: 44px; border-radius: 16px; }
   .hd-prize-banner { font-size: 18px; padding: 10px 16px; }
   .hd-btn-row { flex-direction: column; }
+  .mob-reg-bar { display: flex !important; }
+  body { padding-bottom: 80px; }
 }
+
+/* Countdown timer */
+.hd-countdown {
+  display: flex; gap: 6px; justify-content: center;
+  padding: 10px 0 2px;
+}
+.hd-countdown-unit {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--glass); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; min-width: 46px;
+}
+.hd-countdown-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px; font-weight: 700; color: var(--pl);
+  line-height: 1;
+}
+.hd-countdown-label {
+  font-size: 9px; color: var(--muted); text-transform: uppercase;
+  letter-spacing: .6px; margin-top: 3px;
+}
+
+/* Share menu */
+.hd-share-wrap { position: relative; flex: 1; }
+.hd-share-menu {
+  position: absolute; bottom: calc(100% + 8px); right: 0;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 6px; z-index: 200;
+  min-width: 170px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  display: none; flex-direction: column; gap: 2px;
+}
+.hd-share-menu.open { display: flex; animation: fadeIn .15s ease; }
+.hd-share-option {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; border-radius: 8px; cursor: pointer;
+  font-size: 13px; font-weight: 600; color: var(--text);
+  transition: background .15s;
+}
+.hd-share-option:hover { background: var(--pg); color: var(--pl); }
+.hd-share-option-icon { width: 20px; text-align: center; }
+
+/* Back-to-top */
+.btt-btn {
+  position: fixed; bottom: 100px; right: 22px; z-index: 500;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--p); color: #fff; border: none;
+  font-size: 18px; cursor: pointer;
+  box-shadow: 0 4px 18px var(--pg); opacity: 0;
+  transition: opacity .3s, transform .3s;
+  transform: translateY(12px);
+  display: flex; align-items: center; justify-content: center;
+}
+.btt-btn.visible { opacity: 1; transform: translateY(0); }
+.btt-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px var(--pg); }
+
+/* Mobile sticky register bar */
+.mob-reg-bar {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 400;
+  background: var(--card); border-top: 1px solid var(--border);
+  padding: 10px 16px; gap: 12px;
+  align-items: center;
+  box-shadow: 0 -4px 24px rgba(0,0,0,.4);
+}
+.mob-reg-prize {
+  flex: 1; font-size: 13px;
+}
+.mob-reg-prize strong { display: block; color: var(--pl); font-family:'JetBrains Mono',monospace; font-size:14px; }
+.mob-reg-prize span { color: var(--muted); font-size: 11px; }
+.mob-reg-btn {
+  padding: 11px 20px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--p), var(--pl));
+  color: #fff; border: none; font-weight: 700; font-size: 14px;
+  cursor: pointer; white-space: nowrap;
+  box-shadow: 0 0 16px var(--pg);
+}
+.mob-reg-btn:disabled { opacity:.5; cursor:not-allowed; }
 
 /* Calendar chip for calendar events */
 .cal-event-chip{font-size:9px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:4px;padding:1px 4px;margin-bottom:1px;cursor:pointer;transition:background .15s}
@@ -264,7 +344,7 @@
       <button class="btn-outline" id="loginBtn" style="display:none">Login</button>
       <!-- shown when logged in -->
       <div class="user-nav-wrap" id="userNavWrap" style="display:none">
-        <div class="user-avatar-btn">
+        <div class="user-avatar-btn" onclick="window.location.href='profile.html'" style="cursor:pointer" title="My Profile">
           <div class="user-avatar" id="userAvatar">?</div>
           <span class="user-name-nav" id="userNameNav">User</span>
           <span style="font-size:9px;color:var(--muted)">▾</span>
@@ -324,11 +404,21 @@
       </div>
       <div class="hd-sidebar-card" id="hdSidebar">
         <div class="hd-deadline-bar" id="hdDeadline"></div>
+        <!-- Live countdown -->
+        <div class="hd-countdown" id="hdCountdown" style="display:none"></div>
         <div class="hd-info-list" id="hdInfoList"></div>
         <button class="hd-reg-btn" id="hdRegBtn">🚀 Register Now</button>
         <div class="hd-btn-row">
           <button class="hd-save-btn" id="hdSaveBtn">🔖 Save</button>
-          <button class="hd-share-btn" id="hdShareBtn">↗ Share</button>
+          <div class="hd-share-wrap">
+            <button class="hd-share-btn" id="hdShareBtn" style="width:100%">↗ Share</button>
+            <div class="hd-share-menu" id="hdShareMenu">
+              <div class="hd-share-option" onclick="shareVia('copy')"><span class="hd-share-option-icon">📋</span> Copy Link</div>
+              <div class="hd-share-option" onclick="shareVia('whatsapp')"><span class="hd-share-option-icon">📱</span> WhatsApp</div>
+              <div class="hd-share-option" onclick="shareVia('twitter')"><span class="hd-share-option-icon">𝕏</span> Twitter / X</div>
+              <div class="hd-share-option" onclick="shareVia('linkedin')"><span class="hd-share-option-icon">🔗</span> LinkedIn</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -357,6 +447,18 @@
   </div>
 </div>
 
+<!-- Back-to-top -->
+<button class="btt-btn" id="bttBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+<!-- Mobile sticky register bar -->
+<div class="mob-reg-bar" id="mobRegBar">
+  <div class="mob-reg-prize">
+    <strong id="mobRegPrize">🏆 —</strong>
+    <span id="mobRegDeadline">Check deadline</span>
+  </div>
+  <button class="mob-reg-btn" id="mobRegBtn" disabled>🚀 Register</button>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -374,6 +476,26 @@
     </div>
   </div>
 </footer>
+
+<!-- MOBILE BOTTOM NAV -->
+<div class="mobile-bottom-nav">
+  <a href="index.html" class="mb-nav-item">
+    <div class="mb-nav-icon">🏠</div>
+    <span>Home</span>
+  </a>
+  <a href="index.html" class="mb-nav-item" onclick="document.getElementById('searchInput').focus()">
+    <div class="mb-nav-icon">🔍</div>
+    <span>Discover</span>
+  </a>
+  <a href="post.html" class="mb-nav-item">
+    <div class="mb-nav-icon">🚀</div>
+    <span>Post</span>
+  </a>
+  <a href="profile.html" class="mb-nav-item">
+    <div class="mb-nav-icon">👤</div>
+    <span>Profile</span>
+  </a>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -632,12 +754,25 @@ function renderHackathon(){
     }
   };
 
-  // Share button
-  document.getElementById('hdShareBtn').onclick=()=>{
-    const url=window.location.href;
-    if(navigator.share){ navigator.share({title:h.title,text:`Check out ${h.title}!`,url}); }
-    else { navigator.clipboard.writeText(url).then(()=>toast('📋','Link copied!')); }
+  // Share button — toggle dropdown
+  document.getElementById('hdShareBtn').onclick=(e)=>{
+    e.stopPropagation();
+    document.getElementById('hdShareMenu').classList.toggle('open');
   };
+  // Close share menu on outside click
+  document.addEventListener('click', ()=>document.getElementById('hdShareMenu')?.classList.remove('open'));
+
+  // Deadline countdown
+  startCountdown(h.deadline, h.status);
+
+  // Mobile sticky register bar
+  const isCl = h.status === 'closed';
+  document.getElementById('mobRegPrize').textContent = '🏆 ' + h.prize;
+  document.getElementById('mobRegDeadline').textContent = isCl ? 'Registration closed' : '⏰ Deadline: ' + h.deadline;
+  const mobBtn = document.getElementById('mobRegBtn');
+  mobBtn.disabled = isCl;
+  mobBtn.textContent = isCl ? '🔒 Closed' : '🚀 Register Now';
+  mobBtn.onclick = regBtn.onclick;
 
   // Description
   document.getElementById('hdDesc').textContent=h.description || HACK_DESCS[h.id] || `${h.title} is a ${h.type} organised by ${h.org}. Visit the official page for full details, problem statements, and registration instructions.`;
@@ -741,6 +876,77 @@ function renderHackathon(){
     }
   })();
 }
+
+/* =====================================================================
+   SHARE VIA
+===================================================================== */
+function shareVia(method){
+  const url = window.location.href;
+  const title = currentHack?.title || 'Hackathon';
+  const text = `🚀 Join ${title} — win prizes & build cool stuff!`;
+  document.getElementById('hdShareMenu').classList.remove('open');
+  switch(method){
+    case 'copy':
+      navigator.clipboard.writeText(url).then(()=>toast('📋','Link copied to clipboard!'));
+      break;
+    case 'whatsapp':
+      window.open(`https://wa.me/?text=${encodeURIComponent(text + '\n' + url)}`, '_blank');
+      break;
+    case 'twitter':
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+      break;
+    case 'linkedin':
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+      break;
+  }
+}
+
+/* =====================================================================
+   COUNTDOWN TIMER
+===================================================================== */
+let countdownInterval = null;
+function startCountdown(deadline, status){
+  const el = document.getElementById('hdCountdown');
+  if(!el) return;
+  if(status === 'closed' || !deadline || deadline === 'Ongoing' || deadline === 'Check Site' || deadline === 'Check Devpost' || deadline === 'Check Devfolio' || deadline === 'Check MLH Site' || deadline === 'Check Unstop' || /check/i.test(deadline)){
+    el.style.display = 'none'; return;
+  }
+  // Try to parse the deadline string
+  const parsed = new Date(deadline);
+  if(isNaN(parsed.getTime())){ el.style.display = 'none'; return; }
+  if(parsed < new Date()){ el.style.display = 'none'; return; }
+
+  el.style.display = 'flex';
+  function update(){
+    const now = new Date();
+    const diff = parsed - now;
+    if(diff <= 0){ clearInterval(countdownInterval); el.style.display='none'; return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    el.innerHTML = [
+      {n: d, l: 'Days'}, {n: h, l: 'Hrs'}, {n: m, l: 'Min'}, {n: s, l: 'Sec'}
+    ].map(u=>`<div class="hd-countdown-unit"><div class="hd-countdown-num">${String(u.n).padStart(2,'0')}</div><div class="hd-countdown-label">${u.l}</div></div>`).join('');
+  }
+  update();
+  countdownInterval = setInterval(update, 1000);
+}
+
+/* =====================================================================
+   BACK TO TOP
+===================================================================== */
+const bttBtn = document.getElementById('bttBtn');
+window.addEventListener('scroll', ()=>{
+  bttBtn.classList.toggle('visible', window.scrollY > 400);
+}, {passive: true});
+
+/* =====================================================================
+   KEYBOARD: Escape = back
+===================================================================== */
+document.addEventListener('keydown', e=>{
+  if(e.key === 'Escape') window.history.back();
+});
 
 // Load on page ready
 loadPage();

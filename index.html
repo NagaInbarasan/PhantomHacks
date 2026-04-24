@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark" data-color="purple">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<script>
-(function() {
-  const t = localStorage.getItem('px-theme') || 'dark';
-  const c = localStorage.getItem('px-color') || 'purple';
-  document.documentElement.setAttribute('data-theme', t);
-  document.documentElement.setAttribute('data-color', c);
-})();
-</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <script>
+    (function () {
+      const t = localStorage.getItem('px-theme') || 'dark';
+      const c = localStorage.getItem('px-color') || 'purple';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-color', c);
+    })();
+  </script>
 
 
-<!-- Primary Meta -->
-<title>Phantom Hacks | India's Hackathon Discovery Engine</title>
-<meta name="description" content="Discover 2,800+ hackathons from Unstop, Devpost, Devfolio, HackerEarth, MLH and 20+ sources. Filter by prize, location, mode and deadline. India's most comprehensive hackathon tracker."/>
-<meta name="keywords" content="hackathon, india hackathon, online hackathon, devpost, unstop, devfolio, hackerearth, mlh, hackathon 2026, free hackathon, prize hackathon, IIT hackathon, coding competition"/>
-<meta name="author" content="Phantom Hacks"/>
-<meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://phantomhacks.vercel.app/"/>
+  <!-- Primary Meta -->
+  <title>Phantom Hacks | India's Hackathon Discovery Engine</title>
+  <meta name="description"
+    content="Discover 2,800+ hackathons from Unstop, Devpost, Devfolio, HackerEarth, MLH and 20+ sources. Filter by prize, location, mode and deadline. India's most comprehensive hackathon tracker." />
+  <meta name="keywords"
+    content="hackathon, india hackathon, online hackathon, devpost, unstop, devfolio, hackerearth, mlh, hackathon 2026, free hackathon, prize hackathon, IIT hackathon, coding competition" />
+  <meta name="author" content="Phantom Hacks" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://phantomhacks.vercel.app/" />
 
-<!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
-<meta property="og:type" content="website"/>
-<meta property="og:url" content="https://phantomhacks.vercel.app/"/>
-<meta property="og:title" content="Phantom Hacks — India's Hackathon Discovery Engine"/>
-<meta property="og:description" content="Find your next hackathon. 2,800+ events from 20+ platforms. Filter by prize, location, level and deadline. Never miss a deadline again."/>
-<meta property="og:image" content="https://phantomhacks.vercel.app/og-image.png"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
-<meta property="og:site_name" content="Phantom Hacks"/>
-<meta property="og:locale" content="en_IN"/>
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://phantomhacks.vercel.app/" />
+  <meta property="og:title" content="Phantom Hacks — India's Hackathon Discovery Engine" />
+  <meta property="og:description"
+    content="Find your next hackathon. 2,800+ events from 20+ platforms. Filter by prize, location, level and deadline. Never miss a deadline again." />
+  <meta property="og:image" content="https://phantomhacks.vercel.app/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Phantom Hacks" />
+  <meta property="og:locale" content="en_IN" />
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:url" content="https://phantomhacks.vercel.app/"/>
-<meta name="twitter:title" content="Phantom Hacks — India's Hackathon Discovery Engine"/>
-<meta name="twitter:description" content="Find your next hackathon. 2,800+ events from 20+ platforms. Never miss a deadline again."/>
-<meta name="twitter:image" content="https://phantomhacks.vercel.app/og-image.png"/>
-<meta name="twitter:site" content="@phantomhacks"/>
-<meta name="twitter:creator" content="@phantomhacks"/>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://phantomhacks.vercel.app/" />
+  <meta name="twitter:title" content="Phantom Hacks — India's Hackathon Discovery Engine" />
+  <meta name="twitter:description"
+    content="Find your next hackathon. 2,800+ events from 20+ platforms. Never miss a deadline again." />
+  <meta name="twitter:image" content="https://phantomhacks.vercel.app/og-image.png" />
+  <meta name="twitter:site" content="@phantomhacks" />
+  <meta name="twitter:creator" content="@phantomhacks" />
 
-<!-- Favicon & PWA -->
-<link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png"/>
-<link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png"/>
-<link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-<!-- Theme Color (browser UI tint) -->
-<meta name="theme-color" content="#9d4edd"/>
+  <!-- Theme Color (browser UI tint) -->
+  <meta name="theme-color" content="#9d4edd" />
 
-<!-- Structured Data (Google Rich Results) -->
-<script type="application/ld+json">
+  <!-- Structured Data (Google Rich Results) -->
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -70,851 +76,1161 @@
 }
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="css/style.css"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
-<canvas id="particleCanvas"></canvas>
+  <canvas id="particleCanvas"></canvas>
 
 
 
-<!-- LOADING -->
-<div class="loading-overlay" id="loadingOverlay">
-  <div class="loading-spinner"></div>
-  <div class="load-text" id="loadText">// Initializing...</div>
-  <div class="load-pbar-wrap"><div class="load-pbar" id="loadPbar"></div></div>
-</div>
-
-<!-- TOAST -->
-<div class="standard-toast" id="toast"><span id="toastIcon">⚡</span><span id="toastMsg">Loading...</span></div>
-
-<!-- THEME PANEL -->
-<div class="theme-panel" id="themePanel">
-  <div class="tp-title">🎨 Appearance</div>
-
-  <div class="tp-sec">Mode</div>
-  <div class="mode-row">
-    <div class="mode-btn active" id="modeDark" onclick="setMode('dark')"><span class="mode-icon">🌑</span>Dark</div>
-    <div class="mode-btn" id="modeLight" onclick="setMode('light')"><span class="mode-icon">☀️</span>Light</div>
+  <!-- LOADING -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="load-text" id="loadText">// Initializing...</div>
+    <div class="load-pbar-wrap">
+      <div class="load-pbar" id="loadPbar"></div>
+    </div>
   </div>
 
-  <div class="tp-sec">Accent Color</div>
-  <div class="color-grid">
-    <div class="swatch active" data-c="purple" onclick="setColor('purple')" title="Purple"></div>
-    <div class="swatch" data-c="blue"   onclick="setColor('blue')"   title="Blue"></div>
-    <div class="swatch" data-c="cyan"   onclick="setColor('cyan')"   title="Cyan"></div>
-    <div class="swatch" data-c="green"  onclick="setColor('green')"  title="Green"></div>
-    <div class="swatch" data-c="rose"   onclick="setColor('rose')"   title="Rose"></div>
-    <div class="swatch" data-c="orange" onclick="setColor('orange')" title="Orange"></div>
-    <div class="swatch" data-c="amber"  onclick="setColor('amber')"  title="Amber"></div>
-    <div class="swatch" data-c="indigo" onclick="setColor('indigo')" title="Indigo"></div>
+  <!-- TOAST -->
+  <div class="standard-toast" id="toast"><span id="toastIcon">⚡</span><span id="toastMsg">Loading...</span></div>
+
+  <!-- THEME PANEL -->
+  <div class="theme-panel" id="themePanel">
+    <div class="tp-title">🎨 Appearance</div>
+
+    <div class="tp-sec">Mode</div>
+    <div class="mode-row">
+      <div class="mode-btn active" id="modeDark" onclick="setMode('dark')"><span class="mode-icon">🌑</span>Dark</div>
+      <div class="mode-btn" id="modeLight" onclick="setMode('light')"><span class="mode-icon">☀️</span>Light</div>
+    </div>
+
+    <div class="tp-sec">Accent Color</div>
+    <div class="color-grid">
+      <div class="swatch active" data-c="purple" onclick="setColor('purple')" title="Purple"></div>
+      <div class="swatch" data-c="blue" onclick="setColor('blue')" title="Blue"></div>
+      <div class="swatch" data-c="cyan" onclick="setColor('cyan')" title="Cyan"></div>
+      <div class="swatch" data-c="green" onclick="setColor('green')" title="Green"></div>
+      <div class="swatch" data-c="rose" onclick="setColor('rose')" title="Rose"></div>
+      <div class="swatch" data-c="orange" onclick="setColor('orange')" title="Orange"></div>
+      <div class="swatch" data-c="amber" onclick="setColor('amber')" title="Amber"></div>
+      <div class="swatch" data-c="indigo" onclick="setColor('indigo')" title="Indigo"></div>
+    </div>
+
+    <hr class="tp-divider" />
+
+    <div class="tp-sec">Font Size</div>
+    <div class="tp-slider-wrap">
+      <div class="tp-slider-row">Text Size <span id="fsLabel">14px</span></div>
+      <input type="range" class="tp-slider" id="fsSlider" min="12" max="18" value="14" oninput="setFontSize(this.value)"
+        style="--fill:50%" />
+    </div>
+
+    <div class="tp-sec">Particles</div>
+    <div class="tp-row">
+      <div class="tp-mini" onclick="setParticles('off',this)">Off</div>
+      <div class="tp-mini active" onclick="setParticles('low',this)">Low</div>
+      <div class="tp-mini" onclick="setParticles('high',this)">High</div>
+    </div>
   </div>
 
-  <hr class="tp-divider"/>
-
-  <div class="tp-sec">Font Size</div>
-  <div class="tp-slider-wrap">
-    <div class="tp-slider-row">Text Size <span id="fsLabel">14px</span></div>
-    <input type="range" class="tp-slider" id="fsSlider" min="12" max="18" value="14" oninput="setFontSize(this.value)" style="--fill:50%"/>
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-label">🔴 LIVE</div>
+    <div class="ticker-track" id="tickerTrack"></div>
   </div>
 
-  <div class="tp-sec">Particles</div>
-  <div class="tp-row">
-    <div class="tp-mini" onclick="setParticles('off',this)">Off</div>
-    <div class="tp-mini active" onclick="setParticles('low',this)">Low</div>
-    <div class="tp-mini" onclick="setParticles('high',this)">High</div>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span class="live-dot"></span>
+    <strong>Phantom Hacks</strong> — India's Hackathon Discovery Engine &nbsp;|&nbsp;
+    <a href="#">📲 Discord</a><a href="#">🚀 Post</a><a href="#">📰 Newsletter</a>
+    &nbsp;|&nbsp; Sources: <strong>Unstop · Devpost · Devfolio · HackerEarth · MLH · Hackaly</strong>
+    &nbsp;|&nbsp; <span class="live-clock" id="topClock"></span>
   </div>
-</div>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker-label">🔴 LIVE</div>
-  <div class="ticker-track" id="tickerTrack"></div>
-</div>
-
-<!-- TOPBAR -->
-<div class="topbar">
-  <span class="live-dot"></span>
-  <strong>Phantom Hacks</strong> — India's Hackathon Discovery Engine &nbsp;|&nbsp;
-  <a href="#">📲 Discord</a><a href="#">🚀 Post</a><a href="#">📰 Newsletter</a>
-  &nbsp;|&nbsp; Sources: <strong>Unstop · Devpost · Devfolio · HackerEarth · MLH · Hackaly</strong>
-  &nbsp;|&nbsp; <span class="live-clock" id="topClock"></span>
-</div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a class="logo" href="index.html">
-      <div class="logo-icon"><img src="assets/logo.png" alt="Phantom Hacks Logo"></div>
-      <div><div class="logo-text">Phantom Hacks</div><div class="logo-sub">Hackathon Engine</div></div>
-    </a>
-    <ul class="nav-links">
-      <li><span>Hackathons</span>
-        <div class="dropdown">
-          <div class="dropdown-section">Discover</div>
-          <a href="#" onclick="scrollToFeatured();return false">⭐ Featured</a>
-          <a href="#" onclick="applySort('prize-high','Prize: Highest',null);scrollToCards();return false">🔥 Trending Now</a>
-          <a href="#" onclick="applySort('latest','Latest Added',null);scrollToCards();return false">🆕 Newly Added</a>
-          <hr/><div class="dropdown-section">By Mode</div>
-          <a href="#" onclick="applyNavFilter('mode','online');return false">🌐 Online</a>
-          <a href="#" onclick="applyNavFilter('mode','offline');return false">🏟️ In-Person</a>
-          <a href="#" onclick="applyNavFilter('mode','hybrid');return false">🤝 Hybrid</a>
-          <a href="#" onclick="applyNavFilter('type','datathon');return false">📊 Datathons</a>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="logo" href="index.html">
+        <div class="logo-icon"><img src="assets/logo.png" alt="Phantom Hacks Logo"></div>
+        <div>
+          <div class="logo-text">Phantom Hacks</div>
+          <div class="logo-sub">Hackathon Engine</div>
         </div>
-      </li>
-      <li><span>Sources</span>
-        <div class="dropdown">
-          <div class="dropdown-section">Filter by Platform</div>
-          <a href="#" onclick="applySourceFilter('unstop');return false">Unstop <span style="font-size:10px;color:var(--muted)">↗</span></a>
-          <a href="#" onclick="applySourceFilter('devpost');return false">Devpost <span style="font-size:10px;color:var(--muted)">↗</span></a>
-          <a href="#" onclick="applySourceFilter('devfolio');return false">Devfolio <span style="font-size:10px;color:var(--muted)">↗</span></a>
-          <a href="#" onclick="applySourceFilter('hackerearth');return false">HackerEarth <span style="font-size:10px;color:var(--muted)">↗</span></a>
-          <a href="#" onclick="applySourceFilter('mlh');return false">MLH <span style="font-size:10px;color:var(--muted)">↗</span></a>
-          <a href="#" onclick="applySourceFilter('hackaly');return false">Hackaly <span style="font-size:10px;color:var(--muted)">↗</span></a>
-          <hr/><div class="dropdown-section">Visit Homepage</div>
-          <a href="https://unstop.com" target="_blank" rel="noopener">🌐 unstop.com</a>
-          <a href="https://devpost.com" target="_blank" rel="noopener">🌐 devpost.com</a>
-          <a href="https://devfolio.co" target="_blank" rel="noopener">🌐 devfolio.co</a>
-          <a href="https://hackerearth.com" target="_blank" rel="noopener">🌐 hackerearth.com</a>
-          <a href="https://mlh.io" target="_blank" rel="noopener">🌐 mlh.io</a>
-          <a href="https://hackaly.com" target="_blank" rel="noopener">🌐 hackaly.com</a>
-          <hr/><div class="dropdown-section">Regional</div>
-          <a href="#" onclick="applyNavFilter('source','local');return false">🏫 IIT / NIT Fests</a>
-          <a href="#" onclick="applyNavFilter('level','beginner');return false">🗺️ State-Level</a>
-          <a href="#" onclick="applyNavFilter('type','hackathon');return false">🏢 Corporate</a>
-        </div>
-      </li>
-      <li><span>Explore</span>
-        <div class="dropdown">
-          <div class="dropdown-section">Tools</div>
-          <a href="#" onclick="openCalendar();return false">🏆 Top Prizes</a>
-          <a href="#" onclick="openCalendar();return false">📅 Calendar</a>
-          <a href="#" onclick="window.location.href='post.html';return false">🤝 Post a Hack</a>
-        </div>
-      </li>
-      <li><a href="#" onclick="openCalendar();return false">🗓️ Calendar</a></li>
-      <li><a href="#" onclick="navTo('about');return false">About</a></li>
-    </ul>
-    <div class="nav-actions">
-      <div class="icon-btn" id="themePaletteBtn" onclick="toggleThemePanel(event)" title="Appearance">🎨</div>
-      <button class="btn-outline" onclick="loadHackathons()">⟳ Refresh</button>
-      <!-- shown when logged out -->
-      <button class="btn-outline" id="loginBtn" onclick="openAuth('signin')">Login</button>
-      <!-- shown when logged in -->
-      <div class="user-nav-wrap" id="userNavWrap" style="display:none">
-        <div class="user-avatar-btn">
-          <div class="user-avatar" id="userAvatar">?</div>
-          <span class="user-name-nav" id="userNameNav">User</span>
-          <span style="font-size:9px;color:var(--muted)">▾</span>
-        </div>
-        <div class="user-dropdown">
-          <a href="profile.html"><span class="ud-icon">👤</span>My Profile</a>
-          <a href="profile.html"><span class="ud-icon">🔖</span>My Saves</a>
-          <hr/>
-          <button class="logout-btn" onclick="signOut()"><span class="ud-icon">🚪</span>Logout</button>
-        </div>
-      </div>
-      <button class="btn-primary" onclick="window.location.href='post.html'">+ Post Hack</button>
-      <div class="hamburger" id="hamburger" onclick="toggleDrawer()" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<!-- DRAWER OVERLAY -->
-<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
-
-<!-- MOBILE DRAWER -->
-<div class="mobile-drawer" id="mobileDrawer">
-  <div class="drawer-header">
-    <div class="drawer-logo">
-      <div class="drawer-logo-icon"><img src="assets/logo.png" alt="Phantom Hacks Logo"></div>
-      <div class="drawer-logo-text">Phantom Hacks</div>
-    </div>
-    <div class="drawer-close" onclick="closeDrawer()">✕</div>
-  </div>
-  <div class="drawer-nav">
-    <div class="drawer-section">Discover</div>
-    <button class="drawer-link" onclick="closeDrawer();scrollToFeatured()"><span class="drawer-link-icon">🔥</span>Trending Now</button>
-    <button class="drawer-link" onclick="closeDrawer();scrollToFeatured()"><span class="drawer-link-icon">⭐</span>Featured</button>
-    <button class="drawer-link" onclick="closeDrawer();applySort('latest','Latest Added',null);scrollToCards()"><span class="drawer-link-icon">🆕</span>Newly Added</button>
-    <div class="drawer-divider"></div>
-    <div class="drawer-section">By Mode</div>
-    <button class="drawer-link" onclick="drawerNav('mode','online')"><span class="drawer-link-icon">🌐</span>Online</button>
-    <button class="drawer-link" onclick="drawerNav('mode','offline')"><span class="drawer-link-icon">🏟️</span>In-Person</button>
-    <button class="drawer-link" onclick="drawerNav('mode','hybrid')"><span class="drawer-link-icon">🤝</span>Hybrid</button>
-    <div class="drawer-divider"></div>
-    <div class="drawer-section">Tools</div>
-    <button class="drawer-link" onclick="openCalendarDrawer()"><span class="drawer-link-icon">📅</span>Calendar</button>
-    <button class="drawer-link" onclick="openCalendarDrawer()"><span class="drawer-link-icon">🏆</span>Top Prizes</button>
-    <div class="drawer-divider"></div>
-    <div class="drawer-section">Pages</div>
-    <button class="drawer-link" onclick="window.location.href='profile.html'"><span class="drawer-link-icon">👤</span>My Profile</button>
-    <button class="drawer-link" onclick="drawerNavTo('about')"><span class="drawer-link-icon">ℹ️</span>About</button>
-    <button class="drawer-link" onclick="window.location.href='post.html'"><span class="drawer-link-icon">📝</span>Post a Hackathon</button>
-    <button class="drawer-link" onclick="drawerNavTo('project')"><span class="drawer-link-icon">🛠️</span>Submit Project</button>
-    <div class="drawer-divider"></div>
-    <div class="drawer-section">Sources</div>
-    <a class="drawer-link" href="https://unstop.com" target="_blank" rel="noopener"><span class="drawer-link-icon">↗</span>Unstop</a>
-    <a class="drawer-link" href="https://devpost.com" target="_blank" rel="noopener"><span class="drawer-link-icon">↗</span>Devpost</a>
-    <a class="drawer-link" href="https://devfolio.co" target="_blank" rel="noopener"><span class="drawer-link-icon">↗</span>Devfolio</a>
-    <a class="drawer-link" href="https://hackerearth.com" target="_blank" rel="noopener"><span class="drawer-link-icon">↗</span>HackerEarth</a>
-    <a class="drawer-link" href="https://mlh.io" target="_blank" rel="noopener"><span class="drawer-link-icon">↗</span>MLH</a>
-  </div>
-  <div class="drawer-footer">
-    <div class="drawer-theme-row">
-      <div class="drawer-mode-btn active" id="drawerDark" onclick="setMode('dark');updateDrawerMode('dark')">🌑 Dark</div>
-      <div class="drawer-mode-btn" id="drawerLight" onclick="setMode('light');updateDrawerMode('light')">☀️ Light</div>
-    </div>
-    <button class="drawer-submit-btn" onclick="window.location.href='post.html'">+ Post Your Hackathon</button>
-  </div>
-</div>
-
-<!-- AUTH OVERLAY + MODAL -->
-<div class="auth-overlay" id="authOverlay" onclick="closeAuthOutside(event)"></div>
-<div class="auth-modal" id="authModal">
-  <div class="auth-close" onclick="closeAuth()">✕</div>
-  <div class="auth-modal-header">
-    <div class="auth-modal-icon">👻</div>
-    <div class="auth-modal-title">Welcome to Phantom Hacks</div>
-    <div class="auth-modal-sub">Sign in to save hackathons and track deadlines</div>
-  </div>
-  <div class="auth-tabs">
-    <button class="auth-tab active" id="tabSignin" onclick="switchAuthTab('signin')">Sign In</button>
-    <button class="auth-tab" id="tabSignup" onclick="switchAuthTab('signup')">Sign Up</button>
-  </div>
-  <div id="formSignin">
-    <div class="auth-error" id="signinError"></div>
-    <div class="auth-form">
-      <div class="auth-input-wrap">
-        <label class="auth-label">Email</label>
-        <input class="auth-input" id="signinEmail" type="email" placeholder="you@example.com"/>
-      </div>
-      <div class="auth-input-wrap">
-        <label class="auth-label">Password</label>
-        <input class="auth-input" id="signinPassword" type="password" placeholder="••••••••"/>
-      </div>
-      <button class="auth-btn" id="signinBtn" onclick="signIn()">Sign In</button>
-      <div class="auth-footer-text"><a onclick="switchAuthTab('forgot')">Forgot password?</a></div>
-      <div class="auth-divider">or continue with</div>
-      <div class="oauth-row">
-        <button class="oauth-btn" onclick="signInOAuth('google')"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google</button>
-        <button class="oauth-btn" onclick="signInOAuth('github')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</button>
-      </div>
-    </div>
-  </div>
-  <div id="formSignup" style="display:none">
-    <div class="auth-error" id="signupError"></div>
-    <div class="auth-success" id="signupSuccess"></div>
-    <div class="auth-form">
-      <div class="auth-input-wrap">
-        <label class="auth-label">Full Name</label>
-        <input class="auth-input" id="signupName" type="text" placeholder="Your name"/>
-      </div>
-      <div class="auth-input-wrap">
-        <label class="auth-label">Email</label>
-        <input class="auth-input" id="signupEmail" type="email" placeholder="you@example.com"/>
-      </div>
-      <div class="auth-input-wrap">
-        <label class="auth-label">Password</label>
-        <input class="auth-input" id="signupPassword" type="password" placeholder="Min 6 characters"/>
-      </div>
-      <button class="auth-btn" id="signupBtn" onclick="signUp()">Create Account</button>
-      <div class="auth-divider">or continue with</div>
-      <div class="oauth-row">
-        <button class="oauth-btn" onclick="signInOAuth('google')"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google</button>
-        <button class="oauth-btn" onclick="signInOAuth('github')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg> GitHub</button>
-      </div>
-    </div>
-  </div>
-  <div id="formForgot" style="display:none">
-    <div class="auth-error" id="forgotError"></div>
-    <div class="auth-success" id="forgotSuccess"></div>
-    <div class="auth-form">
-      <div class="auth-input-wrap">
-        <label class="auth-label">Email</label>
-        <input class="auth-input" id="forgotEmail" type="email" placeholder="you@example.com"/>
-      </div>
-      <button class="auth-btn" id="forgotBtn" onclick="sendReset()">Send Reset Link</button>
-      <div class="auth-footer-text"><a onclick="switchAuthTab('signin')">← Back to Sign In</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- SOURCE BAR -->
-<div class="refresh-bar">
-  <span>Sources:</span>
-  <div class="refresh-sources" id="sourcePills">
-    <div class="source-pill active" data-source="all">All</div>
-    <div class="source-pill" data-source="unstop">Unstop</div>
-    <div class="source-pill" data-source="devpost">Devpost</div>
-    <div class="source-pill" data-source="devfolio">Devfolio</div>
-    <div class="source-pill" data-source="hackerearth">HackerEarth</div>
-    <div class="source-pill" data-source="mlh">MLH</div>
-    <div class="source-pill" data-source="hackaly">Hackaly</div>
-    <div class="source-pill" data-source="local">Local</div>
-  </div>
-  <span style="font-size:10px;color:var(--muted)">Updated: <span id="lastUpd">just now</span></span>
-  <div class="live-flash-slot" id="flashSlot"></div>
-</div>
-
-<!-- FILTER BAR -->
-<div class="filter-section">
-  <div class="filter-inner">
-    <div class="filter-row">
-      <span class="fglabel">Level</span>
-      <div class="fchips">
-        <div class="chip" data-f="level" data-v="beginner">🌱 Beginner</div>
-        <div class="chip" data-f="level" data-v="intermediate">⚡ Intermediate</div>
-        <div class="chip" data-f="level" data-v="advanced">🔥 Advanced</div>
-      </div>
-      <div class="fsep"></div>
-      <span class="fglabel">Team</span>
-      <div class="fchips">
-        <div class="chip" data-f="team" data-v="solo">👤 Solo</div>
-        <div class="chip" data-f="team" data-v="small">👥 2–4</div>
-        <div class="chip" data-f="team" data-v="large">👥+ 5+</div>
-      </div>
-      <div class="fsep"></div>
-      <span class="fglabel">Cost</span>
-      <div class="fchips">
-        <div class="chip" data-f="cost" data-v="free">💸 Free</div>
-        <div class="chip" data-f="cost" data-v="paid">💳 Paid</div>
-      </div>
-      <button class="clear-btn" onclick="clearAll()">✕ Clear All</button>
-    </div>
-    <div class="filter-row">
-      <span class="fglabel">Mode</span>
-      <div class="fchips">
-        <div class="chip" data-f="mode" data-v="online">🌐 Online</div>
-        <div class="chip" data-f="mode" data-v="offline">🏟️ Offline</div>
-        <div class="chip" data-f="mode" data-v="hybrid">🤝 Hybrid</div>
-      </div>
-      <div class="fsep"></div>
-      <span class="fglabel">Date</span>
-      <div class="fchips">
-        <div class="chip" data-f="date" data-v="week">This Week</div>
-        <div class="chip" data-f="date" data-v="month">This Month</div>
-        <div class="chip" data-f="date" data-v="q2">Q2 2026</div>
-      </div>
-      <div class="fsep"></div>
-      <span class="fglabel">Status</span>
-      <div class="fchips">
-        <div class="chip s-open"    data-f="status" data-v="open">● Open</div>
-        <div class="chip s-ongoing" data-f="status" data-v="ongoing">▶ Ongoing</div>
-        <div class="chip s-upcoming"data-f="status" data-v="upcoming">⏳ Upcoming</div>
-        <div class="chip s-closed"  data-f="status" data-v="closed">✕ Closed</div>
-      </div>
-    </div>
-    <div class="filter-row" id="locationFilterRow">
-      <span class="fglabel">📍 City</span>
-      <div class="fchips" id="locationChips"></div>
-    </div>
-  </div>
-</div>
-
-<!-- CALENDAR POPUP -->
-<div class="cal-overlay" id="calOverlay" onclick="closeCalendar(event)"></div>
-<div class="cal-popup" id="calPopup">
-  <div class="cal-header">
-    <div class="cal-title">📅 Hackathon Calendar</div>
-    <div class="cal-nav">
-      <button class="cal-nav-btn" onclick="calNav(-1)">&#8249;</button>
-      <div class="cal-month-label" id="calMonthLabel"></div>
-      <button class="cal-nav-btn" onclick="calNav(1)">&#8250;</button>
-      <button class="cal-close" onclick="closeCalendarDirect()">&#x2715;</button>
-    </div>
-  </div>
-  <div class="cal-weekdays">
-    <div class="cal-wd">Sun</div><div class="cal-wd">Mon</div><div class="cal-wd">Tue</div>
-    <div class="cal-wd">Wed</div><div class="cal-wd">Thu</div><div class="cal-wd">Fri</div><div class="cal-wd">Sat</div>
-  </div>
-  <div class="cal-grid" id="calGrid"></div>
-  <div class="cal-legend">
-    <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--green)"></div>Open</div>
-    <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--yellow)"></div>Upcoming</div>
-    <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--cyan)"></div>Ongoing</div>
-    <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--red)"></div>Closed</div>
-  </div>
-</div>
-
-<!-- MAIN PAGE -->
-<div id="mainPage" class="page active">
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-inner">
-    <div class="hero-eyebrow"><span class="live-dot"></span>Live · <span id="totalCount">2,847</span> hackathons tracked worldwide</div>
-    <h1>Find Your Next<br/><span class="grad">Hackathon 👻</span></h1>
-    <p>Aggregated from Unstop, Devpost, Devfolio, HackerEarth, MLH &amp; 20+ sources.<br/>Smart filters to find the perfect hackathon. Never miss a deadline again.</p>
-    <div class="search-wrap">
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search hackathon, tech stack, location, prize..." autocomplete="off"/>
-        <button onclick="runSearch()">Search</button>
-      </div>
-      <div id="searchSuggestions" class="search-suggestions"></div>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-num" id="statOpen">0</div><div class="hero-stat-label">Open Now</div></div>
-      <div class="hdiv"></div>
-      <div class="hero-stat"><div class="hero-stat-num" id="statOnline">0</div><div class="hero-stat-label">Online</div></div>
-      <div class="hdiv"></div>
-      <div class="hero-stat"><div class="hero-stat-num" id="statFree">0</div><div class="hero-stat-label">Free Entry</div></div>
-      <div class="hdiv"></div>
-      <div class="hero-stat"><div class="hero-stat-num" id="statPrize">₹8.4Cr</div><div class="hero-stat-label">Prize Pool</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- MAIN -->
-<div class="main-layout">
-  <main>
-    <div class="section-header">
-      <div class="section-title">⭐ Featured This Week</div>
-      <a class="view-all" href="#" onclick="scrollToCards();return false">View all →</a>
-    </div>
-    <div class="featured-scroll" id="featuredScroll"></div>
-
-    <!-- SMART FILTER BAR -->
-    <div class="section-header" style="margin-top:8px">
-      <div class="section-title">✨ Smart Filters</div>
-      <a class="view-all" href="#" onclick="clearAll();return false">Clear all →</a>
-    </div>
-    <div class="smart-filter-scroll" id="smartFilterBar"></div>
-
-    <div class="section-header">
-      <div class="section-title">🔥 All Hackathons</div>
-      <div style="display:flex;gap:12px;align-items:center">
-        <span class="result-count" id="resultCount">Loading...</span>
-        <div class="sort-dropdown-wrap" id="sortWrap">
-          <div class="sort-btn" onclick="toggleSort(event)">
-            <span id="sortLabel">Sort: Latest ↓</span>
-            <span class="sort-arrow">▾</span>
+      </a>
+      <ul class="nav-links">
+        <li><span>Hackathons</span>
+          <div class="dropdown">
+            <div class="dropdown-section">Discover</div>
+            <a href="#" onclick="scrollToFeatured();return false">⭐ Featured</a>
+            <a href="#" onclick="applySort('prize-high','Prize: Highest',null);scrollToCards();return false">🔥 Trending
+              Now</a>
+            <a href="#" onclick="applySort('latest','Latest Added',null);scrollToCards();return false">🆕 Newly
+              Added</a>
+            <hr />
+            <div class="dropdown-section">By Mode</div>
+            <a href="#" onclick="applyNavFilter('mode','online');return false">🌐 Online</a>
+            <a href="#" onclick="applyNavFilter('mode','offline');return false">🏟️ In-Person</a>
+            <a href="#" onclick="applyNavFilter('mode','hybrid');return false">🤝 Hybrid</a>
+            <a href="#" onclick="applyNavFilter('type','datathon');return false">📊 Datathons</a>
           </div>
-          <div class="sort-menu">
-            <div class="sort-option active" data-sort="latest" onclick="applySort('latest','Latest Added',this)">🆕 Latest Added</div>
-            <div class="sort-option" data-sort="deadline" onclick="applySort('deadline','Deadline Soonest',this)">⏰ Deadline Soonest</div>
-            <div class="sort-option" data-sort="prize-high" onclick="applySort('prize-high','Prize: Highest',this)">💰 Prize: Highest</div>
-            <div class="sort-option" data-sort="prize-low" onclick="applySort('prize-low','Prize: Lowest',this)">💸 Prize: Lowest</div>
-            <div class="sort-option" data-sort="name" onclick="applySort('name','Name A–Z',this)">🔤 Name A–Z</div>
+        </li>
+        <li><span>Sources</span>
+          <div class="dropdown">
+            <div class="dropdown-section">Filter by Platform</div>
+            <a href="#" onclick="applySourceFilter('unstop');return false">Unstop <span
+                style="font-size:10px;color:var(--muted)">↗</span></a>
+            <a href="#" onclick="applySourceFilter('devpost');return false">Devpost <span
+                style="font-size:10px;color:var(--muted)">↗</span></a>
+            <a href="#" onclick="applySourceFilter('devfolio');return false">Devfolio <span
+                style="font-size:10px;color:var(--muted)">↗</span></a>
+            <a href="#" onclick="applySourceFilter('hackerearth');return false">HackerEarth <span
+                style="font-size:10px;color:var(--muted)">↗</span></a>
+            <a href="#" onclick="applySourceFilter('mlh');return false">MLH <span
+                style="font-size:10px;color:var(--muted)">↗</span></a>
+            <a href="#" onclick="applySourceFilter('hackaly');return false">Hackaly <span
+                style="font-size:10px;color:var(--muted)">↗</span></a>
+            <hr />
+            <div class="dropdown-section">Visit Homepage</div>
+            <a href="https://unstop.com" target="_blank" rel="noopener">🌐 unstop.com</a>
+            <a href="https://devpost.com" target="_blank" rel="noopener">🌐 devpost.com</a>
+            <a href="https://devfolio.co" target="_blank" rel="noopener">🌐 devfolio.co</a>
+            <a href="https://hackerearth.com" target="_blank" rel="noopener">🌐 hackerearth.com</a>
+            <a href="https://mlh.io" target="_blank" rel="noopener">🌐 mlh.io</a>
+            <a href="https://hackaly.com" target="_blank" rel="noopener">🌐 hackaly.com</a>
+            <hr />
+            <div class="dropdown-section">Regional</div>
+            <a href="#" onclick="applyNavFilter('source','local');return false">🏫 IIT / NIT Fests</a>
+            <a href="#" onclick="applyNavFilter('level','beginner');return false">🗺️ State-Level</a>
+            <a href="#" onclick="applyNavFilter('type','hackathon');return false">🏢 Corporate</a>
+          </div>
+        </li>
+        <li><span>Explore</span>
+          <div class="dropdown">
+            <div class="dropdown-section">Tools</div>
+            <a href="#" onclick="openCalendar();return false">🏆 Top Prizes</a>
+            <a href="#" onclick="openCalendar();return false">📅 Calendar</a>
+            <a href="#" onclick="window.location.href='post.html';return false">🤝 Post a Hack</a>
+          </div>
+        </li>
+        <li><a href="#" onclick="openCalendar();return false">🗓️ Calendar</a></li>
+        <li><a href="#" onclick="navTo('about');return false">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="icon-btn" id="themePaletteBtn" onclick="toggleThemePanel(event)" title="Appearance">🎨</div>
+        <button class="btn-outline" onclick="loadHackathons()">⟳ Refresh</button>
+        <!-- shown when logged out -->
+        <button class="btn-outline" id="loginBtn" onclick="openAuth('signin')">Login</button>
+        <!-- shown when logged in -->
+        <div class="user-nav-wrap" id="userNavWrap" style="display:none">
+          <div class="user-avatar-btn" onclick="window.location.href='profile.html'" style="cursor:pointer"
+            title="My Profile">
+            <div class="user-avatar" id="userAvatar">?</div>
+            <span class="user-name-nav" id="userNameNav">User</span>
+            <span style="font-size:9px;color:var(--muted)">▾</span>
+          </div>
+          <div class="user-dropdown">
+            <a href="profile.html"><span class="ud-icon">👤</span>My Profile</a>
+            <a href="profile.html"><span class="ud-icon">🔖</span>My Saves</a>
+            <hr />
+            <button class="logout-btn" onclick="signOut()"><span class="ud-icon">🚪</span>Logout</button>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="events-list" id="eventsList"></div>
-
-
-
-    <div class="pagination">
-      <div class="page-btn" id="prevBtn" onclick="changePage(-1)">« Prev</div>
-      <div id="pageNumbers"></div>
-      <div class="page-btn" id="nextBtn" onclick="changePage(1)">Next »</div>
-    </div>
-  </main>
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-cta">
-      <h3>👻 Post Your Hackathon</h3>
-      <p>Reach 50,000+ hackers. Go live in 24h — free.</p>
-      <a class="cta-btn" href="#" onclick="window.location.href='post.html';return false">+ Post Now</a>
-    </div>
-
-    <div class="sc">
-      <div class="sc-head">📡 Live Activity</div>
-      <div class="sc-body"><div class="feed" id="liveFeed"></div></div>
-    </div>
-
-    <div class="sc">
-      <div class="sc-head">📊 Live Stats</div>
-      <div class="sc-body">
-        <div class="stats-grid">
-          <div class="sbox"><div class="sbox-num" id="sOpen">847</div><div class="sbox-label">Open</div></div>
-          <div class="sbox"><div class="sbox-num" id="sUpcoming">312</div><div class="sbox-label">Upcoming</div></div>
-          <div class="sbox"><div class="sbox-num" id="sOnline">612</div><div class="sbox-label">Online</div></div>
-          <div class="sbox"><div class="sbox-num" id="sFree">1.2K</div><div class="sbox-label">Free</div></div>
+        <button class="btn-primary" onclick="window.location.href='post.html'">+ Post Hack</button>
+        <div class="hamburger" id="hamburger" onclick="toggleDrawer()" aria-label="Menu">
+          <span></span><span></span><span></span>
         </div>
       </div>
     </div>
+  </nav>
 
-    <div class="sc">
-      <div class="sc-head">🔍 Browse By</div>
-      <div class="sc-body" style="padding:4px 15px">
-        <div class="browse-item" id="bCity">
-          <button class="browse-trigger" onclick="toggleBrowse('bCity')">🏙️ City <span class="cnt">9</span> <span class="bt-arrow">▾</span></button>
-          <div class="browse-panel" id="bCityPanel"></div>
+  <!-- DRAWER OVERLAY -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <div class="drawer-logo">
+        <div class="drawer-logo-icon"><img src="assets/logo.png" alt="Phantom Hacks Logo"></div>
+        <div class="drawer-logo-text">Phantom Hacks</div>
+      </div>
+      <div class="drawer-close" onclick="closeDrawer()">✕</div>
+    </div>
+    <div class="drawer-nav">
+      <div class="drawer-section">Discover</div>
+      <button class="drawer-link" onclick="closeDrawer();scrollToFeatured()"><span
+          class="drawer-link-icon">🔥</span>Trending Now</button>
+      <button class="drawer-link" onclick="closeDrawer();scrollToFeatured()"><span
+          class="drawer-link-icon">⭐</span>Featured</button>
+      <button class="drawer-link" onclick="closeDrawer();applySort('latest','Latest Added',null);scrollToCards()"><span
+          class="drawer-link-icon">🆕</span>Newly Added</button>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section">By Mode</div>
+      <button class="drawer-link" onclick="drawerNav('mode','online')"><span
+          class="drawer-link-icon">🌐</span>Online</button>
+      <button class="drawer-link" onclick="drawerNav('mode','offline')"><span
+          class="drawer-link-icon">🏟️</span>In-Person</button>
+      <button class="drawer-link" onclick="drawerNav('mode','hybrid')"><span
+          class="drawer-link-icon">🤝</span>Hybrid</button>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section">Tools</div>
+      <button class="drawer-link" onclick="openCalendarDrawer()"><span
+          class="drawer-link-icon">📅</span>Calendar</button>
+      <button class="drawer-link" onclick="openCalendarDrawer()"><span class="drawer-link-icon">🏆</span>Top
+        Prizes</button>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section">Pages</div>
+      <button class="drawer-link" onclick="window.location.href='profile.html'"><span
+          class="drawer-link-icon">👤</span>My Profile</button>
+      <button class="drawer-link" onclick="drawerNavTo('about')"><span class="drawer-link-icon">ℹ️</span>About</button>
+      <button class="drawer-link" onclick="window.location.href='post.html'"><span
+          class="drawer-link-icon">📝</span>Post a Hackathon</button>
+      <button class="drawer-link" onclick="drawerNavTo('project')"><span class="drawer-link-icon">🛠️</span>Submit
+        Project</button>
+      <div class="drawer-divider"></div>
+      <div class="drawer-section">Sources</div>
+      <a class="drawer-link" href="https://unstop.com" target="_blank" rel="noopener"><span
+          class="drawer-link-icon">↗</span>Unstop</a>
+      <a class="drawer-link" href="https://devpost.com" target="_blank" rel="noopener"><span
+          class="drawer-link-icon">↗</span>Devpost</a>
+      <a class="drawer-link" href="https://devfolio.co" target="_blank" rel="noopener"><span
+          class="drawer-link-icon">↗</span>Devfolio</a>
+      <a class="drawer-link" href="https://hackerearth.com" target="_blank" rel="noopener"><span
+          class="drawer-link-icon">↗</span>HackerEarth</a>
+      <a class="drawer-link" href="https://mlh.io" target="_blank" rel="noopener"><span
+          class="drawer-link-icon">↗</span>MLH</a>
+    </div>
+    <div class="drawer-footer">
+      <div class="drawer-theme-row">
+        <div class="drawer-mode-btn active" id="drawerDark" onclick="setMode('dark');updateDrawerMode('dark')">🌑 Dark
         </div>
-        <div class="browse-item" id="bState">
-          <button class="browse-trigger" onclick="toggleBrowse('bState')">🗺️ State <span class="cnt">6</span> <span class="bt-arrow">▾</span></button>
-          <div class="browse-panel" id="bStatePanel"></div>
+        <div class="drawer-mode-btn" id="drawerLight" onclick="setMode('light');updateDrawerMode('light')">☀️ Light
         </div>
-        <div class="browse-item" id="bCollege">
-          <button class="browse-trigger" onclick="toggleBrowse('bCollege')">🏫 College Fests <span class="cnt">5</span> <span class="bt-arrow">▾</span></button>
-          <div class="browse-panel" id="bCollegePanel"></div>
+      </div>
+      <button class="drawer-submit-btn" onclick="window.location.href='post.html'">+ Post Your Hackathon</button>
+    </div>
+  </div>
+
+  <!-- AUTH OVERLAY + MODAL -->
+  <div class="auth-overlay" id="authOverlay" onclick="closeAuthOutside(event)"></div>
+  <div class="auth-modal" id="authModal">
+    <div class="auth-close" onclick="closeAuth()">✕</div>
+    <div class="auth-modal-header">
+      <div class="auth-modal-icon">👻</div>
+      <div class="auth-modal-title">Welcome to Phantom Hacks</div>
+      <div class="auth-modal-sub">Sign in to save hackathons and track deadlines</div>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabSignin" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="auth-tab" id="tabSignup" onclick="switchAuthTab('signup')">Sign Up</button>
+    </div>
+    <div id="formSignin">
+      <div class="auth-error" id="signinError"></div>
+      <div class="auth-form">
+        <div class="auth-input-wrap">
+          <label class="auth-label">Email</label>
+          <input class="auth-input" id="signinEmail" type="email" placeholder="you@example.com" />
         </div>
-        <div class="browse-item" id="bPrize">
-          <button class="browse-trigger" onclick="toggleBrowse('bPrize')">🏆 Prize Range <span class="cnt">4</span> <span class="bt-arrow">▾</span></button>
-          <div class="browse-panel" id="bPrizePanel"></div>
+        <div class="auth-input-wrap">
+          <label class="auth-label">Password</label>
+          <input class="auth-input" id="signinPassword" type="password" placeholder="••••••••" />
         </div>
-        <div class="browse-item" id="bStack">
-          <button class="browse-trigger" onclick="toggleBrowse('bStack')">🛠️ Tech Stack <span class="cnt">8</span> <span class="bt-arrow">▾</span></button>
-          <div class="browse-panel" id="bStackPanel"></div>
+        <button class="auth-btn" id="signinBtn" onclick="signIn()">Sign In</button>
+        <div class="auth-footer-text"><a onclick="switchAuthTab('forgot')">Forgot password?</a></div>
+        <div class="auth-divider">or continue with</div>
+        <div class="oauth-row">
+          <button class="oauth-btn" onclick="signInOAuth('google')"><svg width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+              <path fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+              <path fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
+              <path fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+            </svg> Google</button>
+          <button class="oauth-btn" onclick="signInOAuth('github')"><svg width="16" height="16" viewBox="0 0 24 24"
+              fill="currentColor">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg> GitHub</button>
         </div>
-        <div class="browse-item" id="bCat">
-          <button class="browse-trigger" onclick="toggleBrowse('bCat')">📋 Category <span class="cnt">6</span> <span class="bt-arrow">▾</span></button>
-          <div class="browse-panel" id="bCatPanel"></div>
+      </div>
+    </div>
+    <div id="formSignup" style="display:none">
+      <div class="auth-error" id="signupError"></div>
+      <div class="auth-success" id="signupSuccess"></div>
+      <div class="auth-form">
+        <div class="auth-input-wrap">
+          <label class="auth-label">Full Name</label>
+          <input class="auth-input" id="signupName" type="text" placeholder="Your name" />
+        </div>
+        <div class="auth-input-wrap">
+          <label class="auth-label">Email</label>
+          <input class="auth-input" id="signupEmail" type="email" placeholder="you@example.com" />
+        </div>
+        <div class="auth-input-wrap">
+          <label class="auth-label">Password</label>
+          <input class="auth-input" id="signupPassword" type="password" placeholder="Min 6 characters" />
+        </div>
+        <button class="auth-btn" id="signupBtn" onclick="signUp()">Create Account</button>
+        <div class="auth-divider">or continue with</div>
+        <div class="oauth-row">
+          <button class="oauth-btn" onclick="signInOAuth('google')"><svg width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+              <path fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+              <path fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
+              <path fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+            </svg> Google</button>
+          <button class="oauth-btn" onclick="signInOAuth('github')"><svg width="16" height="16" viewBox="0 0 24 24"
+              fill="currentColor">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg> GitHub</button>
+        </div>
+      </div>
+    </div>
+    <div id="formForgot" style="display:none">
+      <div class="auth-error" id="forgotError"></div>
+      <div class="auth-success" id="forgotSuccess"></div>
+      <div class="auth-form">
+        <div class="auth-input-wrap">
+          <label class="auth-label">Email</label>
+          <input class="auth-input" id="forgotEmail" type="email" placeholder="you@example.com" />
+        </div>
+        <button class="auth-btn" id="forgotBtn" onclick="sendReset()">Send Reset Link</button>
+        <div class="auth-footer-text"><a onclick="switchAuthTab('signin')">← Back to Sign In</a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOURCE BAR -->
+  <div class="refresh-bar">
+    <span>Sources:</span>
+    <div class="refresh-sources" id="sourcePills">
+      <div class="source-pill active" data-source="all">All</div>
+      <div class="source-pill" data-source="unstop">Unstop</div>
+      <div class="source-pill" data-source="devpost">Devpost</div>
+      <div class="source-pill" data-source="devfolio">Devfolio</div>
+      <div class="source-pill" data-source="hackerearth">HackerEarth</div>
+      <div class="source-pill" data-source="mlh">MLH</div>
+      <div class="source-pill" data-source="hackaly">Hackaly</div>
+      <div class="source-pill" data-source="local">Local</div>
+    </div>
+    <span style="font-size:10px;color:var(--muted)">Updated: <span id="lastUpd">just now</span></span>
+    <div class="live-flash-slot" id="flashSlot"></div>
+  </div>
+
+  <!-- FILTER OVERLAY -->
+  <div class="filter-overlay" id="filterOverlay" onclick="closeMobileFilters()"></div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-section" id="filterSection">
+    <div class="filter-mobile-header">
+      <span>Filters & Sort</span>
+      <button class="filter-close-btn" onclick="closeMobileFilters()">✕</button>
+    </div>
+    <div class="filter-inner">
+      <div class="filter-row">
+        <span class="fglabel">Level</span>
+        <div class="fchips">
+          <div class="chip" data-f="level" data-v="beginner">🌱 Beginner</div>
+          <div class="chip" data-f="level" data-v="intermediate">⚡ Intermediate</div>
+          <div class="chip" data-f="level" data-v="advanced">🔥 Advanced</div>
+        </div>
+        <div class="fsep"></div>
+        <span class="fglabel">Team</span>
+        <div class="fchips">
+          <div class="chip" data-f="team" data-v="solo">👤 Solo</div>
+          <div class="chip" data-f="team" data-v="small">👥 2–4</div>
+          <div class="chip" data-f="team" data-v="large">👥+ 5+</div>
+        </div>
+        <div class="fsep"></div>
+        <span class="fglabel">Cost</span>
+        <div class="fchips">
+          <div class="chip" data-f="cost" data-v="free">💸 Free</div>
+          <div class="chip" data-f="cost" data-v="paid">💳 Paid</div>
+        </div>
+        <button class="clear-btn" onclick="clearAll()">✕ Clear All</button>
+      </div>
+      <div class="filter-row">
+        <span class="fglabel">Mode</span>
+        <div class="fchips">
+          <div class="chip" data-f="mode" data-v="online">🌐 Online</div>
+          <div class="chip" data-f="mode" data-v="offline">🏟️ Offline</div>
+          <div class="chip" data-f="mode" data-v="hybrid">🤝 Hybrid</div>
+        </div>
+        <div class="fsep"></div>
+        <span class="fglabel">Date</span>
+        <div class="fchips">
+          <div class="chip" data-f="date" data-v="week">This Week</div>
+          <div class="chip" data-f="date" data-v="month">This Month</div>
+          <div class="chip" data-f="date" data-v="q2">Q2 2026</div>
+        </div>
+        <div class="fsep"></div>
+        <span class="fglabel">Status</span>
+        <div class="fchips">
+          <div class="chip s-open" data-f="status" data-v="open">● Open</div>
+          <div class="chip s-ongoing" data-f="status" data-v="ongoing">▶ Ongoing</div>
+          <div class="chip s-upcoming" data-f="status" data-v="upcoming">⏳ Upcoming</div>
+        </div>
+      </div>
+      <div class="filter-row" id="locationFilterRow">
+        <span class="fglabel">📍 City</span>
+        <div class="fchips" id="locationChips"></div>
+      </div>
+    </div>
+    <div class="filter-mobile-footer">
+      <button class="filter-apply-btn" onclick="closeMobileFilters()">Apply Filters</button>
+    </div>
+  </div>
+
+  <!-- CALENDAR POPUP -->
+  <div class="cal-overlay" id="calOverlay" onclick="closeCalendar(event)"></div>
+  <div class="cal-popup" id="calPopup">
+    <div class="cal-header">
+      <div class="cal-title">📅 Hackathon Calendar</div>
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="calNav(-1)">&#8249;</button>
+        <div class="cal-month-label" id="calMonthLabel"></div>
+        <button class="cal-nav-btn" onclick="calNav(1)">&#8250;</button>
+        <button class="cal-close" onclick="closeCalendarDirect()">&#x2715;</button>
+      </div>
+    </div>
+    <div class="cal-weekdays">
+      <div class="cal-wd">Sun</div>
+      <div class="cal-wd">Mon</div>
+      <div class="cal-wd">Tue</div>
+      <div class="cal-wd">Wed</div>
+      <div class="cal-wd">Thu</div>
+      <div class="cal-wd">Fri</div>
+      <div class="cal-wd">Sat</div>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+    <div class="cal-legend">
+      <div class="cal-leg-item">
+        <div class="cal-leg-dot" style="background:var(--green)"></div>Open
+      </div>
+      <div class="cal-leg-item">
+        <div class="cal-leg-dot" style="background:var(--yellow)"></div>Upcoming
+      </div>
+      <div class="cal-leg-item">
+        <div class="cal-leg-dot" style="background:var(--cyan)"></div>Ongoing
+      </div>
+      <div class="cal-leg-item">
+        <div class="cal-leg-dot" style="background:var(--red)"></div>Closed
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN PAGE -->
+  <div id="mainPage" class="page active">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-inner">
+        <div class="hero-eyebrow"><span class="live-dot"></span>Live · <span id="totalCount">2,847</span> hackathons
+          tracked worldwide</div>
+        <h1>Find Your Next<br /><span class="grad">Hackathon 👻</span></h1>
+        <p>Aggregated from Unstop, Devpost, Devfolio, HackerEarth, MLH &amp; 20+ sources.<br />Smart filters to find the
+          perfect hackathon. Never miss a deadline again.</p>
+        <div class="search-wrap">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search hackathons..."
+              autocomplete="off" oninput="updateSearchClear()" />
+            <div class="search-actions-mobile">
+              <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()" style="display:none">✕</button>
+              <button class="mobile-only-filter-btn" onclick="openMobileFilters()" title="Filters">⚲</button>
+              <button class="main-search-btn" onclick="runSearch()"><span class="desktop-text">Search</span><span class="mobile-icon">🔍</span></button>
+            </div>
+          </div>
+          <div id="searchSuggestions" class="search-suggestions"></div>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num" id="statOpen">0</div>
+            <div class="hero-stat-label">Open Now</div>
+          </div>
+          <div class="hdiv"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" id="statOnline">0</div>
+            <div class="hero-stat-label">Online</div>
+          </div>
+          <div class="hdiv"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" id="statFree">0</div>
+            <div class="hero-stat-label">Free Entry</div>
+          </div>
+          <div class="hdiv"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" id="statPrize">₹8.4Cr</div>
+            <div class="hero-stat-label">Prize Pool</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="sc">
-      <div class="sc-head">🏷️ Popular Tags</div>
-      <div class="sc-body">
-        <div class="tags-cloud">
-          <div class="tag-item" onclick="tagSearch('AI/ML')">AI/ML</div>
-          <div class="tag-item" onclick="tagSearch('Web3')">Web3</div>
-          <div class="tag-item" onclick="tagSearch('FinTech')">FinTech</div>
-          <div class="tag-item" onclick="tagSearch('Climate')">Climate</div>
-          <div class="tag-item" onclick="tagSearch('HealthTech')">HealthTech</div>
-          <div class="tag-item" onclick="tagSearch('Robotics')">Robotics</div>
-          <div class="tag-item" onclick="tagSearch('Blockchain')">Blockchain</div>
-          <div class="tag-item" onclick="tagSearch('Open Source')">Open Source</div>
-          <div class="tag-item" onclick="tagSearch('EdTech')">EdTech</div>
-          <div class="tag-item" onclick="tagSearch('Cybersecurity')">Cybersecurity</div>
-          <div class="tag-item" onclick="tagSearch('Data Science')">Data Science</div>
-          <div class="tag-item" onclick="tagSearch('IoT')">IoT</div>
+    <!-- MAIN -->
+    <div class="main-layout">
+      <main>
+        <div class="section-header">
+          <div class="section-title">⭐ Featured This Week</div>
+          <a class="view-all" href="#" onclick="scrollToCards();return false">View all →</a>
+        </div>
+        <div class="featured-scroll" id="featuredScroll"></div>
+
+        <!-- SMART FILTER BAR -->
+        <div class="section-header" style="margin-top:8px">
+          <div class="section-title">✨ Smart Filters</div>
+          <a class="view-all" href="#" onclick="clearAll();return false">Clear all →</a>
+        </div>
+        <div class="smart-filter-scroll" id="smartFilterBar"></div>
+
+        <div class="section-header">
+          <div class="section-title">🔥 All Hackathons</div>
+          <div style="display:flex;gap:12px;align-items:center">
+            <span class="result-count" id="resultCount">Loading...</span>
+            <div class="sort-dropdown-wrap" id="sortWrap">
+              <div class="sort-btn" onclick="toggleSort(event)">
+                <span id="sortLabel">Sort: Latest ↓</span>
+                <span class="sort-arrow">▾</span>
+              </div>
+              <div class="sort-menu">
+                <div class="sort-option active" data-sort="latest" onclick="applySort('latest','Latest Added',this)">🆕
+                  Latest Added</div>
+                <div class="sort-option" data-sort="deadline" onclick="applySort('deadline','Deadline Soonest',this)">⏰
+                  Deadline Soonest</div>
+                <div class="sort-option" data-sort="prize-high" onclick="applySort('prize-high','Prize: Highest',this)">
+                  💰 Prize: Highest</div>
+                <div class="sort-option" data-sort="prize-low" onclick="applySort('prize-low','Prize: Lowest',this)">💸
+                  Prize: Lowest</div>
+                <div class="sort-option" data-sort="name" onclick="applySort('name','Name A–Z',this)">🔤 Name A–Z</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="events-list" id="eventsList"></div>
+
+
+
+        <div class="pagination">
+          <div class="page-btn" id="prevBtn" onclick="changePage(-1)">« Prev</div>
+          <div id="pageNumbers"></div>
+          <div class="page-btn" id="nextBtn" onclick="changePage(1)">Next »</div>
+        </div>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-cta">
+          <h3>👻 Post Your Hackathon</h3>
+          <p>Reach 50,000+ hackers. Go live in 24h — free.</p>
+          <a class="cta-btn" href="#" onclick="window.location.href='post.html';return false">+ Post Now</a>
+        </div>
+
+        <div class="sc">
+          <div class="sc-head">📡 Live Activity</div>
+          <div class="sc-body">
+            <div class="feed" id="liveFeed"></div>
+          </div>
+        </div>
+
+        <div class="sc">
+          <div class="sc-head">📊 Live Stats</div>
+          <div class="sc-body">
+            <div class="stats-grid">
+              <div class="sbox">
+                <div class="sbox-num" id="sOpen">847</div>
+                <div class="sbox-label">Open</div>
+              </div>
+              <div class="sbox">
+                <div class="sbox-num" id="sUpcoming">312</div>
+                <div class="sbox-label">Upcoming</div>
+              </div>
+              <div class="sbox">
+                <div class="sbox-num" id="sOnline">612</div>
+                <div class="sbox-label">Online</div>
+              </div>
+              <div class="sbox">
+                <div class="sbox-num" id="sFree">1.2K</div>
+                <div class="sbox-label">Free</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sc">
+          <div class="sc-head">🔍 Browse By</div>
+          <div class="sc-body" style="padding:4px 15px">
+            <div class="browse-item" id="bCity">
+              <button class="browse-trigger" onclick="toggleBrowse('bCity')">🏙️ City <span class="cnt">9</span> <span
+                  class="bt-arrow">▾</span></button>
+              <div class="browse-panel" id="bCityPanel"></div>
+            </div>
+            <div class="browse-item" id="bState">
+              <button class="browse-trigger" onclick="toggleBrowse('bState')">🗺️ State <span class="cnt">6</span> <span
+                  class="bt-arrow">▾</span></button>
+              <div class="browse-panel" id="bStatePanel"></div>
+            </div>
+            <div class="browse-item" id="bCollege">
+              <button class="browse-trigger" onclick="toggleBrowse('bCollege')">🏫 College Fests <span
+                  class="cnt">5</span> <span class="bt-arrow">▾</span></button>
+              <div class="browse-panel" id="bCollegePanel"></div>
+            </div>
+            <div class="browse-item" id="bPrize">
+              <button class="browse-trigger" onclick="toggleBrowse('bPrize')">🏆 Prize Range <span class="cnt">4</span>
+                <span class="bt-arrow">▾</span></button>
+              <div class="browse-panel" id="bPrizePanel"></div>
+            </div>
+            <div class="browse-item" id="bStack">
+              <button class="browse-trigger" onclick="toggleBrowse('bStack')">🛠️ Tech Stack <span class="cnt">8</span>
+                <span class="bt-arrow">▾</span></button>
+              <div class="browse-panel" id="bStackPanel"></div>
+            </div>
+            <div class="browse-item" id="bCat">
+              <button class="browse-trigger" onclick="toggleBrowse('bCat')">📋 Category <span class="cnt">6</span> <span
+                  class="bt-arrow">▾</span></button>
+              <div class="browse-panel" id="bCatPanel"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sc">
+          <div class="sc-head">🏷️ Popular Tags</div>
+          <div class="sc-body">
+            <div class="tags-cloud">
+              <div class="tag-item" onclick="tagSearch('AI/ML')">AI/ML</div>
+              <div class="tag-item" onclick="tagSearch('Web3')">Web3</div>
+              <div class="tag-item" onclick="tagSearch('FinTech')">FinTech</div>
+              <div class="tag-item" onclick="tagSearch('Climate')">Climate</div>
+              <div class="tag-item" onclick="tagSearch('HealthTech')">HealthTech</div>
+              <div class="tag-item" onclick="tagSearch('Robotics')">Robotics</div>
+              <div class="tag-item" onclick="tagSearch('Blockchain')">Blockchain</div>
+              <div class="tag-item" onclick="tagSearch('Open Source')">Open Source</div>
+              <div class="tag-item" onclick="tagSearch('EdTech')">EdTech</div>
+              <div class="tag-item" onclick="tagSearch('Cybersecurity')">Cybersecurity</div>
+              <div class="tag-item" onclick="tagSearch('Data Science')">Data Science</div>
+              <div class="tag-item" onclick="tagSearch('IoT')">IoT</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- BOTTOM TAGS -->
+    <div class="bottom-tags-section">
+      <div class="bti">
+        <div class="btitle">Explore Categories</div>
+        <div class="btags">
+          <a class="tag-item" href="#" onclick="tagSearch('AI');return false">AI Hackathons</a>
+          <a class="tag-item" href="#" onclick="tagSearch('Web3');return false">Web3 Hackathons</a>
+          <a class="tag-item" href="#" onclick="applyNavFilter('level','beginner');return false">Student Only</a>
+          <a class="tag-item" href="#" onclick="tagSearch('24h');return false">24-Hour Sprint</a>
+          <a class="tag-item" href="#" onclick="applyNavFilter('mode','online');return false">Remote / Online</a>
+          <a class="tag-item" href="#" onclick="tagSearch('IIT');return false">IIT Hackathons</a>
+          <a class="tag-item" href="#" onclick="tagSearch('NIT');return false">NIT Hackathons</a>
+          <a class="tag-item" href="#" onclick="applySort('prize-high','Prize: Highest',null);return false">₹1 Lakh+
+            Prize</a>
+          <a class="tag-item" href="#" onclick="applyNavFilter('level','beginner');return false">Beginner Friendly</a>
+          <a class="tag-item" href="#" onclick="applyNavFilter('team','solo');return false">Solo Hackathons</a>
+          <a class="tag-item" href="#" onclick="tagSearch('Climate');return false">Climate Tech</a>
+          <a class="tag-item" href="#" onclick="tagSearch('HealthTech');return false">HealthTech</a>
+          <a class="tag-item" href="#" onclick="tagSearch('Open Source');return false">Open Source</a>
+          <a class="tag-item" href="#" onclick="tagSearch('Corporate');return false">Corporate Hacks</a>
         </div>
       </div>
     </div>
-  </aside>
-</div>
 
-<!-- BOTTOM TAGS -->
-<div class="bottom-tags-section">
-  <div class="bti">
-    <div class="btitle">Explore Categories</div>
-    <div class="btags">
-      <a class="tag-item" href="#" onclick="tagSearch('AI');return false">AI Hackathons</a>
-      <a class="tag-item" href="#" onclick="tagSearch('Web3');return false">Web3 Hackathons</a>
-      <a class="tag-item" href="#" onclick="applyNavFilter('level','beginner');return false">Student Only</a>
-      <a class="tag-item" href="#" onclick="tagSearch('24h');return false">24-Hour Sprint</a>
-      <a class="tag-item" href="#" onclick="applyNavFilter('mode','online');return false">Remote / Online</a>
-      <a class="tag-item" href="#" onclick="tagSearch('IIT');return false">IIT Hackathons</a>
-      <a class="tag-item" href="#" onclick="tagSearch('NIT');return false">NIT Hackathons</a>
-      <a class="tag-item" href="#" onclick="applySort('prize-high','Prize: Highest',null);return false">₹1 Lakh+ Prize</a>
-      <a class="tag-item" href="#" onclick="applyNavFilter('level','beginner');return false">Beginner Friendly</a>
-      <a class="tag-item" href="#" onclick="applyNavFilter('team','solo');return false">Solo Hackathons</a>
-      <a class="tag-item" href="#" onclick="tagSearch('Climate');return false">Climate Tech</a>
-      <a class="tag-item" href="#" onclick="tagSearch('HealthTech');return false">HealthTech</a>
-      <a class="tag-item" href="#" onclick="tagSearch('Open Source');return false">Open Source</a>
-      <a class="tag-item" href="#" onclick="tagSearch('Corporate');return false">Corporate Hacks</a>
-    </div>
-  </div>
-</div>
+  </div><!-- /mainPage -->
 
-</div><!-- /mainPage -->
-
-<!-- ABOUT PAGE -->
-<div id="aboutPage" class="page">
-  <div class="about-hero">
-    <div class="hero-glow"></div>
-    <div style="position:relative">
-      <div class="hero-eyebrow"><span class="live-dot"></span>About Phantom Hacks</div>
-      <h2 class="grad" style="-webkit-text-fill-color:transparent">India's Hackathon Engine 👻</h2>
-      <p>We aggregate hackathons from 20+ platforms so you never miss a chance to build, compete, and win. Launched in 2024 by a team of hackers for hackers.</p>
+  <!-- ABOUT PAGE -->
+  <div id="aboutPage" class="page">
+    <div class="about-hero">
+      <div class="hero-glow"></div>
+      <div style="position:relative">
+        <div class="hero-eyebrow"><span class="live-dot"></span>About Phantom Hacks</div>
+        <h2 class="grad" style="-webkit-text-fill-color:transparent">India's Hackathon Engine 👻</h2>
+        <p>We aggregate hackathons from 20+ platforms so you never miss a chance to build, compete, and win. Launched in
+          2024 by a team of hackers for hackers.</p>
+      </div>
     </div>
-  </div>
-  <div class="about-grid">
-    <div class="about-card">
-      <div class="about-icon">📡</div>
-      <h3>Real-Time Aggregation</h3>
-      <p>We pull listings from Unstop, Devpost, Devfolio, HackerEarth, MLH, and 15+ more sources, refreshed every 2 minutes automatically.</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-icon">📡</div>
+        <h3>Real-Time Aggregation</h3>
+        <p>We pull listings from Unstop, Devpost, Devfolio, HackerEarth, MLH, and 15+ more sources, refreshed every 2
+          minutes automatically.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🔍</div>
+        <h3>Smart Discovery</h3>
+        <p>Filter by skill level, team size, prize pool, mode, location, deadline, and tags. Find exactly the hackathon
+          that fits your goals.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🏆</div>
+        <h3>₹8.4Cr+ in Prizes</h3>
+        <p>We track over ₹8.4 Crore in combined prize pools across 2,800+ active and upcoming hackathons worldwide — in
+          India and globally.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🌐</div>
+        <h3>India-First Focus</h3>
+        <p>Special emphasis on Indian college fests, IIT/NIT events, government hackathons, and regional competitions
+          across all 28 states.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🤝</div>
+        <h3>Team Finder</h3>
+        <p>Looking for teammates or want to join a team? Our Discord community connects 50,000+ hackers across India and
+          beyond.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">📰</div>
+        <h3>Newsletter</h3>
+        <p>Weekly digest of the hottest hackathons delivered to your inbox every Monday. Subscribe free — no spam,
+          unsubscribe anytime.</p>
+      </div>
     </div>
-    <div class="about-card">
-      <div class="about-icon">🔍</div>
-      <h3>Smart Discovery</h3>
-      <p>Filter by skill level, team size, prize pool, mode, location, deadline, and tags. Find exactly the hackathon that fits your goals.</p>
-    </div>
-    <div class="about-card">
-      <div class="about-icon">🏆</div>
-      <h3>₹8.4Cr+ in Prizes</h3>
-      <p>We track over ₹8.4 Crore in combined prize pools across 2,800+ active and upcoming hackathons worldwide — in India and globally.</p>
-    </div>
-    <div class="about-card">
-      <div class="about-icon">🌐</div>
-      <h3>India-First Focus</h3>
-      <p>Special emphasis on Indian college fests, IIT/NIT events, government hackathons, and regional competitions across all 28 states.</p>
-    </div>
-    <div class="about-card">
-      <div class="about-icon">🤝</div>
-      <h3>Team Finder</h3>
-      <p>Looking for teammates or want to join a team? Our Discord community connects 50,000+ hackers across India and beyond.</p>
-    </div>
-    <div class="about-card">
-      <div class="about-icon">📰</div>
-      <h3>Newsletter</h3>
-      <p>Weekly digest of the hottest hackathons delivered to your inbox every Monday. Subscribe free — no spam, unsubscribe anytime.</p>
-    </div>
-  </div>
-  <div class="about-team">
-    <h3>Meet the Team</h3>
-    <div class="team-grid">
-      <div class="team-card"><div class="team-avatar">🧑‍💻</div><div class="team-name">Arjun Sharma</div><div class="team-role">Founder & CEO</div></div>
-      <div class="team-card"><div class="team-avatar">👩‍🎨</div><div class="team-name">Priya Nair</div><div class="team-role">Design Lead</div></div>
-      <div class="team-card"><div class="team-avatar">🧑‍🔬</div><div class="team-name">Karan Mehta</div><div class="team-role">Data Engineer</div></div>
-      <div class="team-card"><div class="team-avatar">👩‍💼</div><div class="team-name">Sneha Iyer</div><div class="team-role">Community Lead</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- SUBMIT PAGE -->
-<div id="postPage" class="page">
-  <div class="submit-wrap">
-    <h2>+ Post a Hackathon</h2>
-    <p>List your hackathon and reach 50,000+ hackers across India. Goes live within 24 hours — completely free.</p>
-    <div class="form-card">
-      <div id="postForm">
-        <div class="form-group">
-          <label class="form-label">Hackathon Name *</label>
-          <input class="form-input" id="sf-name" type="text" placeholder="e.g. Smart India Hackathon 2026"/>
+    <div class="about-team">
+      <h3>Meet the Team</h3>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">🧑‍💻</div>
+          <div class="team-name">Arjun Sharma</div>
+          <div class="team-role">Founder & CEO</div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Organiser / Organisation *</label>
-          <input class="form-input" id="sf-org" type="text" placeholder="e.g. Ministry of Education, IIT Bombay"/>
+        <div class="team-card">
+          <div class="team-avatar">👩‍🎨</div>
+          <div class="team-name">Priya Nair</div>
+          <div class="team-role">Design Lead</div>
         </div>
-        <div class="form-row">
+        <div class="team-card">
+          <div class="team-avatar">🧑‍🔬</div>
+          <div class="team-name">Karan Mehta</div>
+          <div class="team-role">Data Engineer</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👩‍💼</div>
+          <div class="team-name">Sneha Iyer</div>
+          <div class="team-role">Community Lead</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT PAGE -->
+  <div id="postPage" class="page">
+    <div class="submit-wrap">
+      <h2>+ Post a Hackathon</h2>
+      <p>List your hackathon and reach 50,000+ hackers across India. Goes live within 24 hours — completely free.</p>
+      <div class="form-card">
+        <div id="postForm">
           <div class="form-group">
-            <label class="form-label">Event Type</label>
-            <select class="form-input" id="sf-type">
-              <option value="hackathon">Hackathon</option>
-              <option value="datathon">Datathon</option>
-              <option value="sprint">Sprint</option>
-              <option value="competition">Competition</option>
-              <option value="workshop">Workshop</option>
-            </select>
+            <label class="form-label">Hackathon Name *</label>
+            <input class="form-input" id="sf-name" type="text" placeholder="e.g. Smart India Hackathon 2026" />
           </div>
           <div class="form-group">
-            <label class="form-label">Mode</label>
-            <select class="form-input" id="sf-mode">
-              <option value="online">Online</option>
-              <option value="offline">Offline / In-Person</option>
-              <option value="hybrid">Hybrid</option>
-            </select>
+            <label class="form-label">Organiser / Organisation *</label>
+            <input class="form-input" id="sf-org" type="text" placeholder="e.g. Ministry of Education, IIT Bombay" />
           </div>
-        </div>
-        <div class="form-row">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Event Type</label>
+              <select class="form-input" id="sf-type">
+                <option value="hackathon">Hackathon</option>
+                <option value="datathon">Datathon</option>
+                <option value="sprint">Sprint</option>
+                <option value="competition">Competition</option>
+                <option value="workshop">Workshop</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mode</label>
+              <select class="form-input" id="sf-mode">
+                <option value="online">Online</option>
+                <option value="offline">Offline / In-Person</option>
+                <option value="hybrid">Hybrid</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Prize Pool</label>
+              <input class="form-input" id="sf-prize" type="text" placeholder="e.g. ₹1,00,000 or $5,000" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Location</label>
+              <input class="form-input" id="sf-location" type="text" placeholder="e.g. Bangalore or Online" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Event Dates *</label>
+              <input class="form-input" id="sf-dates" type="text" placeholder="e.g. Apr 10–12, 2026" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Registration Deadline</label>
+              <input class="form-input" id="sf-deadline" type="text" placeholder="e.g. Apr 1, 2026" />
+            </div>
+          </div>
           <div class="form-group">
-            <label class="form-label">Prize Pool</label>
-            <input class="form-input" id="sf-prize" type="text" placeholder="e.g. ₹1,00,000 or $5,000"/>
+            <label class="form-label">Registration / Event URL *</label>
+            <input class="form-input" id="sf-url" type="url" placeholder="https://..." />
           </div>
           <div class="form-group">
-            <label class="form-label">Location</label>
-            <input class="form-input" id="sf-location" type="text" placeholder="e.g. Bangalore or Online"/>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Event Dates *</label>
-            <input class="form-input" id="sf-dates" type="text" placeholder="e.g. Apr 10–12, 2026"/>
+            <label class="form-label">Short Description</label>
+            <textarea class="form-input" id="sf-desc" rows="3"
+              placeholder="Describe the theme, problem statements, eligibility..."></textarea>
           </div>
           <div class="form-group">
-            <label class="form-label">Registration Deadline</label>
-            <input class="form-input" id="sf-deadline" type="text" placeholder="e.g. Apr 1, 2026"/>
+            <label class="form-label">Tags (comma-separated)</label>
+            <input class="form-input" id="sf-tags" type="text"
+              placeholder="AI/ML, Web3, HealthTech, Beginner Friendly" />
           </div>
+          <div class="form-group">
+            <label class="form-label">Your Email (for confirmation)</label>
+            <input class="form-input" id="sf-email" type="email" placeholder="you@example.com" />
+          </div>
+          <button class="form-submit" onclick="postHackathon()">🚀 Post Hackathon</button>
         </div>
-        <div class="form-group">
-          <label class="form-label">Registration / Event URL *</label>
-          <input class="form-input" id="sf-url" type="url" placeholder="https://..."/>
+        <div class="submit-success" id="postSuccess">
+          <div class="ss-icon">🎉</div>
+          <h3>Submission Received!</h3>
+          <p>We'll review your hackathon and publish it within 24 hours.<br />You'll get a confirmation at the email you
+            provided.</p>
+          <button class="btn-primary" style="margin-top:20px" onclick="navTo('main')">← Back to Hackathons</button>
         </div>
-        <div class="form-group">
-          <label class="form-label">Short Description</label>
-          <textarea class="form-input" id="sf-desc" rows="3" placeholder="Describe the theme, problem statements, eligibility..."></textarea>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Tags (comma-separated)</label>
-          <input class="form-input" id="sf-tags" type="text" placeholder="AI/ML, Web3, HealthTech, Beginner Friendly"/>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Your Email (for confirmation)</label>
-          <input class="form-input" id="sf-email" type="email" placeholder="you@example.com"/>
-        </div>
-        <button class="form-submit" onclick="postHackathon()">🚀 Post Hackathon</button>
-      </div>
-      <div class="submit-success" id="postSuccess">
-        <div class="ss-icon">🎉</div>
-        <h3>Submission Received!</h3>
-        <p>We'll review your hackathon and publish it within 24 hours.<br/>You'll get a confirmation at the email you provided.</p>
-        <button class="btn-primary" style="margin-top:20px" onclick="navTo('main')">← Back to Hackathons</button>
       </div>
     </div>
   </div>
-</div>
 
-<!-- PROFILE PAGE -->
-<div id="profilePage" class="page">
-  <div class="profile-wrap">
-    <div class="profile-hero">
-      <div class="profile-avatar-big" id="profileAvatarBig">?</div>
-      <div class="profile-info">
-        <h2 id="profileName">Loading...</h2>
-        <p id="profileUsername" style="color:var(--pl);font-family:'JetBrains Mono',monospace;font-size:12px"></p>
-        <p id="profileEmail" style="margin-top:2px"></p>
-        <p id="profileBio" style="margin-top:6px;font-size:13px;color:var(--muted)"></p>
-        <p id="profileJoined" style="margin-top:4px;font-size:12px"></p>
-        <div class="profile-stats">
-          <div class="profile-stat"><div class="profile-stat-num" id="profileSaveCount">0</div><div class="profile-stat-label">Saved</div></div>
-          <div class="profile-stat"><div class="profile-stat-num" id="profilePostCount">0</div><div class="profile-stat-label">Posted</div></div>
-          <div class="profile-stat"><div class="profile-stat-num" id="profileRegCount">0</div><div class="profile-stat-label">Registered</div></div>
+  <!-- PROFILE PAGE -->
+  <div id="profilePage" class="page">
+    <div class="profile-wrap">
+      <div class="profile-hero">
+        <div class="profile-avatar-big" id="profileAvatarBig">?</div>
+        <div class="profile-info">
+          <h2 id="profileName">Loading...</h2>
+          <p id="profileUsername" style="color:var(--pl);font-family:'JetBrains Mono',monospace;font-size:12px"></p>
+          <p id="profileEmail" style="margin-top:2px"></p>
+          <p id="profileBio" style="margin-top:6px;font-size:13px;color:var(--muted)"></p>
+          <p id="profileJoined" style="margin-top:4px;font-size:12px"></p>
+          <div class="profile-stats">
+            <div class="profile-stat">
+              <div class="profile-stat-num" id="profileSaveCount">0</div>
+              <div class="profile-stat-label">Saved</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-num" id="profilePostCount">0</div>
+              <div class="profile-stat-label">Posted</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-num" id="profileRegCount">0</div>
+              <div class="profile-stat-label">Registered</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="profile-tabs">
-      <button class="profile-tab active" onclick="switchProfileTab('saves',this)">🔖 My Saves</button>
-      <button class="profile-tab" onclick="switchProfileTab('edit',this)">✏️ Edit Profile</button>
-      <button class="profile-tab" onclick="switchProfileTab('registrations',this)">📋 My Registrations</button>
-    </div>
-
-    <!-- SAVES TAB -->
-    <div class="profile-section active" id="tabSaves">
-      <div id="savesGrid" class="saves-grid"></div>
-    </div>
-
-    <!-- EDIT PROFILE TAB -->
-    <div class="profile-section" id="tabEdit">
-      <div class="edit-form">
-        <div class="edit-row">
-          <div class="edit-group">
-            <label class="edit-label">Full Name</label>
-            <input class="edit-input" id="pFullName" type="text" placeholder="Your full name"/>
-          </div>
-          <div class="edit-group">
-            <label class="edit-label">Username</label>
-            <input class="edit-input" id="pUsername" type="text" placeholder="@username"/>
-          </div>
-        </div>
-        <div class="edit-row">
-          <div class="edit-group">
-            <label class="edit-label">Age</label>
-            <input class="edit-input" id="pAge" type="number" placeholder="Your age" min="13" max="60"/>
-          </div>
-          <div class="edit-group">
-            <label class="edit-label">Role</label>
-            <select class="edit-input" id="pRole">
-              <option value="">Select your role</option>
-              <option value="student">🎓 Student</option>
-              <option value="developer">💻 Developer</option>
-              <option value="designer">🎨 Designer</option>
-              <option value="entrepreneur">🚀 Entrepreneur</option>
-              <option value="researcher">🔬 Researcher</option>
-              <option value="other">✨ Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="edit-group">
-          <label class="edit-label">College / Organisation</label>
-          <input class="edit-input" id="pCollege" type="text" placeholder="IIT Bombay, VIT Vellore, Infosys..."/>
-        </div>
-        <div class="edit-group">
-          <label class="edit-label">Bio</label>
-          <textarea class="edit-input" id="pBio" rows="3" placeholder="Tell the community about yourself..."></textarea>
-        </div>
-        <div class="edit-group">
-          <label class="edit-label">Skills</label>
-          <div class="skills-wrap" id="skillsWrap"></div>
-          <div class="skill-add-row">
-            <input class="skill-add-input" id="skillInput" type="text" placeholder="Add a skill (e.g. React, Python)"/>
-            <button class="skill-add-btn" onclick="addSkill()">+ Add</button>
-          </div>
-        </div>
-        <div class="edit-row">
-          <div class="edit-group">
-            <label class="edit-label">GitHub URL</label>
-            <input class="edit-input" id="pGithub" type="url" placeholder="https://github.com/you"/>
-          </div>
-          <div class="edit-group">
-            <label class="edit-label">LinkedIn URL</label>
-            <input class="edit-input" id="pLinkedin" type="url" placeholder="https://linkedin.com/in/you"/>
-          </div>
-        </div>
-        <button class="edit-save-btn" onclick="saveProfile()">💾 Save Profile</button>
+      <div class="profile-tabs">
+        <button class="profile-tab active" onclick="switchProfileTab('saves',this)">🔖 My Saves</button>
+        <button class="profile-tab" onclick="switchProfileTab('edit',this)">✏️ Edit Profile</button>
+        <button class="profile-tab" onclick="switchProfileTab('registrations',this)">📋 My Registrations</button>
       </div>
-    </div>
 
-    <!-- REGISTRATIONS TAB -->
-    <div class="profile-section" id="tabRegistrations">
-      <div id="registrationsGrid" class="saves-grid"></div>
-    </div>
-  </div>
-</div>
+      <!-- SAVES TAB -->
+      <div class="profile-section active" id="tabSaves">
+        <div id="savesGrid" class="saves-grid"></div>
+      </div>
 
-
-
-<!-- PROJECT SUBMISSION PAGE -->
-<div id="projectPage" class="page">
-  <div class="project-wrap">
-    <h2>🛠️ Submit Your Project</h2>
-    <p>Built something amazing? Submit your project for a hackathon you participated in.</p>
-    <div class="project-hack-select">
-      <h4>Select Hackathon</h4>
-      <select class="edit-input" id="projectHackSelect"><option value="">-- Choose a hackathon --</option></select>
-    </div>
-    <div class="form-card">
-      <div id="projectForm">
+      <!-- EDIT PROFILE TAB -->
+      <div class="profile-section" id="tabEdit">
         <div class="edit-form">
-          <div class="edit-group"><label class="edit-label">Project Name *</label><input class="edit-input" id="pjName" type="text" placeholder="e.g. EcoTrack AI"/></div>
-          <div class="edit-group"><label class="edit-label">Team Name</label><input class="edit-input" id="pjTeam" type="text" placeholder="e.g. Team Phantom"/></div>
-          <div class="edit-group"><label class="edit-label">Short Description *</label><textarea class="edit-input" id="pjDesc" rows="3" placeholder="What does your project do?"></textarea></div>
           <div class="edit-row">
-            <div class="edit-group"><label class="edit-label">GitHub / Repo URL *</label><input class="edit-input" id="pjRepo" type="url" placeholder="https://github.com/..."/></div>
-            <div class="edit-group"><label class="edit-label">Demo / Live URL</label><input class="edit-input" id="pjDemo" type="url" placeholder="https://..."/></div>
+            <div class="edit-group">
+              <label class="edit-label">Full Name</label>
+              <input class="edit-input" id="pFullName" type="text" placeholder="Your full name" />
+            </div>
+            <div class="edit-group">
+              <label class="edit-label">Username</label>
+              <input class="edit-input" id="pUsername" type="text" placeholder="@username" />
+            </div>
           </div>
-          <div class="edit-group"><label class="edit-label">Demo Video URL (YouTube / Loom)</label><input class="edit-input" id="pjVideo" type="url" placeholder="https://youtube.com/..."/></div>
-          <div class="edit-group"><label class="edit-label">Tech Stack Used</label><input class="edit-input" id="pjStack" type="text" placeholder="React, Node.js, Supabase..."/></div>
-          <div class="auth-error" id="projectError"></div>
-          <button class="edit-save-btn" onclick="submitProject()">🚀 Submit Project</button>
+          <div class="edit-row">
+            <div class="edit-group">
+              <label class="edit-label">Age</label>
+              <input class="edit-input" id="pAge" type="number" placeholder="Your age" min="13" max="60" />
+            </div>
+            <div class="edit-group">
+              <label class="edit-label">Role</label>
+              <select class="edit-input" id="pRole">
+                <option value="">Select your role</option>
+                <option value="student">🎓 Student</option>
+                <option value="developer">💻 Developer</option>
+                <option value="designer">🎨 Designer</option>
+                <option value="entrepreneur">🚀 Entrepreneur</option>
+                <option value="researcher">🔬 Researcher</option>
+                <option value="other">✨ Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="edit-group">
+            <label class="edit-label">College / Organisation</label>
+            <input class="edit-input" id="pCollege" type="text" placeholder="IIT Bombay, VIT Vellore, Infosys..." />
+          </div>
+          <div class="edit-group">
+            <label class="edit-label">Bio</label>
+            <textarea class="edit-input" id="pBio" rows="3"
+              placeholder="Tell the community about yourself..."></textarea>
+          </div>
+          <div class="edit-group">
+            <label class="edit-label">Skills</label>
+            <div class="skills-wrap" id="skillsWrap"></div>
+            <div class="skill-add-row">
+              <input class="skill-add-input" id="skillInput" type="text"
+                placeholder="Add a skill (e.g. React, Python)" />
+              <button class="skill-add-btn" onclick="addSkill()">+ Add</button>
+            </div>
+          </div>
+          <div class="edit-row">
+            <div class="edit-group">
+              <label class="edit-label">GitHub URL</label>
+              <input class="edit-input" id="pGithub" type="url" placeholder="https://github.com/you" />
+            </div>
+            <div class="edit-group">
+              <label class="edit-label">LinkedIn URL</label>
+              <input class="edit-input" id="pLinkedin" type="url" placeholder="https://linkedin.com/in/you" />
+            </div>
+          </div>
+          <button class="edit-save-btn" onclick="saveProfile()">💾 Save Profile</button>
         </div>
       </div>
-      <div id="projectSuccess" style="display:none;text-align:center;padding:32px">
-        <div style="font-size:48px;margin-bottom:12px">🎉</div>
-        <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px">Project Submitted!</h3>
-        <p style="color:var(--muted);font-size:13px">Your project has been submitted successfully. Best of luck!</p>
-        <button class="edit-save-btn" onclick="navTo('main')" style="margin-top:16px">← Back to Hackathons</button>
+
+      <!-- REGISTRATIONS TAB -->
+      <div class="profile-section" id="tabRegistrations">
+        <div id="registrationsGrid" class="saves-grid"></div>
       </div>
     </div>
   </div>
+
+
+
+  <!-- PROJECT SUBMISSION PAGE -->
+  <div id="projectPage" class="page">
+    <div class="project-wrap">
+      <h2>🛠️ Submit Your Project</h2>
+      <p>Built something amazing? Submit your project for a hackathon you participated in.</p>
+      <div class="project-hack-select">
+        <h4>Select Hackathon</h4>
+        <select class="edit-input" id="projectHackSelect">
+          <option value="">-- Choose a hackathon --</option>
+        </select>
+      </div>
+      <div class="form-card">
+        <div id="projectForm">
+          <div class="edit-form">
+            <div class="edit-group"><label class="edit-label">Project Name *</label><input class="edit-input"
+                id="pjName" type="text" placeholder="e.g. EcoTrack AI" /></div>
+            <div class="edit-group"><label class="edit-label">Team Name</label><input class="edit-input" id="pjTeam"
+                type="text" placeholder="e.g. Team Phantom" /></div>
+            <div class="edit-group"><label class="edit-label">Short Description *</label><textarea class="edit-input"
+                id="pjDesc" rows="3" placeholder="What does your project do?"></textarea></div>
+            <div class="edit-row">
+              <div class="edit-group"><label class="edit-label">GitHub / Repo URL *</label><input class="edit-input"
+                  id="pjRepo" type="url" placeholder="https://github.com/..." /></div>
+              <div class="edit-group"><label class="edit-label">Demo / Live URL</label><input class="edit-input"
+                  id="pjDemo" type="url" placeholder="https://..." /></div>
+            </div>
+            <div class="edit-group"><label class="edit-label">Demo Video URL (YouTube / Loom)</label><input
+                class="edit-input" id="pjVideo" type="url" placeholder="https://youtube.com/..." /></div>
+            <div class="edit-group"><label class="edit-label">Tech Stack Used</label><input class="edit-input"
+                id="pjStack" type="text" placeholder="React, Node.js, Supabase..." /></div>
+            <div class="auth-error" id="projectError"></div>
+            <button class="edit-save-btn" onclick="submitProject()">🚀 Submit Project</button>
+          </div>
+        </div>
+        <div id="projectSuccess" style="display:none;text-align:center;padding:32px">
+          <div style="font-size:48px;margin-bottom:12px">🎉</div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px">Project Submitted!
+          </h3>
+          <p style="color:var(--muted);font-size:13px">Your project has been submitted successfully. Best of luck!</p>
+          <button class="edit-save-btn" onclick="navTo('main')" style="margin-top:16px">← Back to Hackathons</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col footer-brand">
+        <div class="footer-brand-text">Phantom Hacks</div>
+        <p>India's most comprehensive hackathon discovery engine. Aggregating from 20+ platforms with smart filters.</p>
+        <div class="footer-social">
+          <a class="social-btn" href="#">f</a><a class="social-btn" href="#">📷</a>
+          <a class="social-btn" href="#">in</a><a class="social-btn" href="#">𝕏</a>
+          <a class="social-btn" href="#">▶</a><a class="social-btn" href="#">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Discover</h4>
+        <ul>
+          <li><a href="#">Trending Hacks</a></li>
+          <li><a href="#">Online Events</a></li>
+          <li><a href="#">Free Hackathons</a></li>
+          <li><a href="#">Prize Pools</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sources</h4>
+        <ul>
+          <li><a href="#">Unstop</a></li>
+          <li><a href="#">Devpost</a></li>
+          <li><a href="#">Devfolio</a></li>
+          <li><a href="#">HackerEarth</a></li>
+          <li><a href="#">MLH</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Community</h4>
+        <ul>
+          <li><a href="#">Discord Server</a></li>
+          <li><a href="#">Find a Team</a></li>
+          <li><a href="#">Submit Hackathon</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#" onclick="navTo('about');return false">About Us</a></li>
+          <li><a href="#" onclick="window.location.href='post.html';return false">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="footer-bottom">
+        <span>© Phantom Hacks 2026 — Built for Hackers</span>
+        <div><a href="#">Privacy</a><a href="#">Terms</a><a href="#">About</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* Back-to-top button */
+    .btt-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 22px;
+      z-index: 500;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--p);
+      color: #fff;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 18px var(--pg);
+      opacity: 0;
+      transition: opacity .3s, transform .3s;
+      transform: translateY(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btt-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btt-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px var(--pg);
+    }
+
+    /* Search clear button */
+    .search-clear-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 16px;
+      cursor: pointer;
+      padding: 0 6px;
+      flex-shrink: 0;
+      transition: color .2s;
+      line-height: 1;
+    }
+
+    .search-clear-btn:hover {
+      color: var(--text);
+    }
+  </style>
+
+  <!-- Back-to-top -->
+  <button class="btt-btn" id="bttBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    title="Back to top">↑</button>
+
+  <!-- MOBILE BOTTOM NAV -->
+<div class="mobile-bottom-nav">
+  <a href="index.html" class="mb-nav-item active">
+    <div class="mb-nav-icon">🏠</div>
+    <span>Home</span>
+  </a>
+  <a href="index.html" class="mb-nav-item" onclick="document.getElementById('searchInput').focus()">
+    <div class="mb-nav-icon">🔍</div>
+    <span>Discover</span>
+  </a>
+  <a href="post.html" class="mb-nav-item">
+    <div class="mb-nav-icon">🚀</div>
+    <span>Post</span>
+  </a>
+  <a href="profile.html" class="mb-nav-item">
+    <div class="mb-nav-icon">👤</div>
+    <span>Profile</span>
+  </a>
 </div>
-
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-col footer-brand">
-      <div class="footer-brand-text">Phantom Hacks</div>
-      <p>India's most comprehensive hackathon discovery engine. Aggregating from 20+ platforms with smart filters.</p>
-      <div class="footer-social">
-        <a class="social-btn" href="#">f</a><a class="social-btn" href="#">📷</a>
-        <a class="social-btn" href="#">in</a><a class="social-btn" href="#">𝕏</a>
-        <a class="social-btn" href="#">▶</a><a class="social-btn" href="#">💬</a>
-      </div>
-    </div>
-    <div class="footer-col"><h4>Discover</h4><ul><li><a href="#">Trending Hacks</a></li><li><a href="#">Online Events</a></li><li><a href="#">Free Hackathons</a></li><li><a href="#">Prize Pools</a></li></ul></div>
-    <div class="footer-col"><h4>Sources</h4><ul><li><a href="#">Unstop</a></li><li><a href="#">Devpost</a></li><li><a href="#">Devfolio</a></li><li><a href="#">HackerEarth</a></li><li><a href="#">MLH</a></li></ul></div>
-    <div class="footer-col"><h4>Community</h4><ul><li><a href="#">Discord Server</a></li><li><a href="#">Find a Team</a></li><li><a href="#">Submit Hackathon</a></li><li><a href="#">Newsletter</a></li></ul></div>
-    <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Terms of Use</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#" onclick="navTo('about');return false">About Us</a></li><li><a href="#" onclick="window.location.href='post.html';return false">Contact</a></li></ul></div>
-  </div>
-  <div class="footer-bar">
-    <div class="footer-bottom">
-      <span>© Phantom Hacks 2026 — Built for Hackers</span>
-      <div><a href="#">Privacy</a><a href="#">Terms</a><a href="#">About</a></div>
-    </div>
-  </div>
-</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/main.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* Back-to-top visibility */
+    const _bttBtn = document.getElementById('bttBtn');
+    window.addEventListener('scroll', () => {
+      _bttBtn.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+
+    /* Search clear button */
+    function updateSearchClear() {
+      const val = document.getElementById('searchInput').value;
+      document.getElementById('searchClearBtn').style.display = val ? 'flex' : 'none';
+    }
+    function clearSearch() {
+      const inp = document.getElementById('searchInput');
+      inp.value = '';
+      document.getElementById('searchClearBtn').style.display = 'none';
+      inp.focus();
+      // Trigger re-render via existing search
+      if (typeof runSearch === 'function') runSearch();
+      else if (typeof renderEvents === 'function') { flt.q = ''; renderEvents(true); }
+    }
+  </script>
 </body>
+
 </html>

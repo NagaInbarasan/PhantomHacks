@@ -1,18 +1,22 @@
 {
-  "name": "scraper",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "phantom-hacks-scraper",
+  "version": "4.0.0",
+  "description": "Multi-source hackathon scraper for Phantom Hacks — Devpost, MLH, HackerEarth, Devfolio, Unstop",
+  "main": "scraper.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node scraper.js",
+    "scrape": "node scraper.js",
+    "test": "node test.js",
+    "dev": "node scraper.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["hackathon", "scraper", "supabase"],
+  "author": "Phantom Hacks",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "@supabase/supabase-js": "^2.102.1",
     "axios": "^1.15.0",
-    "cheerio": "^1.2.0"
+    "cheerio": "^1.2.0",
+    "node-cron": "^3.0.3"
   }
 }

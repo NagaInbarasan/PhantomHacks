@@ -417,15 +417,67 @@ function renderPageNumbers(total){
   const totalPages=Math.ceil(total/PAGE_SIZE);
   const wrap=document.getElementById('pageNumbers');
   wrap.innerHTML='';
-  for(let i=1;i<=totalPages;i++){
-    const btn=document.createElement('div');
-    btn.className='page-btn'+(i===currentPage?' active':'');
-    btn.textContent=i;
-    btn.onclick=(()=>{const p=i;return()=>{currentPage=p;renderEvents(false);}})();
-    wrap.appendChild(btn);
+  
+  const pag=document.querySelector('.pagination');
+  if(pag){
+    if(totalPages<=1){ pag.style.display='none'; return; }
+    else pag.style.display='flex';
   }
-  document.getElementById('prevBtn').style.opacity=currentPage===1?'0.4':'1';
-  document.getElementById('nextBtn').style.opacity=currentPage===totalPages||totalPages===0?'0.4':'1';
+
+  const MAX_VISIBLE = 5;
+  let startPage, endPage;
+
+  if (totalPages <= MAX_VISIBLE) {
+    startPage = 1; endPage = totalPages;
+  } else {
+    if (currentPage <= 3) {
+      startPage = 1; endPage = 4;
+    } else if (currentPage + 2 >= totalPages) {
+      startPage = totalPages - 3; endPage = totalPages;
+    } else {
+      startPage = currentPage - 1; endPage = currentPage + 1;
+    }
+  }
+
+  const addBtn = (i, isActive = false) => {
+    const btn = document.createElement('div');
+    btn.className = 'page-btn' + (isActive ? ' active' : '');
+    btn.textContent = i;
+    btn.onclick = () => { currentPage = i; renderEvents(false); };
+    wrap.appendChild(btn);
+  };
+
+  const addEllipsis = () => {
+    const el = document.createElement('div');
+    el.className = 'page-ellipsis';
+    el.innerHTML = '&hellip;';
+    wrap.appendChild(el);
+  };
+
+  if (startPage > 1) {
+    addBtn(1);
+    if (startPage > 2) addEllipsis();
+  }
+
+  for(let i = startPage; i <= endPage; i++){
+    addBtn(i, i === currentPage);
+  }
+
+  if (endPage < totalPages) {
+    if (endPage < totalPages - 1) addEllipsis();
+    addBtn(totalPages);
+  }
+
+  const prev = document.getElementById('prevBtn');
+  const next = document.getElementById('nextBtn');
+  if(prev){
+    prev.style.opacity = currentPage === 1 ? '0.4' : '1';
+    prev.style.pointerEvents = currentPage === 1 ? 'none' : 'auto';
+  }
+  if(next){
+    next.style.opacity = (currentPage === totalPages || totalPages === 0) ? '0.4' : '1';
+    next.style.pointerEvents = (currentPage === totalPages || totalPages === 0) ? 'none' : 'auto';
+  }
 }
 
 function changePage(dir){
@@ -893,8 +945,24 @@ function animP(){
 }
 
 /* =====================================================================
+   MOBILE FILTER POPUP (FLIPKART/AMAZON STYLE)
+   ===================================================================== */
+function openMobileFilters() {
+  document.getElementById('filterOverlay').classList.add('open');
+  document.getElementById('filterSection').classList.add('mobile-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileFilters() {
+  document.getElementById('filterOverlay').classList.remove('open');
+  document.getElementById('filterSection').classList.remove('mobile-open');
+  document.body.style.overflow = '';
+}
+
+/* =====================================================================
    INIT
    ===================================================================== */
+
 (function init(){
   renderFeed();
   initParticles();

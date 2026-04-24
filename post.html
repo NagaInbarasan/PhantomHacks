@@ -19,6 +19,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <link rel="stylesheet" href="css/style.css"/>
 <style>
@@ -236,6 +237,26 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- MOBILE BOTTOM NAV -->
+<div class="mobile-bottom-nav">
+  <a href="index.html" class="mb-nav-item">
+    <div class="mb-nav-icon">🏠</div>
+    <span>Home</span>
+  </a>
+  <a href="index.html" class="mb-nav-item" onclick="document.getElementById('searchInput').focus()">
+    <div class="mb-nav-icon">🔍</div>
+    <span>Discover</span>
+  </a>
+  <a href="post.html" class="mb-nav-item active">
+    <div class="mb-nav-icon">🚀</div>
+    <span>Post</span>
+  </a>
+  <a href="profile.html" class="mb-nav-item">
+    <div class="mb-nav-icon">👤</div>
+    <span>Profile</span>
+  </a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
