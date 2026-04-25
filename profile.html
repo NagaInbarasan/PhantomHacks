@@ -116,6 +116,24 @@
     <div class="drawer-close" onclick="closeDrawer()">✕</div>
   </div>
   <div class="drawer-nav">
+    <!-- MOBILE EXCLUSIVE ACTIONS -->
+    <div class="drawer-actions-row">
+      <div id="drawerUserPill" class="drawer-user-pill" style="display:none">
+        <div class="user-avatar-btn" onclick="window.location.href='profile.html'">
+          <div class="user-avatar" id="drawerAvatar">?</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+             <span id="drawerName" style="font-size:13px;font-weight:600">User</span>
+             <span style="font-size:10px;color:var(--muted)">View Profile</span>
+          </div>
+        </div>
+      </div>
+      <div id="drawerLoginBtn" style="flex:1">
+        <button class="btn-primary" style="width:100%;font-size:13px;padding:8px" onclick="closeDrawer();openAuth('signin')">Sign In</button>
+      </div>
+      <div class="drawer-theme-toggle" onclick="toggleThemePanel(event)">🎨 Theme</div>
+    </div>
+
+
     <div class="drawer-section">Discover</div>
     <a class="drawer-link" href="index.html"><span class="drawer-link-icon">🏠</span>Home</a>
     <a class="drawer-link" href="post.html"><span class="drawer-link-icon">📝</span>Post a Hackathon</a>
@@ -127,12 +145,6 @@
     <button class="drawer-link" onclick="drawerTab('regs')"><span
         class="drawer-link-icon">📋</span>Registrations</button>
     <div class="drawer-divider"></div>
-    <div class="drawer-section">Appearance</div>
-    <div class="drawer-theme-row" style="padding:0 20px">
-      <div class="drawer-mode-btn active" id="drawerDark" onclick="setMode('dark');updateDrawerMode('dark')">🌑 Dark
-      </div>
-      <div class="drawer-mode-btn" id="drawerLight" onclick="setMode('light');updateDrawerMode('light')">☀️ Light</div>
-    </div>
   </div>
   <div class="drawer-footer">
     <button class="logout-btn" style="width:100%" onclick="signOut()"><span class="ud-icon">🚪</span>Logout</button>

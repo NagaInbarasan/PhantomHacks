@@ -1183,23 +1183,27 @@ async function signOut(){
 function updateNavAuth(user){
   const loginBtn=document.getElementById('loginBtn');
   const userWrap=document.getElementById('userNavWrap');
-  if(!loginBtn || !userWrap) return;
+  const drLogin=document.getElementById('drawerLoginBtn');
+  const drUser=document.getElementById('drawerUserPill');
 
   if(user){
-    loginBtn.style.display='none';
-    userWrap.style.display='flex';
+    if(loginBtn) loginBtn.style.display='none';
+    if(userWrap) userWrap.style.display='flex';
+    if(drLogin) drLogin.style.display='none';
+    if(drUser) drUser.style.display='flex';
     
-    // Support both 'full_name' (Supa) and 'name' (Google/GitHub)
     const name = user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0] || 'Member';
     const initials = name.split(' ').filter(n=>n).map(n=>n[0]).join('').toUpperCase().slice(0,2);
     
-    document.getElementById('userAvatar').textContent = initials || '?';
-    document.getElementById('userNameNav').textContent = name.split(' ')[0];
-    console.log('[Auth] UI updated for user:', name);
+    if(document.getElementById('userAvatar')) document.getElementById('userAvatar').textContent = initials || '?';
+    if(document.getElementById('userNameNav')) document.getElementById('userNameNav').textContent = name.split(' ')[0];
+    if(document.getElementById('drawerAvatar')) document.getElementById('drawerAvatar').textContent = initials || '?';
+    if(document.getElementById('drawerName')) document.getElementById('drawerName').textContent = name.split(' ')[0];
   } else {
-    loginBtn.style.display='flex';
-    userWrap.style.display='none';
-    console.log('[Auth] UI switched to logged-out state');
+    if(loginBtn) loginBtn.style.display='flex';
+    if(userWrap) userWrap.style.display='none';
+    if(drLogin) drLogin.style.display='block';
+    if(drUser) drUser.style.display='none';
   }
 }
 

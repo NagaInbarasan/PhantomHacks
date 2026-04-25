@@ -306,8 +306,10 @@ nav {
   display: flex;
   align-items: center;
   padding: 0 20px;
-  height: var(--nav-h);
+  min-height: var(--nav-h);
+  height: auto;
   gap: 16px;
+  flex-wrap: wrap;
 }
 @media (max-width: 768px) {
   :root { --nav-h: 80px; }
@@ -3905,6 +3907,45 @@ select.form-input option {
   left: 0
 }
 
+.drawer-actions-row {
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.drawer-user-pill {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.drawer-theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  background: var(--glass);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.drawer-theme-toggle:hover {
+  border-color: var(--p);
+  background: var(--pg);
+}
+
+
+
 .drawer-overlay {
   position: fixed;
   inset: 0;
@@ -5793,6 +5834,9 @@ select.edit-input option {
   .logo-text { font-size: 17px !important; letter-spacing: -0.5px; }
   .logo-sub { display: none !important; }
 
+  /* Hide some nav actions on mobile — moved to drawer */
+  #themePaletteBtn, #userNavWrap, .btn-primary { display: none !important; }
+  
   /* Save space in Nav by hiding username/arrow */
   .user-name-nav { display: none !important; }
   .user-avatar-btn span[style*="font-size:9px"] { display: none !important; }
@@ -5885,10 +5929,7 @@ select.edit-input option {
   .logo-sub { display: none !important; }
   .logo-icon img { height: 40px !important; }
   .logo-icon { width: 44px !important; height: 44px !important; font-size: 20px; }
-  
-  /* Hide unnecessary nav buttons on mobile */
-  .nav-actions .btn-outline[onclick="loadHackathons()"] { display: none !important; }
-  .nav-actions #themePaletteBtn { padding: 4px; }
+
 
   /* ===================== MOBILE SEARCH & FILTER ===================== */
   .search-actions-mobile {
